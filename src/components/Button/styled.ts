@@ -9,6 +9,13 @@ export const ButtonComponent = styled.button`
     min-width: 403px;
     background-color: #FFFFFF;
     border: 1px solid #E4EAED;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #1DA1F2;
+        color: #FFFFFF;
+    }
 `
 
 export const ButtonWrapper = styled.div`

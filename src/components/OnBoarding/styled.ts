@@ -70,7 +70,7 @@ export const LogInText = styled.p`
     text-align: left;
 `
 
-export const Link = styled.a`
+export const LinkStyled = styled.a`
     color: #1E97E1;
 `
 

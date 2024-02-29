@@ -1,10 +1,17 @@
-import OnBoarding from "../OnBoarding";
-import LogIn from "../LogIn";
-import SignUp from "../SignUp";
+import { Routes, Route } from "react-router-dom";
+import WelcomePage from "@/pages/WelcomePage";
+import SignInPage from "@/pages/SignIn";
+import SignUpPage from "@/pages/SignUpPage";
+import MainPage from "@/pages/MainPage";
 
 function App() {
 	return (
-		<SignUp />
+		<Routes>
+			<Route path="/" element={<WelcomePage />} />
+			<Route path="/register" element={<SignUpPage />} />
+			<Route path="/login" element={<SignInPage />} />
+			<Route path="/feed" element={<MainPage />} />
+		</Routes>
 	);
 }
 

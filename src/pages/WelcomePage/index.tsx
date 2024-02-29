@@ -1,7 +1,7 @@
+import OnBoarding from "@/components/OnBoarding";
+
 const WelcomePage = () => {
-    return (
-        <div>index</div>
-    )
+    return <OnBoarding />
 }
 
 export default WelcomePage;
