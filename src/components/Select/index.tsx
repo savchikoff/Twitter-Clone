@@ -1,16 +1,15 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import arrow from "@assets/arrow.svg";
+import { FC, useEffect, useRef,useState } from 'react';
 
 import {
-    Main,
+    ArrowIcon,
     DropDownContainer,
     DropDownHeader,
-    DropDownListContainer,
     DropDownList,
-    ArrowIcon,
+    DropDownListContainer,
     ListItem,
+    Main,
 } from './styled';
-
-import arrow from "@assets/arrow.svg";
 
 export interface SelectProps {
     label: string;
@@ -53,7 +52,7 @@ const Select: FC<SelectProps> = ({ label, options, selectedOption, setSelectedOp
         <Main>
             <DropDownContainer ref={selectRef}>
                 <DropDownHeader onClick={toggleSelect}>
-                    {selectedOption ? selectedOption : label}
+                    {selectedOption || label}
                     <ArrowIcon $isOpen={isOpen} src={arrow} />
                 </DropDownHeader>
                 {isOpen && (

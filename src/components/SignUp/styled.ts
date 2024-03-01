@@ -36,7 +36,7 @@ export const SignUpHeader = styled.h4`
     font-size: 30px;
 `;
 
-export const SignUpForm = styled.div`
+export const SignUpFields = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;

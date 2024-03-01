@@ -1,22 +1,12 @@
 import { initializeApp } from "firebase/app";
 import {
-    GoogleAuthProvider,
     getAuth,
-    signInWithPopup,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    sendPasswordResetEmail,
     signOut,
 } from "firebase/auth";
 import {
     getFirestore,
-    query,
-    getDocs,
-    collection,
-    where,
-    addDoc,
 } from "firebase/firestore";
-const env = await import.meta.env;
+const env = import.meta.env;
 
 const firebaseConfig = {
     apiKey: env.VITE_FIREBASE_API_KEY,
@@ -29,4 +19,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export const db = getFirestore(app);
+const db = getFirestore(app);
+
+const logOut = () => {
+    signOut(auth);
+};
+
+export {
+    auth,
+    db,
+    logOut
+}

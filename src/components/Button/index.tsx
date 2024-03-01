@@ -1,16 +1,18 @@
 import { FC, ReactNode } from "react";
-import { ButtonComponent, ButtonWrapper, ButtonLabel, ButtonIcon } from "./styled";
 import { Link } from "react-router-dom";
+
+import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
 
 export interface ButtonProps {
     iconSrc?: string;
+    type?: "button" | "submit" | "reset" | undefined;
     children: ReactNode | string;
     onClick?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({ iconSrc, children, onClick }) => {
+const Button: FC<ButtonProps> = ({ iconSrc, children, onClick, type }) => {
     return (
-        <ButtonComponent onClick={onClick}>
+        <ButtonComponent onClick={onClick} type={type}>
             <ButtonWrapper>
                 {iconSrc && <ButtonIcon src={iconSrc} />}
                 <ButtonLabel>

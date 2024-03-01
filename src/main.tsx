@@ -1,11 +1,13 @@
+import "./firebase";
+
+import App from '@components/App/App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { store } from './store/userStore';
 import { Provider } from 'react-redux';
-import App from '@components/App/App';
-import GlobalStyle from './GlobalStyles/styled';
 import { BrowserRouter } from 'react-router-dom';
-import "./firebase";
+
+import GlobalStyle from './GlobalStyles/styled';
+import { store } from './store/userStore';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>

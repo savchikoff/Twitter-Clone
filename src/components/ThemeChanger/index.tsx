@@ -1,7 +1,9 @@
 import { FC, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { ThemeChangerProps } from "./interfaces";
+
 import { dark, light } from "@/theme/theme";
+
+import { ThemeChangerProps } from "./interfaces";
 
 const ThemeChanger: FC<ThemeChangerProps> = ({ children }) => {
     const [themeType, setThemeType] = useState(light);

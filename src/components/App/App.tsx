@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import WelcomePage from "@/pages/WelcomePage";
+import { Route,Routes } from "react-router-dom";
+
+import MainPage from "@/pages/MainPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/SignUpPage";
-import MainPage from "@/pages/MainPage";
+import WelcomePage from "@/pages/WelcomePage";
 
 function App() {
 	return (

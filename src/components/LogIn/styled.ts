@@ -29,7 +29,7 @@ export const LogInForm = styled.form`
     gap: 24px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ $error?: boolean }>`
     border: 1px solid #CCCCCC;
     border-radius: 6px;
     padding: 20px;
@@ -37,7 +37,7 @@ export const Input = styled.input`
     min-width: 450px;
     outline: none;
     ::placeholder{
-        color: #666666;
+        color: ${({ $error }) => ($error ? 'red' : '#666666')};
     }
 `;
 
@@ -61,4 +61,12 @@ export const Button = styled.button`
     &:hover{
         background-color: #6CC6FD;
     }
+
+    &:disabled{
+        background-color: #6CC6FD;
+    }
+`
+
+export const ErrorLabel = styled.div`
+    color: red;
 `
