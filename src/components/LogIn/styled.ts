@@ -41,12 +41,6 @@ export const Input = styled.input<{ $error?: boolean }>`
     }
 `;
 
-export const SignUpLink = styled.a`
-    text-align: right;
-    font-size: 18px;
-    color: #1DA1F2;
-`
-
 export const Button = styled.button`
     font-size: 18px;
     height: 60px;

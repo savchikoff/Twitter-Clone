@@ -23,7 +23,12 @@ const Notification: FC<INotificationProps> = ({ isError, active, handleNotificat
                 handleNotificationActive();
             }, 5000);
 
-            setTimer(newTimer);
+            setTimer((prevTimer) => {
+                if (prevTimer) {
+                    clearTimeout(prevTimer);
+                }
+                return newTimer;
+            });
         }
 
         return () => {
@@ -31,7 +36,8 @@ const Notification: FC<INotificationProps> = ({ isError, active, handleNotificat
                 clearTimeout(timer);
             }
         };
-    }, [active, handleNotificationActive, timer]);
+    }, [active, handleNotificationActive]);
+
 
     return (
         <>

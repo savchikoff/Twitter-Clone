@@ -36,6 +36,11 @@ export const SignUpHeader = styled.h4`
     font-size: 30px;
 `;
 
+export const SignUpForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
+
 export const SignUpFields = styled.div`
     display: flex;
     flex-direction: column;
@@ -53,11 +58,6 @@ export const Input = styled.input`
         color: #666666;
     }
 `;
-
-export const UseLink = styled.a`
-    color: #1DA1F2;
-    font-size: 18px;
-`
 
 export const DateOfBirthWrapper = styled.div`
     display: flex;
@@ -88,6 +88,10 @@ export const Button = styled.button`
     transition: all 0.3s ease;
 
     &:hover{
+        background-color: #6CC6FD;
+    }
+
+    &:disabled{
         background-color: #6CC6FD;
     }
 `

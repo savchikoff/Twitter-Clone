@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 
 import { auth } from "@/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
+import LinkWrapper from "@/ui/LinkWrapper";
 
-import { Button, Container, Input, LogInHeader, SignUpLink, TwitterLogo, Wrapper, LogInForm } from "./styled";
+import { Button, Container, Input, LogInHeader, TwitterLogo, Wrapper, LogInForm } from "./styled";
 import Notification from "@/ui/Notification";
 
 
@@ -33,7 +34,7 @@ const LogIn: FC = () => {
         if (loading) {
             return;
         }
-        if (user) navigate("/feed");
+        if (user) navigate("/");
     }, [user, loading]);
 
     useEffect(() => {
@@ -50,9 +51,9 @@ const LogIn: FC = () => {
     const handleLogin = ({ email, password }: IFormInput) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                navigate('/feed');
+                navigate('/');
             })
-            .catch((e) => {
+            .catch((e: Error) => {
                 setIsError(true);
                 setError(e.message);
                 setNotificationActive(true);
@@ -86,13 +87,23 @@ const LogIn: FC = () => {
                     <Input
                         type="password"
                         {...register("password", {
-                            required: "Password field is required",
+                            required: "You must specify a password",
+                            minLength: {
+                                value: 8,
+                                message: "Password must be more than 8 characters"
+                            },
+                            maxLength: {
+                                value: 20,
+                                message: "Password must be less than 20 characters"
+                            },
                         })}
                         placeholder="Password" />
                     {isError && !isNotificationActive && <ErrorLabel label={error} />}
                     <Button type="submit" disabled={!isValid}>Log In</Button>
                 </LogInForm>
-                <SignUpLink><Link to="/register">Sign up to Twitter</Link></SignUpLink>
+                <LinkWrapper>
+                    <Link to="/register">Sign up to Twitter</Link>
+                </LinkWrapper>
                 {isNotificationActive && <Notification
                     isError={true}
                     active={isNotificationActive}

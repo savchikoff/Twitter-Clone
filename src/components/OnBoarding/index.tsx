@@ -6,17 +6,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { db } from "@/firebase";
 
 import Button from "../Button";
-import { setUser } from '../../store/slices/userSlice'
-import { useAppDispatch } from "@/hooks/redux-hooks";
+import LinkWrapper from "@/ui/LinkWrapper";
 import { auth } from "@/firebase";
-import { AdditionalContent, ButtonsWrapper, Container, FooterLink, FooterLinksWrapper, LinkStyled, LogInText, MainWrapper, PrivacyPolicyContent, SignUpContent, SignUpHeader, SignUpHeaders, SignUpMainHeader, TwitterImage, TwitterLogo } from "./styled";
+import { AdditionalContent, ButtonsWrapper, Container, NavLink, FooterLinksWrapper, LogInText, MainWrapper, PrivacyPolicyContent, SignUpContent, SignUpHeader, SignUpHeaders, SignUpMainHeader, TwitterImage, TwitterLogo } from "./styled";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect } from "react";
 
 function OnBoarding() {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
     const googleProvider = new GoogleAuthProvider();
+
+    const [user, loading] = useAuthState(auth);
+
+    useEffect(() => {
+        if (loading) return;
+        if (user) navigate('/');
+    }, [user, loading]);
 
     const handleSignUpWithGoogle = async () => {
         try {
@@ -24,11 +31,7 @@ function OnBoarding() {
             const user = res.user;
             const q = query(collection(db, "Users"), where("uid", "==", user.uid));
             const docs = await getDocs(q);
-            dispatch(setUser({
-                login: user.email,
-                id: user.uid
-            }));
-            navigate('/feed');
+            navigate('/');
             if (docs.docs.length === 0) {
                 await addDoc(collection(db, "Users"), {
                     uid: user.uid,
@@ -62,15 +65,17 @@ function OnBoarding() {
                     </ButtonsWrapper>
                     <AdditionalContent>
                         <PrivacyPolicyContent>
-                            By singing up you agree to the <LinkStyled>Terms of Service</LinkStyled> and <LinkStyled href="#">Privacy Policy</LinkStyled>, including <LinkStyled href="#">Cookie Use</LinkStyled>.
+                            By singing up you agree to the <LinkWrapper><Link to="/">Terms of service</Link></LinkWrapper> and <LinkWrapper><Link to="/">Privacy Policy</Link></LinkWrapper>, including <LinkWrapper><Link to="/">Cookie Use</Link></LinkWrapper>.
                         </PrivacyPolicyContent>
-                        <LogInText>Already have an account? <LinkStyled><Link to="login">Log in</Link></LinkStyled></LogInText>
+                        <LogInText>Already have an account? <LinkWrapper><Link to="/login">Log in</Link></LinkWrapper></LogInText>
                     </AdditionalContent>
                 </SignUpContent>
             </MainWrapper>
             <FooterLinksWrapper>
                 {FooterLinks.map(({ name, link }) => (
-                    <FooterLink key={name} href={link}>{name}</FooterLink>
+                    <NavLink key={name}>
+                        <Link to={link}>{name}</Link>
+                    </NavLink>
                 ))}
             </FooterLinksWrapper>
         </Container>

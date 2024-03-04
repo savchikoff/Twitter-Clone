@@ -70,10 +70,6 @@ export const LogInText = styled.p`
     text-align: left;
 `
 
-export const LinkStyled = styled.a`
-    color: #1E97E1;
-`
-
 export const FooterLinksWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -82,6 +78,6 @@ export const FooterLinksWrapper = styled.div`
     gap: 16px;
 `;
 
-export const FooterLink = styled.a`
+export const NavLink = styled.span`
     font-size: 14px;
 `
