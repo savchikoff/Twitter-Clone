@@ -12,8 +12,6 @@ const NewTweet: FC = () => {
                     <TweetText placeholder="What’s happening" />
                     <TweetActionsWrapper>
                         <TweetImageButton type="file" accept="image/jpeg,image/png" />
-                        {/* <TweetImage src={image} alt="Tweet img" />
-                        </TweetImageButton> */}
                         <TweetAddButton>Tweet</TweetAddButton>
                     </TweetActionsWrapper>
                 </TweetContentWrapper>
