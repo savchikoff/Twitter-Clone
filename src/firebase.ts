@@ -6,6 +6,7 @@ import {
 import {
     getFirestore,
 } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 const env = import.meta.env;
 
 const firebaseConfig = {
@@ -20,6 +21,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const tweetsImages = getStorage(app, "gs://twitter-clone-9ae15.appspot.com");
+const tweetImagesRef = ref(tweetsImages);
 
 const logOut = () => {
     signOut(auth);

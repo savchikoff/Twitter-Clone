@@ -1,10 +1,11 @@
-import { HomeContainer, HomeHeader } from "./styled";
+import { HomeHeader } from "./styled";
+import SectionWrapper from "../SectionWrapper";
 
 const Home = () => {
     return (
-        <HomeContainer>
+        <SectionWrapper>
             <HomeHeader>Home</HomeHeader>
-        </HomeContainer>
+        </SectionWrapper>
     )
 }
 

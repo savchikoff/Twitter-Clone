@@ -1,6 +1,7 @@
 import SectionWrapper from "../SectionWrapper";
 import LinkWrapper from "@/ui/LinkWrapper";
 import NewTweet from "../NewTweet";
+import { useCurrentUser } from "@/providers/UserProvider";
 import {
     EditButton,
     FollowersInfo,
@@ -22,12 +23,14 @@ import {
 } from "./styled";
 import heatImage from "@assets/profile-header.jpg";
 import profileImg from "@assets/profile-image.png"
+import Tweet from "../Tweet";
 
 const Profile = () => {
+    const { displayName, userName } = useCurrentUser();
     return (
         <SectionWrapper>
             <ProfileHeader>
-                <ProfileHeaderName>Bobur</ProfileHeaderName>
+                <ProfileHeaderName>{displayName}</ProfileHeaderName>
                 <ProfileHeaderTweets>1,070 Tweets</ProfileHeaderTweets>
             </ProfileHeader>
             <ProfileHeat>
@@ -39,11 +42,11 @@ const Profile = () => {
                     <EditButton>Edit profile</EditButton>
                 </TopInfoWrapper>
                 <UserInfo>
-                    <UserName>Bobur</UserName>
-                    <UserNickname>@bobur_mavlonov</UserNickname>
+                    <UserName>{displayName}</UserName>
+                    <UserNickname>@{userName}</UserNickname>
                 </UserInfo>
                 <ProfileDescription>
-                    UX&UI designer at <LinkWrapper>@abutechuz</LinkWrapper>
+                    Frontend Developer at <LinkWrapper>@modsen</LinkWrapper>
                 </ProfileDescription>
                 <SubscriptionsWrapper>
                     <FollowersInfo><Strong>67</Strong> Following</FollowersInfo>
@@ -51,6 +54,7 @@ const Profile = () => {
                 </SubscriptionsWrapper>
             </ProfileInfoWrapper>
             <NewTweet />
+            <Tweet />
         </SectionWrapper>
     )
 }

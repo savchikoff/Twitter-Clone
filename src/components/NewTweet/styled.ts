@@ -59,8 +59,33 @@ export const TweetAddButton = styled.button`
     outline: none;
     border-radius: 50px;
     transition: all 0.3s ease;
+    cursor: pointer;
 
     &:hover{
         background-color: #A5D9FA;
     }
 `
+export const FileInputWrapper = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+export const FileInputLabel = styled.label`
+  display: flex;
+  align-items: center; /* Center vertically */
+  padding: 10px 15px;
+  color: black;
+  cursor: pointer;
+`;
+
+export const FileInput = styled.input`
+  visibility: hidden;
+  width: 0;
+  height: 0;
+`;
+
+export const InputIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+`;
