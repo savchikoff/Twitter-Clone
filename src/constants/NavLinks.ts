@@ -1,11 +1,11 @@
-import home from "@assets/home.svg";
-import explore from "@assets/explore.svg";
-import notifications from "@assets/notification.svg";
-import messages from "@assets/messages.svg";
 import bookmarks from "@assets/bookmarks.svg";
+import explore from "@assets/explore.svg";
+import home from "@assets/home.svg";
 import lists from "@assets/lists.svg";
-import profile from "@assets/profile.svg";
+import messages from "@assets/messages.svg";
 import more from "@assets/more.svg";
+import notifications from "@assets/notification.svg";
+import profile from "@assets/profile.svg";
 
 interface INavLink {
     name: string;

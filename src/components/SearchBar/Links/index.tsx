@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
-import { LinksWrapper } from "./styled";
-import { FooterLinks } from "@/constants/FooterLinks";
 import { FC } from "react";
+import { Link } from "react-router-dom";
+
+import { FooterLinks } from "@/constants/FooterLinks";
+
+import { LinksWrapper } from "./styled";
 
 const Links: FC = () => {
     return (

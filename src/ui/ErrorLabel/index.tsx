@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { IErrorLabelProps } from "./interfaces";
 
+import { IErrorLabelProps } from "./interfaces";
 import { Error } from "./styled";
 
 const ErrorLabel: FC<IErrorLabelProps> = ({ label }) => {

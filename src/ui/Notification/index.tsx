@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 
 import {
-    NotificationWrapper,
-    NotificationTitle,
     NotificationContent,
+    NotificationTitle,
+    NotificationWrapper,
 } from './styled';
 
 interface INotificationProps {

@@ -1,16 +1,16 @@
 import twitterLogo from "@assets/twitter-logo.svg"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FC, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 import { auth } from "@/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
 import LinkWrapper from "@/ui/LinkWrapper";
-
-import { Button, Container, Input, LogInHeader, TwitterLogo, Wrapper, LogInForm } from "./styled";
 import Notification from "@/ui/Notification";
+
+import { Button, Container, Input, LogInForm,LogInHeader, TwitterLogo, Wrapper } from "./styled";
 
 
 interface IFormInput {
@@ -105,7 +105,7 @@ const LogIn: FC = () => {
                     <Link to="/register">Sign up to Twitter</Link>
                 </LinkWrapper>
                 {isNotificationActive && <Notification
-                    isError={true}
+                    isError
                     active={isNotificationActive}
                     handleNotificationActive={handleNotificationActive}
                     label="Error while authenticating"

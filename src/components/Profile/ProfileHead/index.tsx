@@ -1,4 +1,10 @@
+import heatImage from "@assets/profile-header.jpg";
+import profileImg from "@assets/profile-image.png";
 import { FC } from "react";
+
+import LinkWrapper from "@/ui/LinkWrapper";
+import { getUserTweets } from "@/utils/getUserTweets";
+
 import {
     EditButton,
     FollowersInfo,
@@ -18,10 +24,6 @@ import {
     UserName,
     UserNickname
 } from "./styled";
-import LinkWrapper from "@/ui/LinkWrapper";
-import heatImage from "@assets/profile-header.jpg";
-import profileImg from "@assets/profile-image.png";
-import { getUserTweets } from "@/utils/getUserTweets";
 
 export interface IProfileHeadProps {
     displayName: string;

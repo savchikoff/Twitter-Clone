@@ -1,9 +1,11 @@
-import { ChangeEvent, FC, useState } from "react";
-import { FileInput, FileInputLabel, FileInputWrapper, InputIcon, TweetActionsWrapper, TweetAddButton, TweetContainer, TweetContentWrapper, TweetText, TweetWrapper, UserAvatar } from "./styled";
-import { useCurrentUser } from "@/providers/UserProvider";
-import { FileType, addTweet } from "@/utils/addTweet";
 import avatar from "@assets/avatar.svg";
 import image from "@assets/img-icon.svg";
+import { ChangeEvent, FC, useState } from "react";
+
+import { useCurrentUser } from "@/providers/UserProvider";
+import { addTweet,FileType } from "@/utils/addTweet";
+
+import { FileInput, FileInputLabel, FileInputWrapper, InputIcon, TweetActionsWrapper, TweetAddButton, TweetContainer, TweetContentWrapper, TweetText, TweetWrapper, UserAvatar } from "./styled";
 
 const NewTweet: FC = () => {
     const { displayName, userName, email, uid } = useCurrentUser();
@@ -48,7 +50,7 @@ const NewTweet: FC = () => {
                             <FileInput type="file" id="fileInput" accept="image/jpg" onChange={handleImageChange} />
                             <FileInputLabel htmlFor="fileInput">
                                 <InputIcon src={image} alt="File Icon" />
-                                {imageName ? imageName : 'Choose a file'}
+                                {imageName || 'Choose a file'}
                             </FileInputLabel>
                         </FileInputWrapper>
                         <TweetAddButton disabled={!tweetText} onClick={sendTweet}>Tweet</TweetAddButton>

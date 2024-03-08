@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { ErrorContainer, ErrorWrapper, ErrorHeader, ErrorLabel, BackButton } from "./styled";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { BackButton,ErrorContainer, ErrorHeader, ErrorLabel, ErrorWrapper } from "./styled";
 
 const ErrorPage: FC = () => {
     const navigate = useNavigate();

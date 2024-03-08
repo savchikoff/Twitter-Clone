@@ -1,8 +1,10 @@
+import avatar from "@assets/avatar.svg";
 import { FC } from "react";
+
 import { UserAvatar } from "@/components/Sidebar/styled";
+
 import { IUserProps } from "./interfaces";
 import { FollowButton, UserData, UserDataWrapper, UserName, UserNickName, UsersInfoWrapper } from "./styled";
-import avatar from "@assets/avatar.svg";
 
 const User: FC<IUserProps> = ({ userName, nickName }) => {
 

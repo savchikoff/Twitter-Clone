@@ -1,9 +1,10 @@
-import { HomeHeader, HomeHeaderWrapper } from "./styled";
-import SectionWrapper from "../SectionWrapper";
-import NewTweet from "../NewTweet";
 import { useTweets } from "@/providers/TweetsProvider";
+
+import NewTweet from "../NewTweet";
 import { TweetsWrapper } from "../Profile/styled";
+import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
+import { HomeHeader, HomeHeaderWrapper } from "./styled";
 
 const Home = () => {
     const allTweets = useTweets();

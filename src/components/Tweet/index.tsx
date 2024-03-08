@@ -1,12 +1,20 @@
-import { FC, useEffect, useState } from "react";
-import options from "@assets/options.svg";
 import user from "@assets/avatar.svg";
-import likeUnactive from "@assets/like-unactive.svg";
 import likeActive from "@assets/like-active.svg";
+import likeUnactive from "@assets/like-unactive.svg";
+import options from "@assets/options.svg";
 import postImage from "@assets/post-image.jpg";
 import heat from "@assets/profile-header.jpg";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import { FC, useEffect, useState } from "react";
 
+import { db, storage } from "@/firebase";
+import { useCurrentUser } from "@/providers/UserProvider";
+import { isLikedByMe } from "@/utils/isLikedByMe";
+
+import { ITweetProps } from "./interfaces";
 import {
+    DeleteButton, // Add this styled component for the delete button
     TweetContainer,
     TweetContent,
     TweetContentWrapper,
@@ -24,14 +32,7 @@ import {
     UserInfo,
     UserName,
     UserNickName,
-    DeleteButton, // Add this styled component for the delete button
 } from "./styled";
-import { getDownloadURL, ref } from "firebase/storage";
-import { db, storage } from "@/firebase";
-import { isLikedByMe } from "@/utils/isLikedByMe";
-import { useCurrentUser } from "@/providers/UserProvider";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { ITweetProps } from "./interfaces";
 
 const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, likes, createdAt, image }) => {
     const { uid } = useCurrentUser();

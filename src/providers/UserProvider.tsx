@@ -1,5 +1,6 @@
-import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
+
 import { auth, db } from "@/firebase";
 
 interface ICurrentUserContext {

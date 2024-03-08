@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { SectionContainer, SectionContent } from "./styled";
+
 import { ISectionWrapperProps } from "./interfaces";
+import { SectionContainer, SectionContent } from "./styled";
 
 const SectionWrapper: FC<ISectionWrapperProps> = ({ children }) => {
     return (

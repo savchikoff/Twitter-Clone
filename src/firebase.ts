@@ -7,7 +7,8 @@ import {
     getFirestore,
 } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
-const env = import.meta.env;
+
+const {env} = import.meta;
 
 const firebaseConfig = {
     apiKey: env.VITE_FIREBASE_API_KEY,
@@ -30,6 +31,5 @@ const logOut = () => {
 export {
     auth,
     db,
-    storage,
-    logOut
-}
+    logOut,
+    storage}

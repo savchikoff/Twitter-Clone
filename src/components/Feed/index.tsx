@@ -1,9 +1,10 @@
+import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase";
-import { useEffect } from "react";
 import { Container } from "@/styled";
+
 import Layout from "../Layout";
 
 const Feed = () => {

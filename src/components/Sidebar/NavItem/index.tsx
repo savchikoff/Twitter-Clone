@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { NavItemIcon, NavItemWrapper, NavItemText } from "./styled";
+
+import { NavItemIcon, NavItemText,NavItemWrapper } from "./styled";
 
 interface INavItemProps {
     icon: string;

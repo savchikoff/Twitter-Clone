@@ -1,6 +1,7 @@
-import { FC, useRef } from "react";
-import { SearchContainer, SearchIcon, SearchWrapper, SearchInput } from "./styled";
 import search from "@assets/search.svg";
+import { FC, useRef } from "react";
+
+import { SearchContainer, SearchIcon, SearchInput,SearchWrapper } from "./styled";
 
 interface ISearchProps {
     searchValue: string;

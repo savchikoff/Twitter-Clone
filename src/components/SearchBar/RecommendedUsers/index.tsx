@@ -1,3 +1,8 @@
+import { collection, getDocs } from "firebase/firestore";
+import { FC, useEffect, useState } from "react";
+
+import { db } from "@/firebase";
+
 import User from "../User";
 import { IRecommendedUsersProps, IUser } from "./interfaces";
 import {
@@ -5,9 +10,6 @@ import {
     UsersHeader,
     UsersWrapper
 } from "./styled";
-import { db } from "@/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { FC, useEffect, useState } from "react";
 
 
 const RecommendedUsers: FC<IRecommendedUsersProps> = ({ searchValue }) => {

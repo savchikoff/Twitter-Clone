@@ -1,8 +1,10 @@
-import RecommendedUsers from "./RecommendedUsers";
-import Search from "@/ui/Search";
-import { SearchBarContainer } from "./styled";
-import Links from "./Links";
 import { useState } from "react";
+
+import Search from "@/ui/Search";
+
+import Links from "./Links";
+import RecommendedUsers from "./RecommendedUsers";
+import { SearchBarContainer } from "./styled";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");

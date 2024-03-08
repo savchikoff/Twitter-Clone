@@ -1,7 +1,7 @@
-import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, orderBy, query , Timestamp } from "firebase/firestore";
+import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
+
 import { db } from "@/firebase";
-import { Timestamp } from "firebase/firestore";
 
 type TweetsContext = {
     tweetId: string;

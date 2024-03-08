@@ -1,14 +1,15 @@
-import { SidebarContainer, SidebarWrapper, TwitterLogo, NavigationContainer, TweetButton, LogoutButton, UserWrapper, UserAvatar, UserInfo, UserName, UserNick } from "./styled";
-import twitter from "@assets/twitter-logo.svg";
-import { auth } from "@/firebase";
-import { logOut } from "@/firebase";
-import NavItem from "./NavItem";
-import { NAV_LINKS } from "@/constants/NavLinks";
 import avatar from "@assets/avatar.svg"
-import { useCurrentUser } from "@/providers/UserProvider";
+import twitter from "@assets/twitter-logo.svg";
 import { useState } from "react";
+
+import { NAV_LINKS } from "@/constants/NavLinks";
+import { auth , logOut } from "@/firebase";
+import { useCurrentUser } from "@/providers/UserProvider";
+
 import Modal from "../Modal";
 import NewTweet from "../NewTweet";
+import NavItem from "./NavItem";
+import { LogoutButton, NavigationContainer, SidebarContainer, SidebarWrapper, TweetButton, TwitterLogo, UserAvatar, UserInfo, UserName, UserNick,UserWrapper } from "./styled";
 
 const Sidebar = () => {
     const { userName, displayName } = useCurrentUser();
@@ -25,7 +26,7 @@ const Sidebar = () => {
                 <NavigationContainer>
                     {NAV_LINKS.map(({ name, to, src }) => {
                         if (name === "Profile") {
-                            return <NavItem icon={src} label={name} to={to} isPrimary={true} />
+                            return <NavItem icon={src} label={name} to={to} isPrimary />
                         }
                         return <NavItem icon={src} label={name} to={to} />
                     })}

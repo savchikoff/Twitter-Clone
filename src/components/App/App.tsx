@@ -1,15 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import { CurrentUserProvider } from "@/providers/UserProvider";
-import { TweetsProvider } from "@/providers/TweetsProvider";
 
+import ErrorPage from "@/pages/ErrorPage";
 import FeedPage from "@/pages/FeedPage";
 import SignInPage from "@/pages/SignIn";
 import SignUpPage from "@/pages/SignUpPage";
+import TweetPage from "@/pages/TweetPage";
 import WelcomePage from "@/pages/WelcomePage";
-import ErrorPage from "@/pages/ErrorPage";
+import { TweetsProvider } from "@/providers/TweetsProvider";
+import { CurrentUserProvider } from "@/providers/UserProvider";
+
 import Home from "../Home";
 import Profile from "../Profile";
-import TweetPage from "@/pages/TweetPage";
 
 function App() {
 	return (

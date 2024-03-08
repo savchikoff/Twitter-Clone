@@ -1,10 +1,11 @@
-import SectionWrapper from "../SectionWrapper";
-import NewTweet from "../NewTweet";
-import ProfileHead from "./ProfileHead";
-import { useCurrentUser } from "@/providers/UserProvider";
-import Tweet from "../Tweet";
 import { useTweets } from "@/providers/TweetsProvider";
+import { useCurrentUser } from "@/providers/UserProvider";
 import { getUserTweets } from "@/utils/getUserTweets";
+
+import NewTweet from "../NewTweet";
+import SectionWrapper from "../SectionWrapper";
+import Tweet from "../Tweet";
+import ProfileHead from "./ProfileHead";
 import { TweetsWrapper } from "./styled";
 
 const Profile = () => {

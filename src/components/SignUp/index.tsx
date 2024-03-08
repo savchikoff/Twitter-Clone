@@ -1,35 +1,36 @@
-import { useEffect, useMemo, useState } from "react";
-import Notification from "@/ui/Notification";
 import twitterLogo from "@assets/twitter-logo.svg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { Month } from "@/constants/Month";
-import { db, auth } from "@/firebase";
+import { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth"
-import { getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
-import { generateYears } from "@/utils/generateYears";
-import Select from "../../ui/Select";
-import LinkWrapper from "@/ui/LinkWrapper";
-import { ISignUpFormInput } from "./interfaces";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
+import { Month } from "@/constants/Month";
+import { auth,db } from "@/firebase";
+import ErrorLabel from "@/ui/ErrorLabel";
+import LinkWrapper from "@/ui/LinkWrapper";
+import Notification from "@/ui/Notification";
+import { generateYears } from "@/utils/generateYears";
+import { getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
+
+import Select from "../../ui/Select";
+import { ISignUpFormInput } from "./interfaces";
 import {
     Button,
     Container,
     DateOfBirthHeader,
     DateOfBirthSelects,
     DateOfBirthWrapper,
-    SignUpForm,
     Input,
     InputsWrapper,
     SignUpFields,
+    SignUpForm,
     SignUpHeader,
     TwitterLogo,
     TwitterLogoWrapper,
     Wrapper
 } from "./styled";
-import ErrorLabel from "@/ui/ErrorLabel";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -172,7 +173,7 @@ const SignUp = () => {
                     <Button type="submit" disabled={isSubmitButtonDisabled}>Sign Up</Button>
                 </SignUpForm>
                 {isNotificationActive && <Notification
-                    isError={true}
+                    isError
                     active={isNotificationActive}
                     handleNotificationActive={handleNotificationActive}
                     label="Error while authenticating"
