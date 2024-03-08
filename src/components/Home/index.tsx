@@ -1,10 +1,36 @@
-import { HomeHeader } from "./styled";
+import { HomeHeader, HomeHeaderWrapper } from "./styled";
 import SectionWrapper from "../SectionWrapper";
+import NewTweet from "../NewTweet";
+import { useTweets } from "@/providers/TweetsProvider";
+import { TweetsWrapper } from "../Profile/styled";
+import Tweet from "../Tweet";
 
 const Home = () => {
+    const allTweets = useTweets();
+
     return (
         <SectionWrapper>
-            <HomeHeader>Home</HomeHeader>
+            <HomeHeaderWrapper>
+                <HomeHeader>Home</HomeHeader>
+            </HomeHeaderWrapper>
+            <NewTweet />
+            <TweetsWrapper>
+                {allTweets.map(({ tweetId, name, userName, text, likes, likedUsers, image, createdAt }) => {
+                    const { nanoseconds, seconds } = createdAt;
+                    const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
+                    return (
+                        <Tweet key={tweetId}
+                            tweetId={tweetId}
+                            name={name.split(" ")[0]}
+                            likedUsers={likedUsers}
+                            userName={userName}
+                            text={text}
+                            likes={likes}
+                            image={image}
+                            createdAt={date} />
+                    )
+                })}
+            </TweetsWrapper>
         </SectionWrapper>
     )
 }

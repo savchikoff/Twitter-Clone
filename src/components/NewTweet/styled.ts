@@ -64,6 +64,11 @@ export const TweetAddButton = styled.button`
     &:hover{
         background-color: #A5D9FA;
     }
+
+    &:disabled{
+        background-color: #6CC6FD;
+        cursor: default;
+    }
 `
 export const FileInputWrapper = styled.div`
   position: relative;

@@ -40,11 +40,16 @@ export const TweetImageWrapper = styled.div`
     max-width: 679px;
     max-height: 453px;
     border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const TweetImage = styled.img`
     object-fit: cover;
     width: 100%;
+    height: 100%;
 `;
 
 export const UserName = styled.div`

@@ -21,8 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const tweetsImages = getStorage(app, "gs://twitter-clone-9ae15.appspot.com");
-const tweetImagesRef = ref(tweetsImages);
+const storage = getStorage(app, "gs://twitter-clone-9ae15.appspot.com");
 
 const logOut = () => {
     signOut(auth);
@@ -31,5 +30,6 @@ const logOut = () => {
 export {
     auth,
     db,
+    storage,
     logOut
 }

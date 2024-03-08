@@ -5,6 +5,9 @@ import { FollowButton, UserData, UserDataWrapper, UserName, UserNickName, UsersI
 import avatar from "@assets/avatar.svg";
 
 const User: FC<IUserProps> = ({ userName, nickName }) => {
+
+
+
     return (
         <UsersInfoWrapper>
             <UsersInfoWrapper>

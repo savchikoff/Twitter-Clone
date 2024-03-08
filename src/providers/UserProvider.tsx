@@ -1,11 +1,12 @@
 import { FC, ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "@/firebase";
 
 interface ICurrentUserContext {
-    uid?: string | null;
-    displayName?: string | null;
-    userName?: string | null;
+    uid: string;
+    displayName: string;
+    email: string;
+    userName: string;
 };
 
 interface ICurrentUserProviderProps {
@@ -13,9 +14,10 @@ interface ICurrentUserProviderProps {
 }
 
 const CurrentUserContext = createContext<ICurrentUserContext>({
-    uid: undefined,
-    displayName: undefined,
-    userName: undefined,
+    uid: "",
+    displayName: "",
+    email: "",
+    userName: "",
 });
 
 export const useCurrentUser = () => {
@@ -25,18 +27,16 @@ export const useCurrentUser = () => {
 export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children }) => {
 
     const [user, setUser] = useState<ICurrentUserContext>({
-        uid: undefined,
-        displayName: undefined,
-        userName: undefined
+        uid: "",
+        displayName: "",
+        email: "",
+        userName: ""
     });
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user) {
-                const { uid, displayName, email } = user;
-
-                console.log(uid);
-
+                const { uid, displayName, email } = user as { uid: string; displayName: string; email: string | undefined };
 
                 if (!displayName) {
                     const userRef = collection(db, "Users");
@@ -45,17 +45,18 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
                     userSnaps.forEach((userSnap) => {
                         if (userSnap.exists() && userSnap.data().uid === uid) {
                             const { name, email } = userSnap.data();
-                            setUser({ uid, displayName: name, userName: email?.split("@")[0] });
+                            setUser({ uid, displayName: name, userName: email?.split("@")[0] || "", email: email || "" });
                         }
                     });
                 } else {
-                    setUser({ uid, displayName, userName: email?.split("@")[0] });
+                    setUser({ uid, displayName, userName: email?.split("@")[0] || "", email: email || "" });
                 }
             } else {
                 setUser({
-                    uid: null,
-                    displayName: null,
-                    userName: null
+                    uid: "",
+                    displayName: "",
+                    email: "",
+                    userName: ""
                 });
             }
         });

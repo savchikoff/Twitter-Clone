@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form";
 import { Month } from "@/constants/Month";
 import { db, auth } from "@/firebase";
 import { useAuthState } from "react-firebase-hooks/auth"
-import { generateYears, getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
+import { getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
+import { generateYears } from "@/utils/generateYears";
 import Select from "../../ui/Select";
 import LinkWrapper from "@/ui/LinkWrapper";
 import { ISignUpFormInput } from "./interfaces";

@@ -1,60 +1,41 @@
 import SectionWrapper from "../SectionWrapper";
-import LinkWrapper from "@/ui/LinkWrapper";
 import NewTweet from "../NewTweet";
+import ProfileHead from "./ProfileHead";
 import { useCurrentUser } from "@/providers/UserProvider";
-import {
-    EditButton,
-    FollowersInfo,
-    FollowingInfo,
-    ProfileDescription,
-    ProfileHeader,
-    ProfileHeaderName,
-    ProfileHeaderTweets,
-    ProfileHeat,
-    ProfileHeatImage,
-    ProfileImage,
-    ProfileInfoWrapper,
-    Strong,
-    SubscriptionsWrapper,
-    TopInfoWrapper,
-    UserInfo,
-    UserName,
-    UserNickname
-} from "./styled";
-import heatImage from "@assets/profile-header.jpg";
-import profileImg from "@assets/profile-image.png"
 import Tweet from "../Tweet";
+import { useTweets } from "@/providers/TweetsProvider";
+import { getUserTweets } from "@/utils/getUserTweets";
+import { TweetsWrapper } from "./styled";
 
 const Profile = () => {
     const { displayName, userName } = useCurrentUser();
+    const tweets = getUserTweets();
+
+    console.log(tweets);
+    console.log(useTweets());
+
+
     return (
         <SectionWrapper>
-            <ProfileHeader>
-                <ProfileHeaderName>{displayName}</ProfileHeaderName>
-                <ProfileHeaderTweets>1,070 Tweets</ProfileHeaderTweets>
-            </ProfileHeader>
-            <ProfileHeat>
-                <ProfileHeatImage src={heatImage} />
-            </ProfileHeat>
-            <ProfileInfoWrapper>
-                <TopInfoWrapper>
-                    <ProfileImage src={profileImg} alt="Profile img" />
-                    <EditButton>Edit profile</EditButton>
-                </TopInfoWrapper>
-                <UserInfo>
-                    <UserName>{displayName}</UserName>
-                    <UserNickname>@{userName}</UserNickname>
-                </UserInfo>
-                <ProfileDescription>
-                    Frontend Developer at <LinkWrapper>@modsen</LinkWrapper>
-                </ProfileDescription>
-                <SubscriptionsWrapper>
-                    <FollowersInfo><Strong>67</Strong> Following</FollowersInfo>
-                    <FollowingInfo><Strong>47</Strong> Followers</FollowingInfo>
-                </SubscriptionsWrapper>
-            </ProfileInfoWrapper>
+            <ProfileHead displayName={displayName} userName={userName} />
             <NewTweet />
-            <Tweet />
+            <TweetsWrapper>
+                {tweets.map(({ tweetId, name, userName, text, likedUsers, likes, image, createdAt }) => {
+                    const { nanoseconds, seconds } = createdAt;
+                    const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
+                    return (
+                        <Tweet key={tweetId}
+                            tweetId={tweetId}
+                            name={name.split(" ")[0]}
+                            userName={userName}
+                            likedUsers={likedUsers}
+                            text={text}
+                            likes={likes}
+                            image={image}
+                            createdAt={date} />
+                    )
+                })}
+            </TweetsWrapper>
         </SectionWrapper>
     )
 }
