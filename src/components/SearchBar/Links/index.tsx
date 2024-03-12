@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { FooterLinks } from "@/constants/FooterLinks";
+import { FooterLinks } from "@/constants/footerLinks";
 
 import { LinksWrapper } from "./styled";
 

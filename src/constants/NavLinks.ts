@@ -21,27 +21,27 @@ export const NAV_LINKS: INavLink[] = [
     },
     {
         name: "Explore",
-        to: "/",
+        to: "/explore",
         src: explore
     },
     {
         name: "Notifications",
-        to: "/",
+        to: "/notification",
         src: notifications
     },
     {
         name: "Messages",
-        to: "/",
+        to: "/messages",
         src: messages
     },
     {
         name: "Bookmarks",
-        to: "/",
+        to: "/bookmarks",
         src: bookmarks
     },
     {
         name: "Lists",
-        to: "/",
+        to: "/lists",
         src: lists
     },
     {
@@ -51,7 +51,7 @@ export const NAV_LINKS: INavLink[] = [
     },
     {
         name: "More",
-        to: "/",
+        to: "/more",
         src: more
     },
 

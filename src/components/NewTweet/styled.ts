@@ -24,7 +24,7 @@ export const TweetContentWrapper = styled.div`
 
 export const TweetText = styled.textarea`
     font-family: inherit;
-    font-size: 20px;
+    font-size: 16px;
     width: 100%;
     resize: none;
     border: none;
@@ -77,7 +77,7 @@ export const FileInputWrapper = styled.div`
 
 export const FileInputLabel = styled.label`
   display: flex;
-  align-items: center; /* Center vertically */
+  align-items: center;
   padding: 10px 15px;
   color: black;
   cursor: pointer;

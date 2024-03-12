@@ -33,13 +33,16 @@
 			"@constants/*": [
 				"src/constants/*"
 			]
-		},
+		}
 	},
 	"include": [
 		"src",
 		"types",
 		"vite.config.ts",
 		"cypress.config.ts"
+	],
+	"exclude": [
+		"./cypress.config.ts"
 	],
 	"references": [
 		{

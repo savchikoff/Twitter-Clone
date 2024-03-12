@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { auth } from "@/firebase";
 import { Container } from "@/styled";
+import Loader from "@/ui/Loader";
 
 import Layout from "../Layout";
 

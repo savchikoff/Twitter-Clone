@@ -28,9 +28,11 @@ import {
 export interface IProfileHeadProps {
     displayName: string;
     userName: string;
+    isGoogle: boolean;
+    handleModalOpen?: () => void;
 }
 
-const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName }) => {
+const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName, isGoogle, handleModalOpen }) => {
     return (
         <>
             <ProfileHeader>
@@ -43,7 +45,7 @@ const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName }) => {
             <ProfileInfoWrapper>
                 <TopInfoWrapper>
                     <ProfileImage src={profileImg} alt="Profile img" />
-                    <EditButton>Edit profile</EditButton>
+                    {!isGoogle && <EditButton onClick={handleModalOpen}>Edit profile</EditButton>}
                 </TopInfoWrapper>
                 <UserInfo>
                     <UserName>{displayName}</UserName>

@@ -7,4 +7,5 @@ export interface ITweetProps {
     likes: number;
     createdAt: string;
     image?: string;
+    id: string;
 }

@@ -12,7 +12,8 @@ export const NavItemIcon = styled.img`
     height: 28px;
 `
 
-export const NavItemText = styled.div<{ $isPrimary: boolean }>`
+export const NavItemText = styled.div<{ $isPrimary: boolean, $isActive: boolean }>`
     font-size: 18px;
     font-weight:  ${({ $isPrimary }) => ($isPrimary ? `700` : '600')};
+    color:  ${({ $isActive }) => ($isActive ? `#1D9BF0` : 'inherit')};
 `

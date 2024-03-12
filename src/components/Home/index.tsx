@@ -5,9 +5,17 @@ import { TweetsWrapper } from "../Profile/styled";
 import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import { HomeHeader, HomeHeaderWrapper } from "./styled";
+import { useEffect, useState } from "react";
 
 const Home = () => {
     const allTweets = useTweets();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 700);
+    }, []);
 
     return (
         <SectionWrapper>
@@ -15,8 +23,9 @@ const Home = () => {
                 <HomeHeader>Home</HomeHeader>
             </HomeHeaderWrapper>
             <NewTweet />
+
             <TweetsWrapper>
-                {allTweets.map(({ tweetId, name, userName, text, likes, likedUsers, image, createdAt }) => {
+                {allTweets.map(({ tweetId, name, userName, text, likes, likedUsers, image, createdAt, id }) => {
                     const { nanoseconds, seconds } = createdAt;
                     const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
                     return (
@@ -28,7 +37,8 @@ const Home = () => {
                             text={text}
                             likes={likes}
                             image={image}
-                            createdAt={date} />
+                            createdAt={date}
+                            id={id} />
                     )
                 })}
             </TweetsWrapper>

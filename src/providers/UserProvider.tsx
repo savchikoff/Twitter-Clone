@@ -18,7 +18,7 @@ const CurrentUserContext = createContext<ICurrentUserContext>({
     uid: "",
     displayName: "",
     email: "",
-    userName: "",
+    userName: ""
 });
 
 export const useCurrentUser = () => {
@@ -31,7 +31,7 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
         uid: "",
         displayName: "",
         email: "",
-        userName: ""
+        userName: "",
     });
 
     useEffect(() => {

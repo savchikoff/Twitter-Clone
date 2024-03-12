@@ -1,14 +1,14 @@
 import google from "@assets/google.png";
 import twitterBg from "@assets/twitter-background.jpg";
 import twitterLogo from "@assets/twitter-logo.svg";
-import { FooterLinks } from "@constants/FooterLinks";
-import { GoogleAuthProvider,signInWithPopup } from "firebase/auth";
+import { FooterLinks } from "@/constants/footerLinks";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
-import { auth,db  } from "@/firebase";
+import { auth, db } from "@/firebase";
 import LinkWrapper from "@/ui/LinkWrapper";
 
 import Button from "../Button";
@@ -28,7 +28,7 @@ function OnBoarding() {
     const handleSignUpWithGoogle = async () => {
         try {
             const res = await signInWithPopup(auth, googleProvider);
-            const {user} = res;
+            const { user } = res;
             const q = query(collection(db, "Users"), where("uid", "==", user.uid));
             const docs = await getDocs(q);
             navigate('/');

@@ -1,4 +1,8 @@
 export function getDaysInMonthArray(month: number, year: number) {
+    if (year < 1 || year > 9999 || month < 0 || month > 11) {
+        return [];
+    }
+
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();

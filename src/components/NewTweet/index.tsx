@@ -3,7 +3,7 @@ import image from "@assets/img-icon.svg";
 import { ChangeEvent, FC, useState } from "react";
 
 import { useCurrentUser } from "@/providers/UserProvider";
-import { addTweet,FileType } from "@/utils/addTweet";
+import { addTweet, FileType } from "@/utils/addTweet";
 
 import { FileInput, FileInputLabel, FileInputWrapper, InputIcon, TweetActionsWrapper, TweetAddButton, TweetContainer, TweetContentWrapper, TweetText, TweetWrapper, UserAvatar } from "./styled";
 

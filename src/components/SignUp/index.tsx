@@ -6,8 +6,8 @@ import { useAuthState } from "react-firebase-hooks/auth"
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Month } from "@/constants/Month";
-import { auth,db } from "@/firebase";
+import { Month } from "@/constants/month";
+import { auth, db } from "@/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
 import LinkWrapper from "@/ui/LinkWrapper";
 import Notification from "@/ui/Notification";

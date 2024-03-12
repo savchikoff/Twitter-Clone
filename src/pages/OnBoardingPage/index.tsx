@@ -1,7 +1,7 @@
 import OnBoarding from "@/components/OnBoarding";
 
-const WelcomePage = () => {
+const OnBoardingPage = () => {
     return <OnBoarding />
 }
 
-export default WelcomePage;
+export default OnBoarding;

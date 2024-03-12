@@ -14,9 +14,11 @@
   "dependencies": {
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
+    "@firebase/rules-unit-testing": "^3.0.1",
     "@reduxjs/toolkit": "^2.2.1",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "firebase": "^10.8.0",
+    "firebase-admin-mock": "^0.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",

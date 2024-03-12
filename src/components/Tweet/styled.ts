@@ -61,9 +61,17 @@ export const UserNickName = styled.div`
     color: #666666;
 `;
 
-export const TweetPostDate = styled(UserNickName)``;
+export const TweetPostDate = styled(UserNickName)`
+    cursor: pointer;
+    transition: all 0.3s ease;    
+
+    &:hover{
+        color: #1D9BF0;
+    }
+`;
 
 export const TweetText = styled.p`
+    white-space: pre-line;
 `;
 
 export const TweetOptionsWrapper = styled.div`

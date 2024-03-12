@@ -1,12 +1,12 @@
+import { FC, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+
 import user from "@assets/avatar.svg";
 import likeActive from "@assets/like-active.svg";
 import likeUnactive from "@assets/like-unactive.svg";
 import options from "@assets/options.svg";
-import postImage from "@assets/post-image.jpg";
-import heat from "@assets/profile-header.jpg";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { getDownloadURL, ref } from "firebase/storage";
-import { FC, useEffect, useState } from "react";
 
 import { db, storage } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
@@ -34,7 +34,7 @@ import {
     UserNickName,
 } from "./styled";
 
-const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, likes, createdAt, image }) => {
+const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, likes, createdAt, image, id }) => {
     const { uid } = useCurrentUser();
 
     const [likesCount, setLikesCount] = useState(likes);
@@ -42,6 +42,8 @@ const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, lik
     const [isLiking, setIsLiking] = useState(false);
     const [imageURL, setImageURL] = useState("");
     const [showDeleteButton, setShowDeleteButton] = useState(false);
+    const deleteButtonRef = useRef<HTMLButtonElement | null>(null);
+    const navigate = useNavigate();
 
     const handleLike = async () => {
         setIsLiking(true);
@@ -87,6 +89,23 @@ const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, lik
         location.reload();
     };
 
+    const handleTweetClick = (tweetId: string) => () => {
+        navigate(`/tweet/${tweetId}`);
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+        if (deleteButtonRef.current && !deleteButtonRef.current.contains(e.target as Node)) {
+            setShowDeleteButton(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     useEffect(() => {
         const getImageURL = async () => {
             if (image) {
@@ -108,7 +127,7 @@ const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, lik
                         <UserInfo>
                             <UserName>{name}</UserName>
                             <UserNickName>@{userName}</UserNickName>
-                            <TweetPostDate>{createdAt}</TweetPostDate>
+                            <TweetPostDate onClick={handleTweetClick(tweetId)}>{createdAt}</TweetPostDate>
                         </UserInfo>
                         <TweetText>
                             {text}
@@ -126,8 +145,8 @@ const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, lik
                 </TweetContentWrapper>
             </TweetWrapper>
             <TweetOptionsWrapper>
-                <TweetOptionsIcon src={options} onClick={handleOptionsClick} />
-                {showDeleteButton && <DeleteButton onClick={handleDeleteClick}>Delete</DeleteButton>}
+                {id === uid && <TweetOptionsIcon src={options} onClick={handleOptionsClick} />}
+                {showDeleteButton && <DeleteButton ref={deleteButtonRef} onClick={handleDeleteClick}>Delete</DeleteButton>}
             </TweetOptionsWrapper>
         </TweetContainer>
     );

@@ -1,22 +1,18 @@
-import twitterLogo from "@assets/twitter-logo.svg"
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { FC, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import twitterLogo from "@assets/twitter-logo.svg"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { IFormInput } from "./interfaces";
 
 import { auth } from "@/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
 import LinkWrapper from "@/ui/LinkWrapper";
 import Notification from "@/ui/Notification";
 
-import { Button, Container, Input, LogInForm,LogInHeader, TwitterLogo, Wrapper } from "./styled";
+import { Button, Container, Input, LogInForm, LogInHeader, TwitterLogo, Wrapper } from "./styled";
 
-
-interface IFormInput {
-    email: string;
-    password: string;
-}
 
 const LogIn: FC = () => {
 
