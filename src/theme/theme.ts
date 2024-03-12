@@ -11,10 +11,15 @@ export const baseStyle = {
 
 export const dark = {
     name: "dark",
-    ...baseStyle
+    ...baseStyle,
+    bgColor: "#15202b"
 }
 
 export const light = {
     name: "light",
-    ...baseStyle
+    ...baseStyle,
+    bgColor: "#FFFFFF"
+
 }
+
+export type ThemeType = typeof light;

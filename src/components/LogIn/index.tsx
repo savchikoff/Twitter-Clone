@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import twitterLogo from "@assets/twitter-logo.svg"
+import twitterLogo from "@/twitter-logo.svg"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { IFormInput } from "./interfaces";
 

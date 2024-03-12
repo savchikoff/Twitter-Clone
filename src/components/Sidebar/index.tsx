@@ -1,8 +1,8 @@
-import avatar from "@assets/avatar.svg"
-import twitter from "@assets/twitter-logo.svg";
+import avatar from "@/assets/avatar.svg"
+import twitter from "@/assets/twitter-logo.svg";
 import { useState } from "react";
 
-import { NAV_LINKS } from "@/constants/navLinks";
+import { NAV_LINKS } from "@/constants/NavLinks";
 import { logOut } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
 
@@ -24,13 +24,13 @@ const Sidebar = () => {
             <SidebarWrapper>
                 <TwitterLogo src={twitter} alt="Twitter logo" />
                 <NavigationContainer>
-                    {NAV_LINKS.map(({ name, to, src }) => {
+                    {NAV_LINKS.map(({ name, to, icon }) => {
                         const path = to.includes("/") ? to : "/" + to;
                         const isActive = location.pathname === path;
                         if (name === "Profile") {
-                            return <NavItem isActive={isActive} key={name} icon={src} label={name} to={to} isPrimary />
+                            return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} isPrimary />
                         }
-                        return <NavItem isActive={isActive} key={name} icon={src} label={name} to={to} />
+                        return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} />
                     })}
                 </NavigationContainer>
                 <TweetButton onClick={handleModalStateChange}>Tweet</TweetButton>

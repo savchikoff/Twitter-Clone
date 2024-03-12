@@ -1,5 +1,5 @@
-import closeIcon from '@assets/close.svg';
-import React, { memo,useEffect, useRef } from 'react';
+import closeIcon from '@/assets/close.svg';
+import React, { memo, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import { IModalProps } from './interfaces';
@@ -9,7 +9,8 @@ import {
     Content,
     HeaderRow,
     ScrollDisabler,
-    Wrapper} from './styled';
+    Wrapper
+} from './styled';
 
 const portalRoot: HTMLElement | null = document.getElementById('portal-root');
 

@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import { Link } from "react-router-dom";
 
 import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
 

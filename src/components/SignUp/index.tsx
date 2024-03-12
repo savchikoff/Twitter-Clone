@@ -1,4 +1,4 @@
-import twitterLogo from "@assets/twitter-logo.svg";
+import twitterLogo from "@/assets/twitter-logo.svg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { useEffect, useMemo, useState } from "react";

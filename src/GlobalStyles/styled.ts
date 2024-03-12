@@ -1,10 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
+import { ThemeType } from '@/theme/theme';
+import { DefaultTheme } from 'styled-components/dist/types';
+
+const themeBgColor = ({ theme }: DefaultTheme) => theme.themeType.bgColor;
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     box-sizing: border-box;
+    background-color: ${themeBgColor};
   }
   
   body,

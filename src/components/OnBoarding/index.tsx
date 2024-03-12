@@ -1,6 +1,6 @@
-import google from "@assets/google.png";
-import twitterBg from "@assets/twitter-background.jpg";
-import twitterLogo from "@assets/twitter-logo.svg";
+import google from "@/assets/google.png";
+import twitterBg from "@/assets/twitter-background.jpg";
+import twitterLogo from "@/assets/twitter-logo.svg";
 import { FooterLinks } from "@/constants/footerLinks";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";

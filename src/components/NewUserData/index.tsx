@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { NewDataForm, Input, SubmitButton } from "./styled";
+import Notification from "@/ui/Notification";
 import { useCurrentUser } from "@/providers/UserProvider";
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { auth, db, logOut } from "@/firebase";
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, verifyBeforeUpdateEmail } from "firebase/auth";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import ErrorLabel from "@/ui/ErrorLabel";
 
 interface ChangeFormInputs {
     name: string;
@@ -15,8 +17,12 @@ interface ChangeFormInputs {
 
 const NewUserData: FC = () => {
     const { uid, email } = useCurrentUser();
+    const [isNotificationActive, setNotificationActive] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [error, setError] = useState<string | undefined>("");
+    const [label, setLabel] = useState("");
 
-    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<ChangeFormInputs>();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<ChangeFormInputs>({ mode: "onBlur" });
 
     const handleChangeData = async (data: ChangeFormInputs) => {
         try {
@@ -66,13 +72,49 @@ const NewUserData: FC = () => {
                 await logOut()
                 await updateEmail(user, updatedDataForUsers.email)
             }
+            setIsError(false);
+            setLabel("Successfully!");
+            setError("User data has changed!");
+            setNotificationActive(true);
 
-        } catch (e) {
-            console.error(e);
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error(error.message);
+                setIsError(true);
+                setError(error.message);
+                setLabel("Error while changing data");
+                setNotificationActive(true);
+            }
         } finally {
             reset();
         }
     };
+
+    useEffect(() => {
+        if (errors?.name?.message ||
+            errors?.phone?.message ||
+            errors?.email?.message ||
+            errors?.password?.message) {
+            setIsError(true);
+            setError(errors?.name?.message ||
+                errors?.phone?.message ||
+                errors?.email?.message ||
+                errors?.password?.message);
+        } else {
+            setIsError(false);
+            setError("");
+        }
+    }, [errors.name, errors.phone, errors.email, errors.password]);
+
+    const handleNotificationActive = () => {
+        setNotificationActive(false);
+        setIsError(false);
+        setError("");
+    }
 
 
     return (
@@ -116,7 +158,14 @@ const NewUserData: FC = () => {
                     },
                 })}
             />
+            {isError && !isNotificationActive && <ErrorLabel label={error} />}
             <SubmitButton type="submit">Change</SubmitButton>
+            {isNotificationActive && <Notification
+                isError={isError}
+                active={isNotificationActive}
+                handleNotificationActive={handleNotificationActive}
+                label={label}
+                message={error} />}
         </NewDataForm>
     )
 }

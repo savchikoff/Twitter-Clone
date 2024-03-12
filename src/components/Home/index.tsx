@@ -5,25 +5,18 @@ import { TweetsWrapper } from "../Profile/styled";
 import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import { HomeHeader, HomeHeaderWrapper } from "./styled";
-import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Home = () => {
     const allTweets = useTweets();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 700);
-    }, []);
 
     return (
         <SectionWrapper>
             <HomeHeaderWrapper>
                 <HomeHeader>Home</HomeHeader>
+                <ThemeToggle />
             </HomeHeaderWrapper>
             <NewTweet />
-
             <TweetsWrapper>
                 {allTweets.map(({ tweetId, name, userName, text, likes, likedUsers, image, createdAt, id }) => {
                     const { nanoseconds, seconds } = createdAt;

@@ -72,6 +72,7 @@ export const TweetPostDate = styled(UserNickName)`
 
 export const TweetText = styled.p`
     white-space: pre-line;
+    word-break: break-word;
 `;
 
 export const TweetOptionsWrapper = styled.div`

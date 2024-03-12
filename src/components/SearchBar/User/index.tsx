@@ -1,4 +1,4 @@
-import avatar from "@assets/avatar.svg";
+import avatar from "@/assets/avatar.svg";
 import { FC } from "react";
 
 import { UserAvatar } from "@/components/Sidebar/styled";

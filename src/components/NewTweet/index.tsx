@@ -1,6 +1,8 @@
-import avatar from "@assets/avatar.svg";
-import image from "@assets/img-icon.svg";
 import { ChangeEvent, FC, useState } from "react";
+import avatar from "@/assets/avatar.svg";
+import image from "@/assets/img-icon.svg";
+
+import Notification from "@/ui/Notification";
 
 import { useCurrentUser } from "@/providers/UserProvider";
 import { addTweet, FileType } from "@/utils/addTweet";
@@ -9,6 +11,7 @@ import { FileInput, FileInputLabel, FileInputWrapper, InputIcon, TweetActionsWra
 
 const NewTweet: FC = () => {
     const { displayName, userName, email, uid } = useCurrentUser();
+    const [isNotificationActive, setNotificationActive] = useState(false);
 
     const [tweetText, setTweetText] = useState("");
     const [imageFile, setImageFile] = useState<FileType>(null);
@@ -30,6 +33,7 @@ const NewTweet: FC = () => {
         try {
             await addTweet(tweetText, displayName, userName, email, imageFile, uid);
             setTweetText("");
+            setNotificationActive(true);
         } catch (e) {
             setTweetText("");
             console.error(e);
@@ -37,6 +41,10 @@ const NewTweet: FC = () => {
             setImageName("");
             setImageFile(null);
         }
+    }
+
+    const handleNotificationActive = () => {
+        setNotificationActive(false);
     }
 
     return (
@@ -57,6 +65,12 @@ const NewTweet: FC = () => {
                     </TweetActionsWrapper>
                 </TweetContentWrapper>
             </TweetWrapper>
+            {isNotificationActive && <Notification
+                isError={false}
+                active={isNotificationActive}
+                handleNotificationActive={handleNotificationActive}
+                label="Successfully!"
+                message={"New tweet has been added"} />}
         </TweetContainer>
     )
 }

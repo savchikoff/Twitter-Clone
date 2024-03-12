@@ -29,6 +29,7 @@ export const TweetText = styled.textarea`
     resize: none;
     border: none;
     outline: none;
+    background: none;
     &::placeholder{
         font-weight: 700;
     }

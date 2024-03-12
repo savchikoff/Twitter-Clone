@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 
-import user from "@assets/avatar.svg";
-import likeActive from "@assets/like-active.svg";
-import likeUnactive from "@assets/like-unactive.svg";
-import options from "@assets/options.svg";
+import user from "@/assets/avatar.svg";
+import likeActive from "@/assets/like-active.svg";
+import likeUnactive from "@/assets/like-unactive.svg";
+import options from "@/assets/options.svg";
 
 import { db, storage } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";

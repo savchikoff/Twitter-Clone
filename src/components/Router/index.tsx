@@ -16,16 +16,16 @@ const Router = () => {
         <BrowserRouter>
             <Suspense fallback={<Loader />}>
                 <Routes>
-                    <Route path={ROUTES.feed} element={<FeedPage />}>
-                        <Route index path={PRIVATE_ROUTES.home} element={<Home />} />
-                        <Route path={PRIVATE_ROUTES.profile} element={<Profile />} />
-                        <Route path={PRIVATE_ROUTES.tweet} element={<TweetPage />} />
+                    <Route key={ROUTES.feed} path={ROUTES.feed} element={<FeedPage />}>
+                        <Route key={PRIVATE_ROUTES.home} index path={PRIVATE_ROUTES.home} element={<Home />} />
+                        <Route key={PRIVATE_ROUTES.profile} path={PRIVATE_ROUTES.profile} element={<Profile />} />
+                        <Route key={PRIVATE_ROUTES.tweet} path={PRIVATE_ROUTES.tweet} element={<TweetPage />} />
                     </Route>
                     {Object.values(NAVIGATION).map((item) => {
                         const { path, element } = item;
                         return <Route element={element} key={path} path={path} />
                     })}
-                    <Route path={ROUTES.notFound} element={<ErrorPage />} />
+                    <Route key={ROUTES.notFound} path={ROUTES.notFound} element={<ErrorPage />} />
                 </Routes>
             </Suspense>
         </BrowserRouter>

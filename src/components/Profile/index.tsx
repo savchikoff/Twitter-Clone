@@ -17,8 +17,6 @@ const Profile = () => {
     const [isGoogle, setIsGoogle] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
 
-    console.log(isModalOpen);
-
     const handleModalStateChange = () => {
         setModalOpen(prevState => !prevState);
     };
@@ -53,24 +51,26 @@ const Profile = () => {
         <SectionWrapper>
             <ProfileHead displayName={displayName} userName={userName} isGoogle={isGoogle} handleModalOpen={handleModalStateChange} />
             <NewTweet />
-            <TweetsWrapper>
-                {tweets.map(({ tweetId, name, userName, text, likedUsers, likes, image, createdAt, id }) => {
-                    const { nanoseconds, seconds } = createdAt;
-                    const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
-                    return (
-                        <Tweet key={tweetId}
-                            tweetId={tweetId}
-                            name={name.split(" ")[0]}
-                            userName={userName}
-                            likedUsers={likedUsers}
-                            text={text}
-                            likes={likes}
-                            image={image}
-                            createdAt={date}
-                            id={id} />
-                    )
-                })}
-            </TweetsWrapper>
+            {!tweets ? <div>Loading...</div> :
+                <TweetsWrapper>
+                    {tweets.map(({ tweetId, name, userName, text, likedUsers, likes, image, createdAt, id }) => {
+                        const { nanoseconds, seconds } = createdAt;
+                        const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
+                        return (
+                            <Tweet key={tweetId}
+                                tweetId={tweetId}
+                                name={name.split(" ")[0]}
+                                userName={userName}
+                                likedUsers={likedUsers}
+                                text={text}
+                                likes={likes}
+                                image={image}
+                                createdAt={date}
+                                id={id} />
+                        )
+                    })}
+                </TweetsWrapper>
+            }
             <Modal isOpen={isModalOpen} close={handleModalStateChange}>
                 <NewUserData />
             </Modal>

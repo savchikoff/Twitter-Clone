@@ -1,17 +1,17 @@
-import { FC } from "react";
+import { ComponentType, FC } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { NavItemIcon, NavItemText, NavItemWrapper } from "./styled";
+import { IconWrapper, NavItemText, NavItemWrapper } from "./styled";
 
 interface INavItemProps {
-    icon: string;
+    Icon: ComponentType;
     label: string;
     to: string;
     isPrimary?: boolean;
     isActive?: boolean;
 }
 
-const NavItem: FC<INavItemProps> = ({ isActive, icon, label, to, isPrimary }) => {
+const NavItem: FC<INavItemProps> = ({ isActive, Icon, label, to, isPrimary }) => {
     const navigate = useNavigate();
 
     const handleNavItemClick = () => {
@@ -20,8 +20,10 @@ const NavItem: FC<INavItemProps> = ({ isActive, icon, label, to, isPrimary }) =>
 
     return (
         <NavItemWrapper onClick={handleNavItemClick}>
-            <NavItemIcon src={icon} alt={label} />
-            <NavItemText $isActive={isActive} $isPrimary={!!isPrimary}>{label}</NavItemText>
+            <IconWrapper $isActive={!!isActive}>
+                <Icon />
+            </IconWrapper>
+            <NavItemText $isActive={!!isActive} $isPrimary={!!isPrimary}>{label}</NavItemText>
         </NavItemWrapper>
     )
 }

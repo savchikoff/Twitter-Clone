@@ -7,10 +7,11 @@ export const NavItemWrapper = styled.div`
     cursor: pointer;
 `
 
-export const NavItemIcon = styled.img`
-    width: 28px;
-    height: 28px;
-`
+export const IconWrapper = styled.div<{ $isActive: boolean }>`
+    & > svg > g > path {
+        fill: ${({ $isActive }) => ($isActive ? `#1D9BF0` : '#000000')};
+    }
+`;
 
 export const NavItemText = styled.div<{ $isPrimary: boolean, $isActive: boolean }>`
     font-size: 18px;
