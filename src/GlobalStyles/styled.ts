@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { ThemeType } from '@/theme/theme';
 import { DefaultTheme } from 'styled-components/dist/types';
 
 const themeBgColor = ({ theme }: DefaultTheme) => theme.themeType.bgColor;
