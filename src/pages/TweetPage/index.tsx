@@ -6,7 +6,7 @@ import { ITweetProps } from "@/components/Tweet/interfaces";
 import { useTweets } from "@/providers/TweetsProvider";
 import SectionWrapper from "@/components/SectionWrapper";
 import { BackLinkIcon, BackLinkText, BackLinkContainer, BackLinkWrapper } from "./styled";
-import backArrow from "@assets/back-arrow.svg"
+import backArrow from "@/assets/back-arrow.svg"
 
 const TweetPage = () => {
     const { id } = useParams();

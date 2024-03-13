@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import twitterLogo from "@/twitter-logo.svg"
+import twitterLogo from "@/assets/twitter-logo.svg"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { IFormInput } from "./interfaces";
 
@@ -71,6 +71,7 @@ const LogIn: FC = () => {
                 </LogInHeader>
                 <LogInForm onSubmit={handleSubmit(handleLogin)}>
                     <Input
+                        data-cy="login-email"
                         {...register("email", {
                             required: "Email field is required",
                             pattern: {
@@ -81,6 +82,7 @@ const LogIn: FC = () => {
                         placeholder="Email address"
                     />
                     <Input
+                        data-cy="login-password"
                         type="password"
                         {...register("password", {
                             required: "You must specify a password",
@@ -95,7 +97,7 @@ const LogIn: FC = () => {
                         })}
                         placeholder="Password" />
                     {isError && !isNotificationActive && <ErrorLabel label={error} />}
-                    <Button type="submit" disabled={!isValid}>Log In</Button>
+                    <Button data-cy="login-btn" type="submit" disabled={!isValid}>Log In</Button>
                 </LogInForm>
                 <LinkWrapper>
                     <Link to="/register">Sign up to Twitter</Link>
