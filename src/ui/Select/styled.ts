@@ -16,13 +16,17 @@ export const DropDownHeader = styled.div`
     align-items: center;
 	justify-content: space-between;
     padding: 0 8px;
-    height: 70px;
+    height: 64px;
 	font-weight: 400;
 	background: #FFFFFF;
 	border: 1px solid #CCCCCC;
 	border-radius: 6px;
 	position: relative;
 	z-index: 2;
+
+    @media (max-width: 768px){
+        height: 56px;
+    }
 `;
 
 export const ArrowIcon = styled.img < { $isOpen: boolean }> `

@@ -60,8 +60,8 @@ const NewUserData: FC = () => {
             });
 
             await updateDoc(userDocRef, updatedDataForUsers)
-            const user = auth.currentUser
-            auth.currentUser?.reload()
+            const user = auth.currentUser;
+            auth.currentUser?.reload();
             if (user !== null && updatedDataForUsers.email) {
                 if (user.email === null || data.password === undefined) {
                     return

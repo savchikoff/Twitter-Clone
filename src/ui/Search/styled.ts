@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
-    min-width: 373px;
+    min-width: 200px;
     height: 55px;
     border-radius: 32px;
     background-color: #EFF3F4;
@@ -14,7 +14,7 @@ export const SearchWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 20px;
-`
+`;
 
 export const SearchIcon = styled.img`
     width: 24px;

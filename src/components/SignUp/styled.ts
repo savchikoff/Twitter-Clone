@@ -20,6 +20,10 @@ export const InputsWrapper = styled.div`
     flex-direction: column;
     gap: 40px;
     margin-bottom: 16px;
+
+    @media (max-width: 768px){
+        gap: 24px;
+    }
 `
 
 export const TwitterLogoWrapper = styled.div`
@@ -45,6 +49,10 @@ export const SignUpFields = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @media (max-width: 768px){
+        max-width: 100%;
+    }
 `;
 
 export const Input = styled.input`
@@ -56,6 +64,12 @@ export const Input = styled.input`
     outline: none;
     ::placeholder{
         color: #666666;
+    }
+
+    @media (max-width: 768px){
+        font-size: 16px;
+        padding: 16px;
+        min-width: 200px;
     }
 `;
 
@@ -78,7 +92,7 @@ export const DateOfBirthSelects = styled.div`
 
 export const Button = styled.button`
     font-size: 18px;
-    height: 60px;
+    height: 64px;
     border: none;
     font-weight: 700;
     outline: none;
@@ -93,6 +107,11 @@ export const Button = styled.button`
 
     &:disabled{
         background-color: #6CC6FD;
+    }
+
+    @media (max-width: 768px){
+        font-size: 16px;
+        height: 56px;
     }
 `
 

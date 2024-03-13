@@ -1,5 +1,5 @@
-import arrow from "@assets/arrow.svg";
-import { FC, useEffect, useRef,useState } from 'react';
+import arrow from "@/assets/arrow.svg";
+import { FC, useEffect, useRef, useState } from 'react';
 
 import {
     ArrowIcon,

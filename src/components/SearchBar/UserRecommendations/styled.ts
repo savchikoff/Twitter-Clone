@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UsersContainer = styled.div`
-    min-width: 373px;
+    min-width: 100%;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 10px;

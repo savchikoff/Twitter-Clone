@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <SectionWrapper>
             <HomeHeaderWrapper>
-                <HomeHeader>Home</HomeHeader>
+                <HomeHeader data-cy="home-label">Home</HomeHeader>
                 <ThemeToggle />
             </HomeHeaderWrapper>
             <NewTweet />

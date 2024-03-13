@@ -8,13 +8,12 @@ import { Container } from "@/styled";
 import Layout from "../Layout";
 
 const Feed = () => {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loading) return;
         if (!user) return navigate("/onboarding");
-    }, [user, loading]);
+    }, [user]);
 
     return (
         <Container>
