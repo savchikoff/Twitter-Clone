@@ -1,4 +1,4 @@
-import { fontWeights, sizes } from "./styles";
+import { fontWeights, sizes, colors, breakPoints } from "./styles";
 
 export const baseStyle = {
     fontWeights: {
@@ -6,19 +6,27 @@ export const baseStyle = {
     },
     sizes: {
         ...sizes
+    },
+    colors: {
+        ...colors
+    },
+    breakPoints: {
+        ...breakPoints
     }
 }
 
 export const dark = {
     name: "dark",
     ...baseStyle,
-    bgColor: "#15202b"
+    bgColor: colors.darkBlue,
+    textColor: colors.white
 }
 
 export const light = {
     name: "light",
     ...baseStyle,
-    bgColor: "#FFFFFF"
+    bgColor: colors.white,
+    textColor: colors.black
 
 }
 

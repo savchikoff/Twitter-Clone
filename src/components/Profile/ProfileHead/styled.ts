@@ -1,19 +1,38 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s4 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s4;
+const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
+const s10 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s10;
+const s16 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s16;
+const s18 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s18;
+const s20 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s20;
+const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
+const s32 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s32;
+const s40 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s40;
+const s48 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s48;
+const s56 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s56;
+const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteGray;
+const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
+const black = ({ theme }: DefaultTheme) => theme.themeType.colors.black;
+const flashWhite = ({ theme }: DefaultTheme) => theme.themeType.colors.flashWhite;
+const semiBold = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.semiBold;
 
 export const ProfileHeader = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 0 24px 24px 24px;
+    gap: ${s4};
+    padding: ${s0} ${s24} ${s24} ${s24};
 `;
 
 export const ProfileHeaderName = styled.h6`
-    font-size: 20px;    
+    font-size: ${s20};    
 `;
 
 export const ProfileHeaderTweets = styled.h6`
-    font-size: 16px; 
-    color: #666666;   
+    font-size: ${s16}; 
+    color: ${graniteGray};   
 `;
 
 export const ProfileHeat = styled.div`
@@ -29,17 +48,17 @@ export const ProfileHeatImage = styled.img`
 export const ProfileInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0 25px;
-    margin-top: -40px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid #D8D8D8;
+    padding: ${s0} ${s24};
+    margin-top: -${s40};
+    padding-bottom: ${s48};
+    border-bottom: ${s1} solid ${silver};
 `;
 
 export const TopInfoWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: ${s8};
 `;
 
 export const ProfileImage = styled.img`
@@ -47,50 +66,51 @@ export const ProfileImage = styled.img`
     height: 138px;
 `;
 
-export const EditButton = styled.button`
-    font-size: 18px;
-    font-weight: 600;
-    padding: 10px 16px;
+export const EditButton = styled.button<{ $isGoogle: boolean }>`
+    display: ${({ $isGoogle }) => ($isGoogle ? `none` : `block`)};
+    font-size: ${s18};
+    font-weight: ${semiBold};
+    padding: ${s10} ${s16};
     border: none;
     outline: none;
     background-color: transparent;
-    border: 1px solid #000000;
+    border: ${s1} solid ${black};
     border-radius: 50px;
     transition: all 0.3s ease;
     cursor: pointer;
 
     &:hover{
-        background-color: #F1F1F1;
+        background-color: ${flashWhite};
     }
 `;
 
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: ${s4};
+    margin-bottom: ${s16};
 `;
 
 export const UserName = styled.h3`
-    font-size: 24px;
+    font-size: ${s24};
 `
 
 export const UserNickname = styled.span`
-    color: #666666;
+    color: ${graniteGray};
 `
 
 export const ProfileDescription = styled.div`
-    font-size: 18px;
-    margin-bottom: 56px;
+    font-size: ${s18};
+    margin-bottom: ${s56};
 `;
 
 export const SubscriptionsWrapper = styled.div`
     display: flex;
-    gap: 32px;
+    gap: ${s32};
 `;
 
 export const FollowingInfo = styled.span`
-    font-size: 18px;
+    font-size: ${s18};
 `
 
 export const FollowersInfo = styled(FollowingInfo)``;

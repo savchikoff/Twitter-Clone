@@ -6,8 +6,9 @@ import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import { HomeHeader, HomeHeaderWrapper } from "./styled";
 import ThemeToggle from "./ThemeToggle";
+import { FC } from "react";
 
-const Home = () => {
+const Home: FC = () => {
     const allTweets = useTweets();
 
     return (

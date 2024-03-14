@@ -1,47 +1,58 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
+
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s4 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s4;
+const s12 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s12;
+const s20 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s20;
+const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
+const s48 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s48;
+const darkBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.darkBlue;
+const lightBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.lightBlue;
+const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
 
 export const Label = styled.label`
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: ${s12};
 	cursor: pointer;
 `;
 
 export const Switch = styled.div`
 	position: relative;
-	width: 48px;
+	width: ${s48};
 	height: 19px;
-	background: #15202b;
-	border-radius: 24px;
-	border: 1px solid #FFFFFF;
-	padding: 4px;
+	background: ${darkBlue};
+	border-radius: ${s24};
+	border: ${s1} solid ${white};
+	padding: ${s4};
 	transition: 300ms all;
 
 	&:before {
 		transition: 300ms all;
 		content: '';
 		position: absolute;
-		width: 20px;
-		height: 20px;
+		width: ${s20};
+		height: ${s20};
 		border-radius: 50%;
 		top: 50%;
-		left: 4px;
-		background: #15202b;
-		border: 1px solid #FFFFFF;
+		left: ${s4};
+		background: ${darkBlue};
+		border: ${s1} solid ${white};
 		transform: translate(0, -50%);
 	}
 `;
 
 export const Input = styled.input`
-	opacity: 0;
+	opacity: ${s0};
 	position: absolute;
 
 	&:checked + ${Switch} {
-		background: #1D9BF0;
+		background: ${lightBlue};
 
 		&:before {
 			transform: translate(26px, -50%);
-			background: #FFFFFF;
+			background: ${white};
 		}
 	}
 `;

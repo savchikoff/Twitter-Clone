@@ -4,16 +4,11 @@ import Notification from "@/ui/Notification";
 import { useCurrentUser } from "@/providers/UserProvider";
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { auth, db, logOut } from "@/firebase";
-import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, verifyBeforeUpdateEmail } from "firebase/auth";
+import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updatePassword, verifyBeforeUpdateEmail } from "firebase/auth";
 import { FC, useEffect, useState } from "react";
 import ErrorLabel from "@/ui/ErrorLabel";
+import { ChangeFormInputs } from "./interfaces";
 
-interface ChangeFormInputs {
-    name: string;
-    phone: string;
-    email: string;
-    password: string;
-}
 
 const NewUserData: FC = () => {
     const { uid, email } = useCurrentUser();
@@ -31,56 +26,80 @@ const NewUserData: FC = () => {
             const tweetsQuery = query(collection(db, "Tweets"), where("email", "==", email));
             const tweetsSnapshot = await getDocs(tweetsQuery);
 
-            const fieldsToUpdatesAtUsers: (keyof ChangeFormInputs)[] = [
+            if (userSnapshot.empty) {
+                console.log("No matching documents.");
+                return;
+            }
+
+            const userDocRef = userSnapshot.docs[0].ref;
+
+            const fieldsToUpdateAtUsers: (keyof ChangeFormInputs)[] = [
                 "name",
                 "phone",
                 "email",
-                "password"
+                "password",
+                "newPassword"
             ];
+
+            console.log(data.newPassword);
 
             const fieldsToUpdateAtTweets: (keyof ChangeFormInputs)[] = ["email", "name"];
 
             const updatedDataForUsers: Partial<ChangeFormInputs> = {}
             const updatedDataForTweets: Partial<ChangeFormInputs> = {}
 
-            const userDocRef = userSnapshot.docs[0].ref;
-            fieldsToUpdatesAtUsers.forEach((field) => {
-                if (data[field]) {
+            fieldsToUpdateAtUsers.forEach((field) => {
+                if (data[field] && field !== "password" && field != "newPassword") {
                     updatedDataForUsers[field] = data[field]
                 }
-            })
+            });
+
             fieldsToUpdateAtTweets.forEach((field) => {
                 if (data[field]) {
                     updatedDataForTweets[field] = data[field]
                 }
-            })
+            });
 
             await tweetsSnapshot.forEach((doc) => {
                 updateDoc(doc.ref, { ...doc.data(), ...updatedDataForTweets })
-            });
+            })
 
             await updateDoc(userDocRef, updatedDataForUsers)
             const user = auth.currentUser;
-            auth.currentUser?.reload();
-            if (user !== null && updatedDataForUsers.email) {
-                if (user.email === null || data.password === undefined) {
-                    return
+            user?.reload();
+
+            console.log(data.name);
+
+            if (user && updatedDataForUsers.email) {
+                const credential = EmailAuthProvider.credential(user.email!, data.password);
+                await reauthenticateWithCredential(user, credential);
+                if (user.email !== updatedDataForUsers.email) {
+                    await verifyBeforeUpdateEmail(user, updatedDataForUsers.email);
                 }
-                await verifyBeforeUpdateEmail(user, updatedDataForUsers.email)
-                const credential = EmailAuthProvider.credential(user.email, data.password)
-                await reauthenticateWithCredential(user, credential)
-                await logOut()
-                await updateEmail(user, updatedDataForUsers.email)
+                if (user.email !== updatedDataForUsers.email) {
+                    await updateEmail(user, updatedDataForUsers.email);
+                }
+                setTimeout(() => {
+                    logOut();
+                }, 2000);
             }
-            setIsError(false);
-            setLabel("Successfully!");
-            setError("User data has changed!");
-            setNotificationActive(true);
 
-            setTimeout(() => {
-                location.reload();
-            }, 2000);
+            if (user && data.password && data.newPassword) {
+                const credential = EmailAuthProvider.credential(user.email!, data.password);
+                await reauthenticateWithCredential(user, credential);
+                await updatePassword(user, data.newPassword);
+                setTimeout(() => {
+                    logOut();
+                }, 2000);
+            }
 
+            if (!fieldsToUpdateAtUsers || (data.password && data.newPassword)) {
+                setIsError(false);
+                setLabel("Successfully!");
+                setError("User data has changed!");
+                setNotificationActive(true);
+
+            }
         } catch (error) {
             if (error instanceof Error) {
                 console.error(error.message);
@@ -98,17 +117,19 @@ const NewUserData: FC = () => {
         if (errors?.name?.message ||
             errors?.phone?.message ||
             errors?.email?.message ||
-            errors?.password?.message) {
+            errors?.password?.message ||
+            errors?.newPassword?.message) {
             setIsError(true);
             setError(errors?.name?.message ||
                 errors?.phone?.message ||
                 errors?.email?.message ||
-                errors?.password?.message);
+                errors?.password?.message ||
+                errors?.newPassword?.message);
         } else {
             setIsError(false);
             setError("");
         }
-    }, [errors.name, errors.phone, errors.email, errors.password]);
+    }, [errors.name, errors.phone, errors.email, errors.password, errors.newPassword]);
 
     const handleNotificationActive = () => {
         setNotificationActive(false);
@@ -136,7 +157,7 @@ const NewUserData: FC = () => {
                 })}
             />
             <Input
-                placeholder="New email"
+                placeholder="New email (needs current password)"
                 {...register("email", {
                     pattern: {
                         value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
@@ -146,8 +167,26 @@ const NewUserData: FC = () => {
             />
             <Input
                 type='password'
-                placeholder="New password"
+                placeholder="Current password"
                 {...register("password", {
+                    minLength: {
+                        value: 8,
+                        message: "Password must be more than 8 characters"
+                    },
+                    maxLength: {
+                        value: 20,
+                        message: "Password must be less than 20 characters"
+                    },
+                })}
+            />
+            <Input
+                type='password'
+                placeholder="New password (needs current password)"
+                {...register("newPassword", {
+                    pattern: {
+                        value: /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/,
+                        message: "Password should contain at least one number and one special character"
+                    },
                     minLength: {
                         value: 8,
                         message: "Password must be more than 8 characters"

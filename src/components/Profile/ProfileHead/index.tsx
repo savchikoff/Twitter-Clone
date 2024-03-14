@@ -1,6 +1,6 @@
 import heatImage from "@/assets/profile-header.jpg";
 import profileImg from "@/assets/profile-image.png";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import LinkWrapper from "@/ui/LinkWrapper";
 import { getUserTweets } from "@/utils/getUserTweets";
@@ -24,15 +24,10 @@ import {
     UserName,
     UserNickname
 } from "./styled";
-
-export interface IProfileHeadProps {
-    displayName: string;
-    userName: string;
-    isGoogle: boolean;
-    handleModalOpen?: () => void;
-}
+import { IProfileHeadProps } from "./interfaces";
 
 const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName, isGoogle, handleModalOpen }) => {
+
     return (
         <>
             <ProfileHeader>
@@ -45,7 +40,7 @@ const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName, isGoogle, h
             <ProfileInfoWrapper>
                 <TopInfoWrapper>
                     <ProfileImage src={profileImg} alt="Profile img" />
-                    {!isGoogle && <EditButton onClick={handleModalOpen}>Edit profile</EditButton>}
+                    <EditButton $isGoogle={isGoogle} onClick={handleModalOpen}>Edit profile</EditButton>
                 </TopInfoWrapper>
                 <UserInfo>
                     <UserName>{displayName}</UserName>

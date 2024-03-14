@@ -1,15 +1,10 @@
-import { ComponentType, FC } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { IconWrapper, NavItemText, NavItemWrapper } from "./styled";
+import { INavItemProps } from "./interfaces";
 
-interface INavItemProps {
-    Icon: ComponentType;
-    label: string;
-    to: string;
-    isPrimary?: boolean;
-    isActive?: boolean;
-}
+
 
 const NavItem: FC<INavItemProps> = ({ isActive, Icon, label, to, isPrimary }) => {
     const navigate = useNavigate();

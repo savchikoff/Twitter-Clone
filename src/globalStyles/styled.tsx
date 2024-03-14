@@ -1,14 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 import { DefaultTheme } from 'styled-components/dist/types';
 
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
 const themeBgColor = ({ theme }: DefaultTheme) => theme.themeType.bgColor;
+const themeTextColor = ({ theme }: DefaultTheme) => theme.themeType.textColor;
+const regular = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.regular;
 
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-weight: ${regular};
     box-sizing: border-box;
     background-color: ${themeBgColor};
+    color: ${themeTextColor};
   }
   
   body,
@@ -27,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   blockquote,
   dl,
   dd {
-    margin: 0;
+    margin: ${s0};
   } 
 
   a{
@@ -36,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .root{
-  margin: 0 auto;
+  margin: ${s0} auto;
 }
 `;
 

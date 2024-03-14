@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 import { auth, db } from "@/firebase";
 
@@ -65,5 +65,7 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
         return () => unsubscribe();
     }, [auth]);
 
-    return <CurrentUserContext.Provider value={user}>{children}</CurrentUserContext.Provider>
+    const memoizedUser = useMemo(() => user, [user.uid]);
+
+    return <CurrentUserContext.Provider value={memoizedUser}>{children}</CurrentUserContext.Provider>
 }

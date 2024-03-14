@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
+
+const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
+const lightBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.lightBlue;
+
 
 export const LoaderContainer = styled.div`
 	display: flex;
@@ -12,7 +16,7 @@ export const LoaderIcon = styled.span`
 	display: inline-block;
 	width: 120px;
 	height: 120px;
-	border: 8px solid #1D9BF0;
+	border: ${s8} solid ${lightBlue};
 	border-bottom-color: transparent;
 	border-radius: 50%;
 	box-sizing: border-box;

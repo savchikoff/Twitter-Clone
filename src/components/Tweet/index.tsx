@@ -6,7 +6,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import user from "@/assets/avatar.svg";
 import likeActive from "@/assets/like-active.svg";
 import likeUnactive from "@/assets/like-unactive.svg";
-import options from "@/assets/options.svg";
+import Options from "@/assets/options.svg?react";
 
 import { db, storage } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
@@ -23,7 +23,6 @@ import {
     TweetLike,
     TweetLikeIcon,
     TweetLikesCounter,
-    TweetOptionsIcon,
     TweetOptionsWrapper,
     TweetPostDate,
     TweetText,
@@ -145,7 +144,7 @@ const Tweet: FC<ITweetProps> = ({ tweetId, name, userName, likedUsers, text, lik
                 </TweetContentWrapper>
             </TweetWrapper>
             <TweetOptionsWrapper>
-                {id === uid && <TweetOptionsIcon src={options} onClick={handleOptionsClick} />}
+                {id === uid && <Options onClick={handleOptionsClick} />}
                 {showDeleteButton && <DeleteButton ref={deleteButtonRef} onClick={handleDeleteClick}>Delete</DeleteButton>}
             </TweetOptionsWrapper>
         </TweetContainer>

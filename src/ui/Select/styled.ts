@@ -1,8 +1,18 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
+
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
+const s56 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s56;
+const s64 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s64;
+const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteGray;
+const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
+const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
+const screen768 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen768;
 
 export const Main = styled.div`
 	font-family: inherit;
-    color: #666666;
+    color: ${graniteGray};
 	width: 100%;
 `;
 
@@ -15,17 +25,17 @@ export const DropDownHeader = styled.div`
     display: flex;
     align-items: center;
 	justify-content: space-between;
-    padding: 0 8px;
-    height: 64px;
-	font-weight: 400;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
+    padding: ${s0} ${s8};
+    height: ${s64};
+	font-weight: inherit;
+	background: ${white};
+	border: ${s1} solid ${silver};
 	border-radius: 6px;
 	position: relative;
 	z-index: 2;
 
-    @media (max-width: 768px){
-        height: 56px;
+    @media (max-width: ${screen768}){
+        height: ${s56};
     }
 `;
 
@@ -39,30 +49,30 @@ export const DropDownListContainer = styled.div`
 	z-index: 1;
     width: 100%;
     bottom: 100%;
-    margin-bottom: 8px;
+    margin-bottom: ${s8};
 `;
 
 export const DropDownList = styled.ul`
     padding: 0;
-    background: #FFFFFF;
-    border: 1px solid #CCCCCC;
+    background: ${white};
+    border: ${s1} solid ${silver};
     max-height: 200px;
     overflow-y: auto;
-    scrollbar-width: none; /* Для Firefox */
-    -ms-overflow-style: none; /* Для IE 11 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     &::-webkit-scrollbar {
-        display: none; /* Для WebKit (Chrome, Safari) */
+        display: none;
     }
     box-sizing: border-box;
     border-radius: 6px;
-    font-weight: 400;
+    font-weight: inherit;
 `;
 
 
 export const ListItem = styled.li`
 	list-style: none;
-	padding: 8px;
+	padding: ${s8};
 	&:not(:last-child) {
-        border-bottom: 1px solid #CCCCCC;
+        border-bottom: ${s1} solid ${silver};
 	}
 `;

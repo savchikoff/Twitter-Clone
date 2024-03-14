@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import { Container } from "@/styled";
 
 import Layout from "../Layout";
 
-const Feed = () => {
+const Feed: FC = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
 

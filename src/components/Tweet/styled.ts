@@ -1,45 +1,77 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s4 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s4;
+const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
+const s10 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s10;
+const s12 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s12;
+const s14 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s14;
+const s16 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s16;
+const s18 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s18;
+const s20 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s20;
+const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
+const s32 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s32;
+const textColor = ({ theme }: DefaultTheme) => theme.themeType.textColor;
+const platinum = ({ theme }: DefaultTheme) => theme.themeType.colors.platinum;
+const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
+const red = ({ theme }: DefaultTheme) => theme.themeType.colors.red;
+const hoverRed = ({ theme }: DefaultTheme) => theme.themeType.colors.hoverRed;
+const lightBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.lightBlue;
+const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteGray;
+const bold = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.bold;
+const screen768 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen768;
 
 export const TweetContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 12px 24px;
-    border-top: 1px solid #E6E6E6;
-    border-bottom: 1px solid #E6E6E6;
+    padding: ${s12} ${s24};
+    border-top: ${s1} solid ${platinum};
+    border-bottom: ${s1} solid ${platinum};
+
+    @media (max-width: ${screen768}){
+        padding: ${s8} ${s12};
+    }
 `;
 
 export const TweetWrapper = styled.div`
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 18px;
+    gap: ${s8};
+    font-size: ${s18};
+
+    @media (max-width: ${screen768}){
+        font-size: ${s14};
+    }
 `;
 
-export const UserImage = styled.img``;
+export const UserImage = styled.img`
+    @media (max-width: ${screen768}){
+        width: ${s24};
+    }
+`;
 
 export const TweetContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${s24};
 `;
 
 export const TweetContent = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: ${s4};
 `;
 
 export const UserInfo = styled.div`
     display: flex;
     align-items: center;
-    gap:8px;
+    gap: ${s8};
 `;
 
 export const TweetImageWrapper = styled.div`
     max-width: 679px;
     max-height: 453px;
-    border-radius: 20px;
+    border-radius: ${s20};
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -53,12 +85,16 @@ export const TweetImage = styled.img`
 `;
 
 export const UserName = styled.div`
-    font-size: 20px;
-    font-weight: 700;
+    font-size: ${s20};
+    font-weight: ${bold};
+
+    @media (max-width: ${screen768}){
+        font-size: ${s16};
+    }
 `;
 
 export const UserNickName = styled.div`
-    color: #666666;
+    color: ${graniteGray};
 `;
 
 export const TweetPostDate = styled(UserNickName)`
@@ -66,7 +102,7 @@ export const TweetPostDate = styled(UserNickName)`
     transition: all 0.3s ease;    
 
     &:hover{
-        color: #1D9BF0;
+        color: ${lightBlue};
     }
 `;
 
@@ -80,16 +116,18 @@ export const TweetOptionsWrapper = styled.div`
     align-items: center;
     height: 100%;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: ${s10};
     position: relative; 
-`;
 
-export const TweetOptionsIcon = styled.img``;
+    & > svg > path {
+        fill: ${textColor};
+    }
+`;
 
 export const TweetLike = styled.div`
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: ${s8};
 `;
 
 export const TweetLikeIcon = styled.img`
@@ -97,26 +135,26 @@ export const TweetLikeIcon = styled.img`
 `;
 
 export const TweetLikesCounter = styled.div<{ $isLiked: boolean }>`
-    font-size: 16px;
-    color: ${({ $isLiked }) => ($isLiked ? '#EF1C5C' : '#536471')};
-    font-weight:  ${({ $isLiked }) => ($isLiked ? '700' : '400')}
+    font-size: ${s16};
+    color: ${({ $isLiked, theme }) => ($isLiked ? `${theme.themeType.colors.pink}` : `${theme.themeType.colors.blackCoral}`)};
+    font-weight:  ${({ $isLiked, theme }) => ($isLiked ? `${theme.themeType.fontWeights.bold}` : 'inherit')}
 `;
 
 export const DeleteButton = styled.button`
   position: absolute;
-  bottom: -32px;
-  left: -12px;
-  background-color: #FF5858;
-  color: #fff;
-  padding: 5px 10px;
+  bottom: -${s32};
+  left: -${s12};
+  background-color: ${red};
+  color: ${white};
+  padding: 5px ${s10};
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
-  margin-left: 10px;
+  font-size: ${s14};
+  margin-left: ${s10};
   z-index: 1;
 
   &:hover {
-    background-color: #FF4242;
+    background-color: ${hoverRed};
   }
 `;

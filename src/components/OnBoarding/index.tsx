@@ -4,7 +4,7 @@ import twitterLogo from "@/assets/twitter-logo.svg";
 import { FooterLinks } from "@/constants/footerLinks";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ import LinkWrapper from "@/ui/LinkWrapper";
 import Button from "../Button";
 import { AdditionalContent, ButtonsWrapper, Container, FooterLinksWrapper, LogInText, MainWrapper, NavLink, PrivacyPolicyContent, SignUpContent, SignUpHeader, SignUpHeaders, SignUpMainHeader, TwitterImage, TwitterLogo } from "./styled";
 
-function OnBoarding() {
+const OnBoarding: FC = () => {
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
 
@@ -59,7 +59,7 @@ function OnBoarding() {
                         <SignUpMainHeader>Happening now</SignUpMainHeader>
                         <SignUpHeader>Join Twitter today</SignUpHeader>
                     </SignUpHeaders>
-                    <ButtonsWrapper>
+                    <ButtonsWrapper data-cy="onboarding-buttons">
                         <Button iconSrc={google} onClick={handleSignUpWithGoogle}>Sign Up with Google</Button>
                         <Button onClick={handleSignUpEmail}>Sign Up With Email</Button>
                     </ButtonsWrapper>

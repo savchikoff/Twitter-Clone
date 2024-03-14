@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+
+const s30 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s30;
+const s32 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s32;
 
 export const SearchBarContainer = styled.div`
-    margin-top: 30px;
+    margin-top: ${s30};
     max-width: 373px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: ${s32};
 `;

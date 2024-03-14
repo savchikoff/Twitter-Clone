@@ -8,11 +8,11 @@ import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import ProfileHead from "./ProfileHead";
 import { TweetsWrapper } from "./styled";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Modal from "../Modal";
 import NewUserData from "../NewUserData";
 
-const Profile = () => {
+const Profile: FC = () => {
     const { displayName, userName, uid } = useCurrentUser();
     const [isGoogle, setIsGoogle] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
@@ -30,7 +30,6 @@ const Profile = () => {
                 usersSnaps.forEach((userSnap) => {
                     if (userSnap.exists()) {
                         if (userSnap.data().uid === uid) {
-                            console.log("fire");
                             setIsGoogle(userSnap.data().authProvider === "google");
                         }
                     }
@@ -51,26 +50,24 @@ const Profile = () => {
         <SectionWrapper>
             <ProfileHead displayName={displayName} userName={userName} isGoogle={isGoogle} handleModalOpen={handleModalStateChange} />
             <NewTweet />
-            {!tweets ? <div>Loading...</div> :
-                <TweetsWrapper>
-                    {tweets.map(({ tweetId, name, userName, text, likedUsers, likes, image, createdAt, id }) => {
-                        const { nanoseconds, seconds } = createdAt;
-                        const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
-                        return (
-                            <Tweet key={tweetId}
-                                tweetId={tweetId}
-                                name={name.split(" ")[0]}
-                                userName={userName}
-                                likedUsers={likedUsers}
-                                text={text}
-                                likes={likes}
-                                image={image}
-                                createdAt={date}
-                                id={id} />
-                        )
-                    })}
-                </TweetsWrapper>
-            }
+            <TweetsWrapper>
+                {tweets.map(({ tweetId, name, userName, text, likedUsers, likes, image, createdAt, id }) => {
+                    const { nanoseconds, seconds } = createdAt;
+                    const date = new Date(seconds * 1000 + nanoseconds / 1000000).toLocaleDateString();
+                    return (
+                        <Tweet key={tweetId}
+                            tweetId={tweetId}
+                            name={name.split(" ")[0]}
+                            userName={userName}
+                            likedUsers={likedUsers}
+                            text={text}
+                            likes={likes}
+                            image={image}
+                            createdAt={date}
+                            id={id} />
+                    )
+                })}
+            </TweetsWrapper>
             <Modal isOpen={isModalOpen} close={handleModalStateChange}>
                 <NewUserData />
             </Modal>

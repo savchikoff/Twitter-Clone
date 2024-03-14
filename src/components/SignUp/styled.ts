@@ -1,4 +1,23 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
+const s16 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s16;
+const s18 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s18;
+const s20 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s20;
+const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
+const s30 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s30;
+const s40 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s40;
+const s56 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s56;
+const s64 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s64;
+const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
+const blue = ({ theme }: DefaultTheme) => theme.themeType.colors.blue;
+const oceanBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.oceanBlue;
+const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
+const red = ({ theme }: DefaultTheme) => theme.themeType.colors.red;
+const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteGray;
+const bold = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.bold;
+const screen768 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen768;
 
 export const Container = styled.div`
     display: flex;
@@ -6,23 +25,23 @@ export const Container = styled.div`
     justify-content: center;    
     width: 100%;
     height: 100vh;
-    padding: 40px 0;
+    padding: ${s40} ${s0};
 `;
 
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: ${s40};
 `;
 
 export const InputsWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    margin-bottom: 16px;
+    gap: ${s40};
+    margin-bottom: ${s16};
 
-    @media (max-width: 768px){
-        gap: 24px;
+    @media (max-width: ${screen768}){
+        gap: ${s24};
     }
 `
 
@@ -32,12 +51,12 @@ export const TwitterLogoWrapper = styled.div`
 `
 
 export const TwitterLogo = styled.img`
-    width: 40px;
+    width: ${s40};
     height: 33px;
 `
 
 export const SignUpHeader = styled.h4`
-    font-size: 30px;
+    font-size: ${s30};
 `;
 
 export const SignUpForm = styled.form`
@@ -48,27 +67,27 @@ export const SignUpForm = styled.form`
 export const SignUpFields = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: ${s24};
 
-    @media (max-width: 768px){
+    @media (max-width: ${screen768}){
         max-width: 100%;
     }
 `;
 
 export const Input = styled.input`
-    border: 1px solid #CCCCCC;
+    border: ${s1} solid ${silver};
     border-radius: 6px;
-    padding: 20px;
-    font-size: 18px;
+    padding: ${s20};
+    font-size: ${s18};
     min-width: 670px;
     outline: none;
     ::placeholder{
-        color: #666666;
+        color: ${graniteGray};
     }
 
-    @media (max-width: 768px){
-        font-size: 16px;
-        padding: 16px;
+    @media (max-width: ${screen768}){
+        font-size: ${s16};
+        padding: ${s16};
         min-width: 200px;
     }
 `;
@@ -76,46 +95,46 @@ export const Input = styled.input`
 export const DateOfBirthWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 40px;
+    gap: ${s16};
+    margin-bottom: ${s40};
 `
 
 export const DateOfBirthHeader = styled.h6`
-    font-size: 18px;
+    font-size: ${s18};
 `
 
 export const DateOfBirthSelects = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: 20px;
+    gap: ${s20};
 `
 
 export const Button = styled.button`
-    font-size: 18px;
-    height: 64px;
+    font-size: ${s18};
+    height: ${s64};
     border: none;
-    font-weight: 700;
+    font-weight: ${bold};
     outline: none;
     border-radius: 76px;
-    background-color: #1DA1F2;
-    color: #FFFFFF;
+    background-color: ${blue};
+    color: ${white};
     transition: all 0.3s ease;
 
     &:hover{
-        background-color: #6CC6FD;
+        background-color: ${oceanBlue};
     }
 
     &:disabled{
-        background-color: #6CC6FD;
+        background-color: ${oceanBlue};
     }
 
-    @media (max-width: 768px){
-        font-size: 16px;
-        height: 56px;
+    @media (max-width: ${screen768}){
+        font-size: ${s16};
+        height: ${s56};
     }
 `
 
 export const Error = styled.div`
-    color: #FF4141;
+    color: ${red};
 `
 

@@ -1,7 +1,7 @@
 import twitterLogo from "@/assets/twitter-logo.svg";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ import {
     Wrapper
 } from "./styled";
 
-const SignUp = () => {
+const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<ISignUpFormInput>({ mode: "onBlur" });

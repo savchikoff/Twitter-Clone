@@ -1,26 +1,46 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
+const s4 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s4;
+const s10 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s10;
+const s12 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s12;
+const s16 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s16;
+const s20 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s20;
+const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteGray;
+const black = ({ theme }: DefaultTheme) => theme.themeType.colors.black;
+const blue = ({ theme }: DefaultTheme) => theme.themeType.colors.blue;
+const screen768 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen768;
 
 export const TweetContainer = styled.div`
-    padding: 16px;
-    border-radius: 20px;
-    border: 1px solid #636464;
+    padding: ${s16};
+    border-radius: ${s20};
+    border: ${s1} solid ${graniteGray};
+
+    @media (max-width: ${screen768}){
+        padding: ${s10};
+        font-size: ${s12};
+    }
 `;
 
 export const TweetWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: ${s16};
+
+    @media (max-width: ${screen768}){
+        gap: ${s12};
+    }
 `;
 
 export const TweetInfo = styled.div`
     display: flex;
-    gap: 4px;
+    gap: ${s4};
 `;
 
 export const UserPersonalData = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: ${s4};
 `;
 
 export const UserInfo = styled.div`
@@ -31,20 +51,20 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.div`
-    color: #000000;
+    color: ${black};
 `;
 
 export const UserNickName = styled.div`
-    color: #636464;
+    color: ${graniteGray};
 `;
 
 export const PublishDate = styled.div`
     cursor: pointer;
-    color: #636464;
+    color: ${graniteGray};
     transition: all 0.3s ease;
 
     &:hover{
-        color: #1DA1F2
+        color: ${blue}
     }
 `;
 

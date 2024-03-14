@@ -1,5 +1,5 @@
 import { collection, getDocs, orderBy, query, Timestamp } from "firebase/firestore";
-import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 import { db } from "@/firebase";
 
@@ -50,5 +50,7 @@ export const TweetsProvider: FC<ITweetsProviderProps> = ({ children }) => {
         getTweets();
     }, []);
 
-    return <TweetsContext.Provider value={tweets}>{children}</TweetsContext.Provider>
+    const memoizedTweets = useMemo(() => tweets, [tweets]);
+
+    return <TweetsContext.Provider value={memoizedTweets}>{children}</TweetsContext.Provider>
 }

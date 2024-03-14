@@ -2,7 +2,7 @@ import { FC, useRef } from "react";
 import search from "@/assets/search.svg";
 
 
-import { SearchContainer, SearchIcon, SearchInput, SearchWrapper } from "./styled";
+import { SearchContainer, SearchIcon, SearchIconWrapper, SearchInput, SearchWrapper } from "./styled";
 
 interface ISearchProps {
     searchValue: string;
@@ -23,7 +23,9 @@ const Search: FC<ISearchProps> = ({ searchValue, setSearchValue }) => {
     return (
         <SearchContainer onClick={handleInputFocus}>
             <SearchWrapper>
-                <SearchIcon src={search} />
+                <SearchIconWrapper>
+                    <SearchIcon src={search} />
+                </SearchIconWrapper>
                 <SearchInput value={searchValue} onChange={handleInputChange} ref={inputRef} placeholder="Search" />
             </SearchWrapper>
         </SearchContainer>

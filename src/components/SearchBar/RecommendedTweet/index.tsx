@@ -1,14 +1,7 @@
 import { FC } from "react";
 import { PublishDate, TweetContainer, TweetWrapper, TweetInfo, UserName, UserNickName, UserPersonalData, UserInfo, TweetText } from "./styled";
 import { useNavigate } from "react-router-dom";
-
-interface IRecommendedTweetProps {
-    tweetId: string;
-    name: string;
-    userName: string;
-    text: string;
-    createdAt: string;
-}
+import { IRecommendedTweetProps } from "./interfaces";
 
 const RecommendedTweet: FC<IRecommendedTweetProps> = ({ tweetId, name, userName, text, createdAt }) => {
     const navigate = useNavigate();

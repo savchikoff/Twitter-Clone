@@ -3,8 +3,9 @@ import { Outlet } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import Sidebar from "../Sidebar";
 import { LayoutWrapper } from "./styled";
+import { FC } from "react";
 
-const Layout = () => {
+const Layout: FC = () => {
     return (
         <LayoutWrapper>
             <Sidebar />

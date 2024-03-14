@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { FC, Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Loader from "@/ui/Loader";
@@ -11,7 +11,7 @@ const Home = lazy(() => import("../Home"));
 const Profile = lazy(() => import("../Profile"));
 const TweetPage = lazy(() => import("../../pages/TweetPage"));
 
-const Router = () => {
+const Router: FC = () => {
     return (
         <BrowserRouter>
             <Suspense fallback={<Loader />}>
@@ -21,9 +21,9 @@ const Router = () => {
                         <Route key={PRIVATE_ROUTES.profile} path={PRIVATE_ROUTES.profile} element={<Profile />} />
                         <Route key={PRIVATE_ROUTES.tweet} path={PRIVATE_ROUTES.tweet} element={<TweetPage />} />
                     </Route>
-                    {Object.values(NAVIGATION).map((item) => {
+                    {Object.values(NAVIGATION).map((item, index) => {
                         const { path, element } = item;
-                        return <Route element={element} key={path} path={path} />
+                        return <Route element={element} key={index} path={path} />
                     })}
                     <Route key={ROUTES.notFound} path={ROUTES.notFound} element={<ErrorPage />} />
                 </Routes>

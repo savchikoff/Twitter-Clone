@@ -1,5 +1,8 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
+
+const red = ({ theme }: DefaultTheme) => theme.themeType.colors.red;
+
 
 export const Error = styled.div`
-    color: #FF3636;
+    color: ${red};
 `

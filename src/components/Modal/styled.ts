@@ -1,4 +1,13 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { DefaultTheme, createGlobalStyle } from 'styled-components';
+
+const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
+const s2 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s2;
+const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
+const s12 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s12;
+const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
+const s32 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s32;
+const lightGray = ({ theme }: DefaultTheme) => theme.themeType.colors.lightGray;
+const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
 
 export const Background = styled.div`
 	display: flex;
@@ -7,21 +16,21 @@ export const Background = styled.div`
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
-	top: 0;
-	left: 0;
+	top: ${s0};
+	left: ${s0};
 	z-index: 50;
 `;
 
 export const CloseIcon = styled.img`
-	height: 24px;
+	height: ${s24};
 `
 
 export const Wrapper = styled.div`
-	background-color: #FFFFFF;
-	border: 2px solid #999999;
+	background-color: ${white};
+	border: ${s2} solid ${lightGray};
 	width: 500px;
-	padding: 24px;
-	border-radius: 8px;
+	padding: ${s24};
+	border-radius: ${s8};
 	max-width: 90%;
 	max-height: 90%;
 	position: relative;
@@ -30,15 +39,15 @@ export const Wrapper = styled.div`
 export const HeaderRow = styled.div`
 	cursor: pointer;
 	position: absolute;
-	top: 12px;
-	right: 12px;
+	top: ${s12};
+	right: ${s12};
 `;
 
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 32px;
+	gap: ${s32};
 `;
 
 export const ScrollDisabler = createGlobalStyle`

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 
 import { Label, Input, Switch } from './styled';
@@ -6,7 +6,7 @@ import { dark, light } from '@/theme/theme';
 import { writeToCache } from '@/utils/cache';
 import { DefaultTheme } from 'styled-components/dist/types';
 
-const ThemeToggle = () => {
+const ThemeToggle: FC = () => {
     const { themeType, setThemeType } = useContext(ThemeContext) as DefaultTheme;
 
     const toggleTheme = () => {
