@@ -1,6 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { FC, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const OnBoarding: FC = () => {
         if (user) navigate('/');
     }, [user, loading, navigate]);
 
-    const handleSignUpWithGoogle = async () => {
+    const handleSignUpWithGoogle = useCallback(async () => {
         try {
             const res = await signInWithPopup(auth, googleProvider);
             const { user } = res;
@@ -43,7 +43,7 @@ const OnBoarding: FC = () => {
         } catch (err) {
             console.error(err);
         }
-    };
+    }, []);
 
     const handleSignUpEmail = () => {
         navigate("/register");

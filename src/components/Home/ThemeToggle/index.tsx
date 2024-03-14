@@ -20,7 +20,7 @@ const ThemeToggle: FC = () => {
 
     return (
         <Label>
-            <Input data-cy="toggle-checkbox" checked={isLightTheme} type="checkbox" onChange={toggleTheme} />
+            <Input data-cy="theme-toggle" checked={isLightTheme} type="checkbox" onChange={toggleTheme} />
             <Switch />
         </Label>
     );

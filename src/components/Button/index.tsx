@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, memo,ReactNode } from "react";
 
 import { IButtonProps } from "./interfaces";
 import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
@@ -16,4 +16,4 @@ const Button: FC<IButtonProps> = ({ iconSrc, children, onClick, type }) => {
     )
 }
 
-export default Button;
+export default memo(Button);

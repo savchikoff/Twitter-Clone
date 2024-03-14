@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import arrow from "@/assets/arrow.svg";
 
+import { ISelectProps } from './interfaces';
 import {
     ArrowIcon,
     DropDownContainer,
@@ -12,15 +13,8 @@ import {
     Main,
 } from './styled';
 
-export interface SelectProps {
-    label: string;
-    options: string[];
-    selectedOption: string;
-    setSelectedOption: (option: string) => void;
-    isDisabled?: boolean;
-}
 
-const Select: FC<SelectProps> = ({ label, options, selectedOption, setSelectedOption, isDisabled }) => {
+const Select: FC<ISelectProps> = ({ label, options, selectedOption, setSelectedOption, isDisabled, dataCy }) => {
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +45,7 @@ const Select: FC<SelectProps> = ({ label, options, selectedOption, setSelectedOp
 
     return (
         <Main>
-            <DropDownContainer ref={selectRef}>
+            <DropDownContainer ref={selectRef} data-cy={dataCy}>
                 <DropDownHeader onClick={toggleSelect}>
                     {selectedOption || label}
                     <ArrowIcon $isOpen={isOpen} src={arrow} />
@@ -63,6 +57,7 @@ const Select: FC<SelectProps> = ({ label, options, selectedOption, setSelectedOp
                                 <ListItem
                                     key={option}
                                     onClick={() => handleOptionClick(option)}
+                                    data-cy={option}
                                 >
                                     {option}
                                 </ListItem>

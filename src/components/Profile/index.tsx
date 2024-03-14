@@ -1,5 +1,5 @@
 import { collection, getDocs } from 'firebase/firestore';
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import { db } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
@@ -18,9 +18,9 @@ const Profile: FC = () => {
     const [isGoogle, setIsGoogle] = useState(false);
     const [isModalOpen, setModalOpen] = useState(false);
 
-    const handleModalStateChange = () => {
+    const handleModalStateChange = useCallback(() => {
         setModalOpen(prevState => !prevState);
-    };
+    }, []);
     const tweets = useUserTweets();
 
     useEffect(() => {

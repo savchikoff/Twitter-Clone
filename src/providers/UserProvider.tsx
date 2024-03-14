@@ -63,9 +63,9 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
         });
 
         return () => unsubscribe();
-    }, [user]);
+    }, []);
 
-    const memoizedUser = useMemo(() => user, [user]);
+    const memoizedUser = useMemo(() => user, [user.uid]);
 
     return <CurrentUserContext.Provider value={memoizedUser}>{children}</CurrentUserContext.Provider>
 }

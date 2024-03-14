@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 
 import {
     NotificationContent,
@@ -53,4 +53,4 @@ const Notification: FC<INotificationProps> = ({ isError, active, handleNotificat
     );
 };
 
-export default Notification;
+export default memo(Notification);

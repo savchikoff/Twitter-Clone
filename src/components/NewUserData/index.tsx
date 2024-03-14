@@ -1,6 +1,6 @@
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updatePassword, verifyBeforeUpdateEmail } from "firebase/auth";
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { auth, db, logOut } from "@/firebase";
@@ -133,11 +133,11 @@ const NewUserData: FC = () => {
         }
     }, [errors.name, errors.phone, errors.email, errors.password, errors.newPassword]);
 
-    const handleNotificationActive = () => {
+    const handleNotificationActive = useCallback(() => {
         setNotificationActive(false);
         setIsError(false);
         setError("");
-    }
+    }, []);
 
 
     return (

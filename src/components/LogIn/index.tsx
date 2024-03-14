@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -56,11 +56,11 @@ const LogIn: FC = () => {
             });
     }
 
-    const handleNotificationActive = () => {
+    const handleNotificationActive = useCallback(() => {
         setNotificationActive(false);
         setIsError(false);
         setError("");
-    }
+    }, []);
 
     return (
         <Container>

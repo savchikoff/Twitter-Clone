@@ -116,11 +116,13 @@ const SignUp: FC = () => {
                         <SignUpHeader>Create an account</SignUpHeader>
                         <SignUpFields>
                             <Input
+                                data-cy="signup-name"
                                 {...register("name", {
                                     required: "Name field is required"
                                 })}
                                 placeholder="Name" />
                             <Input
+                                data-cy="signup-phone"
                                 {...register("phone", {
                                     required: "Phone field is required",
                                     pattern: {
@@ -130,6 +132,7 @@ const SignUp: FC = () => {
                                 })}
                                 placeholder="Phone number" />
                             <Input
+                                data-cy="signup-email"
                                 {...register("email", {
                                     required: "Email field is required",
                                     pattern: {
@@ -140,6 +143,7 @@ const SignUp: FC = () => {
                                 type="email"
                                 placeholder="Email" />
                             <Input
+                                data-cy="signup-password"
                                 type="password"
                                 {...register("password", {
                                     required: "You must specify a password",
@@ -164,13 +168,13 @@ const SignUp: FC = () => {
                     <DateOfBirthWrapper>
                         <DateOfBirthHeader>Date of birth</DateOfBirthHeader>
                         <DateOfBirthSelects>
-                            <Select label="Month" options={Month} selectedOption={selectedMonth} setSelectedOption={setSelectedMonth} />
-                            <Select label="Year" options={years} selectedOption={selectedYear} setSelectedOption={setSelectedYear} />
-                            <Select label="Day" options={daysInMonth} selectedOption={selectedDay} setSelectedOption={setSelectedDay} isDisabled={!selectedMonth || !selectedYear} />
+                            <Select dataCy="month-select" label="Month" options={Month} selectedOption={selectedMonth} setSelectedOption={setSelectedMonth} />
+                            <Select dataCy="year-select" label="Year" options={years} selectedOption={selectedYear} setSelectedOption={setSelectedYear} />
+                            <Select dataCy="day-select" label="Day" options={daysInMonth} selectedOption={selectedDay} setSelectedOption={setSelectedDay} isDisabled={!selectedMonth || !selectedYear} />
                         </DateOfBirthSelects>
                         {isDayDisabled && <ErrorLabel label="* While month and year aren't specified you can't choose the day" />}
                     </DateOfBirthWrapper>
-                    <Button type="submit" disabled={isSubmitButtonDisabled}>Sign Up</Button>
+                    <Button data-cy="signup-btn" type="submit" disabled={isSubmitButtonDisabled}>Sign Up</Button>
                 </SignUpForm>
                 {isNotificationActive && <Notification
                     isError

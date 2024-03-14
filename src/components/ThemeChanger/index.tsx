@@ -11,10 +11,10 @@ const ThemeChanger: FC<ThemeChangerProps> = ({ children }) => {
         const cachedTheme = readFromCache('theme');
         if (cachedTheme) {
             return cachedTheme === 'dark' ? dark : light;
-        } 
-            writeToCache('theme', 'dark');
-            return dark;
-        
+        }
+        writeToCache('theme', 'dark');
+        return dark;
+
     });
     return (
         <ThemeProvider theme={{ themeType, setThemeType }}>{children}</ThemeProvider>

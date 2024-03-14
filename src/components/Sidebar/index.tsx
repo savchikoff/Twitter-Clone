@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import avatar from "@/assets/avatar.svg"
 import twitter from "@/assets/twitter-logo.svg";
@@ -32,9 +32,9 @@ const Sidebar: FC = () => {
 
     const isTablet = width < 1024;
 
-    const handleModalStateChange = () => {
+    const handleModalStateChange = useCallback(() => {
         setModalOpen(prevState => !prevState);
-    };
+    }, []);
 
     if (!isTablet) {
         return (
@@ -43,7 +43,7 @@ const Sidebar: FC = () => {
                     <TwitterLogo src={twitter} alt="Twitter logo" />
                     <NavigationContainer>
                         {NAV_LINKS.map(({ name, to, icon }) => {
-                            const path = to.includes("/") ? to : `/${  to}`;
+                            const path = to.includes("/") ? to : `/${to}`;
                             const isActive = location.pathname === path;
                             if (name === "Profile") {
                                 return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} isPrimary />
@@ -74,7 +74,7 @@ const Sidebar: FC = () => {
                 <SidebarWrapper>
                     <NavigationContainer>
                         {NAV_LINKS.map(({ name, to, icon }) => {
-                            const path = to.includes("/") ? to : `/${  to}`;
+                            const path = to.includes("/") ? to : `/${to}`;
                             const isActive = location.pathname === path;
                             if (name === "Profile") {
                                 return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} isPrimary />
