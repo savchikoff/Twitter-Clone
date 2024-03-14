@@ -11,11 +11,12 @@ const Links: FC = () => {
             {FooterLinks.map(({ name, link }, index) => {
                 if (index < 6) {
                     return (
-                        <Link key={index} to={link}>
+                        <Link key={name} to={link}>
                             {name}
                         </Link>
                     )
                 }
+                return null;
             })}
             <Link to="/">More</Link>
         </LinksWrapper>

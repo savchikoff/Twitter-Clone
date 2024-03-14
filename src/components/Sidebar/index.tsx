@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from "react";
+
 import avatar from "@/assets/avatar.svg"
 import twitter from "@/assets/twitter-logo.svg";
-
-
 import { NAV_LINKS } from "@/constants/NavLinks";
 import { logOut } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
@@ -44,7 +43,7 @@ const Sidebar: FC = () => {
                     <TwitterLogo src={twitter} alt="Twitter logo" />
                     <NavigationContainer>
                         {NAV_LINKS.map(({ name, to, icon }) => {
-                            const path = to.includes("/") ? to : "/" + to;
+                            const path = to.includes("/") ? to : `/${  to}`;
                             const isActive = location.pathname === path;
                             if (name === "Profile") {
                                 return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} isPrimary />
@@ -70,12 +69,12 @@ const Sidebar: FC = () => {
     }
 
     return (
-        <SidebarBurger dataCy={"sidebar-burger"}>
+        <SidebarBurger dataCy="sidebar-burger">
             <SidebarContainer>
                 <SidebarWrapper>
                     <NavigationContainer>
                         {NAV_LINKS.map(({ name, to, icon }) => {
-                            const path = to.includes("/") ? to : "/" + to;
+                            const path = to.includes("/") ? to : `/${  to}`;
                             const isActive = location.pathname === path;
                             if (name === "Profile") {
                                 return <NavItem isActive={isActive} key={name} Icon={icon} label={name} to={to} isPrimary />

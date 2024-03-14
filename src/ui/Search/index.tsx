@@ -1,6 +1,6 @@
 import { FC, useRef } from "react";
-import search from "@/assets/search.svg";
 
+import search from "@/assets/search.svg";
 
 import { SearchContainer, SearchIcon, SearchIconWrapper, SearchInput, SearchWrapper } from "./styled";
 

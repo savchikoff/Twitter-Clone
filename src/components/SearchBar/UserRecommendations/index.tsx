@@ -1,17 +1,17 @@
-import { FC, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import { FC, useEffect, useState } from "react";
 
 import { db } from "@/firebase";
+import { useTweets } from "@/providers/TweetsProvider";
 
-import User from "../User";
 import RecommendedTweet from "../RecommendedTweet";
+import User from "../User";
 import { IRecommendedUsersProps, IUser } from "./interfaces";
 import {
     UsersContainer,
     UsersHeader,
     UsersWrapper
 } from "./styled";
-import { useTweets } from "@/providers/TweetsProvider";
 
 
 const UserRecommendations: FC<IRecommendedUsersProps> = ({ searchValue }) => {

@@ -1,4 +1,4 @@
-import styled, { DefaultTheme, createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle,DefaultTheme } from 'styled-components';
 
 const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
 const s2 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s2;

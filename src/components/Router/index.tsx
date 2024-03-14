@@ -1,9 +1,9 @@
-import { FC, Suspense, lazy } from "react";
+import { FC, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Loader from "@/ui/Loader";
-import { ROUTES, PRIVATE_ROUTES } from "@/constants/routes";
 import NAVIGATION from "@/constants/navigation";
+import { PRIVATE_ROUTES, ROUTES } from "@/constants/routes";
+import Loader from "@/ui/Loader";
 
 const ErrorPage = lazy(() => import("../../pages/ErrorPage"));
 const FeedPage = lazy(() => import("../../pages/FeedPage"));
@@ -21,9 +21,9 @@ const Router: FC = () => {
                         <Route key={PRIVATE_ROUTES.profile} path={PRIVATE_ROUTES.profile} element={<Profile />} />
                         <Route key={PRIVATE_ROUTES.tweet} path={PRIVATE_ROUTES.tweet} element={<TweetPage />} />
                     </Route>
-                    {Object.values(NAVIGATION).map((item, index) => {
+                    {Object.values(NAVIGATION).map((item) => {
                         const { path, element } = item;
-                        return <Route element={element} key={index} path={path} />
+                        return <Route element={element} key={`${path}-path`} path={path} />
                     })}
                     <Route key={ROUTES.notFound} path={ROUTES.notFound} element={<ErrorPage />} />
                 </Routes>

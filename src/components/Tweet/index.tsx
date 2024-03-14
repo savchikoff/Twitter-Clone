@@ -1,13 +1,12 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
+import { FC, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import user from "@/assets/avatar.svg";
 import likeActive from "@/assets/like-active.svg";
 import likeUnactive from "@/assets/like-unactive.svg";
 import Options from "@/assets/options.svg?react";
-
 import { db, storage } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
 import { isLikedByMe } from "@/utils/isLikedByMe";

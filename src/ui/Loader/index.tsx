@@ -1,5 +1,6 @@
-import { LoaderContainer, LoaderIcon } from './styled';
 import GlobalStyle from '@/globalStyles/styled';
+
+import { LoaderContainer, LoaderIcon } from './styled';
 
 const Loader = () => {
     return (

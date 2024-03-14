@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect, FC } from 'react';
-import { Container, Button, Menu, CloseIcon, HeaderRow, ContentContainer } from './styled';
-import closeIcon from '@/assets/close.svg';
+import { FC, useEffect, useRef, useState } from 'react';
+
 import Burger from "@/assets/burger.svg?react";
+import closeIcon from '@/assets/close.svg';
+
 import { ISidebarBurgerProps } from './interfaces';
+import { Button, CloseIcon, Container, ContentContainer, HeaderRow, Menu } from './styled';
 
 const SidebarBurger: FC<ISidebarBurgerProps> = ({ children, dataCy }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,24 +30,22 @@ const SidebarBurger: FC<ISidebarBurgerProps> = ({ children, dataCy }) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [isOpen]);
+    }, [isOpen, handleClickOutside]);
 
     return (
-        <>
-            <Container>
-                <Button onClick={toggleMenu} data-cy="sidebar-burger">
-                    <Burger />
-                </Button>
-                <Menu ref={menuRef} $isOpen={isOpen}>
-                    <HeaderRow>
-                        <CloseIcon src={closeIcon} alt="close-icon" onClick={closeMenu} />
-                    </HeaderRow>
-                    <ContentContainer>
-                        {children}
-                    </ContentContainer>
-                </Menu>
-            </Container>
-        </>
+        <Container>
+            <Button onClick={toggleMenu} data-cy="sidebar-burger">
+                <Burger />
+            </Button>
+            <Menu ref={menuRef} $isOpen={isOpen}>
+                <HeaderRow>
+                    <CloseIcon src={closeIcon} alt="close-icon" onClick={closeMenu} />
+                </HeaderRow>
+                <ContentContainer>
+                    {children}
+                </ContentContainer>
+            </Menu>
+        </Container>
     );
 };
 

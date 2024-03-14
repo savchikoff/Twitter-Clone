@@ -11,4 +11,5 @@ export default defineConfig({
 		},
 	},
 	plugins: [react(), svgr({ include: "**/*.svg?react" })],
+	build: { chunkSizeWarningLimit: 1600 }
 });

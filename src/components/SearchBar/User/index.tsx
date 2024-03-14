@@ -1,6 +1,6 @@
-import avatar from "@/assets/avatar.svg";
 import { FC } from "react";
 
+import avatar from "@/assets/avatar.svg";
 import { UserAvatar } from "@/components/Sidebar/styled";
 
 import { IUserProps } from "./interfaces";

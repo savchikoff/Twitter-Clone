@@ -1,4 +1,4 @@
-import { fontWeights, sizes, colors, breakPoints } from "./styles";
+import { breakPoints,colors, fontWeights, sizes } from "./styles";
 
 export const baseStyle = {
     fontWeights: {

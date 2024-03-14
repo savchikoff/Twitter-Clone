@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect, FC } from 'react';
-import { Container, Button, Menu, CloseIcon, HeaderRow, ContentContainer } from './styled';
+import { FC, useEffect, useRef, useState } from 'react';
+
 import closeIcon from '@/assets/close.svg';
 import SearchIcon from "@/assets/search.svg?react";
+
 import { ISearchBurgerProps } from './interfaces';
+import { Button, CloseIcon, Container, ContentContainer, HeaderRow, Menu } from './styled';
 
 const SearchBurger: FC<ISearchBurgerProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -31,21 +33,19 @@ const SearchBurger: FC<ISearchBurgerProps> = ({ children }) => {
     }, [isOpen]);
 
     return (
-        <>
-            <Container>
-                <Button onClick={toggleMenu}>
-                    <SearchIcon />
-                </Button>
-                <Menu ref={menuRef} $isOpen={isOpen}>
-                    <HeaderRow>
-                        <CloseIcon src={closeIcon} alt="close-icon" onClick={closeMenu} />
-                    </HeaderRow>
-                    <ContentContainer>
-                        {children}
-                    </ContentContainer>
-                </Menu>
-            </Container>
-        </>
+        <Container>
+            <Button onClick={toggleMenu}>
+                <SearchIcon />
+            </Button>
+            <Menu ref={menuRef} $isOpen={isOpen}>
+                <HeaderRow>
+                    <CloseIcon src={closeIcon} alt="close-icon" onClick={closeMenu} />
+                </HeaderRow>
+                <ContentContainer>
+                    {children}
+                </ContentContainer>
+            </Menu>
+        </Container>
     );
 };
 

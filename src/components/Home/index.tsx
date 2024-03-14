@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { useTweets } from "@/providers/TweetsProvider";
 
 import NewTweet from "../NewTweet";
@@ -6,7 +8,6 @@ import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import { HomeHeader, HomeHeaderWrapper } from "./styled";
 import ThemeToggle from "./ThemeToggle";
-import { FC } from "react";
 
 const Home: FC = () => {
     const allTweets = useTweets();

@@ -1,16 +1,17 @@
-import { useCurrentUser } from "@/providers/UserProvider";
 import { collection, getDocs } from 'firebase/firestore';
-import { getUserTweets } from "@/utils/getUserTweets";
-import { db } from "@/firebase";
+import { FC, useEffect, useState } from "react";
 
+import { db } from "@/firebase";
+import { useCurrentUser } from "@/providers/UserProvider";
+import { useUserTweets } from "@/utils/getUserTweets";
+
+import Modal from "../Modal";
 import NewTweet from "../NewTweet";
+import NewUserData from "../NewUserData";
 import SectionWrapper from "../SectionWrapper";
 import Tweet from "../Tweet";
 import ProfileHead from "./ProfileHead";
 import { TweetsWrapper } from "./styled";
-import { FC, useEffect, useState } from "react";
-import Modal from "../Modal";
-import NewUserData from "../NewUserData";
 
 const Profile: FC = () => {
     const { displayName, userName, uid } = useCurrentUser();
@@ -20,7 +21,7 @@ const Profile: FC = () => {
     const handleModalStateChange = () => {
         setModalOpen(prevState => !prevState);
     };
-    const tweets = getUserTweets();
+    const tweets = useUserTweets();
 
     useEffect(() => {
         const fetchUser = async () => {

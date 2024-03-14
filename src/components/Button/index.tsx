@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 
-import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
 import { IButtonProps } from "./interfaces";
+import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
 
 const Button: FC<IButtonProps> = ({ iconSrc, children, onClick, type }) => {
     return (

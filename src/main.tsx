@@ -1,9 +1,12 @@
+import "./firebase";
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import "./firebase";
+
 import App from '@/components/App/App';
-import GlobalStyle from './globalStyles/styled';
+
 import ThemeChanger from './components/ThemeChanger';
+import GlobalStyle from './globalStyles/styled';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>

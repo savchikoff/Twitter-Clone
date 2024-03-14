@@ -1,10 +1,9 @@
 import { ChangeEvent, FC, useState } from "react";
+
 import avatar from "@/assets/avatar.svg";
 import image from "@/assets/img-icon.svg";
-
-import Notification from "@/ui/Notification";
-
 import { useCurrentUser } from "@/providers/UserProvider";
+import Notification from "@/ui/Notification";
 import { addTweet, FileType } from "@/utils/addTweet";
 
 import { FileInput, FileInputLabel, FileInputWrapper, InputIcon, TweetActionsWrapper, TweetAddButton, TweetContainer, TweetContentWrapper, TweetText, TweetWrapper, UserAvatar } from "./styled";
@@ -70,7 +69,7 @@ const NewTweet: FC = () => {
                 active={isNotificationActive}
                 handleNotificationActive={handleNotificationActive}
                 label="Successfully!"
-                message={"New tweet has been added"} />}
+                message="New tweet has been added" />}
         </TweetContainer>
     )
 }

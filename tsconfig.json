@@ -32,9 +32,6 @@
 		"vite.config.ts",
 		"cypress.config.ts"
 	],
-	"exclude": [
-		"./cypress.config.ts"
-	],
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

@@ -3,7 +3,7 @@ import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState 
 
 import { db } from "@/firebase";
 
-export type TweetsContext = {
+export type TweetsContextType = {
     tweetId: string;
     text: string,
     name: string,
@@ -20,7 +20,7 @@ interface ITweetsProviderProps {
     children: ReactNode;
 }
 
-const TweetsContext = createContext<TweetsContext>([]);
+const TweetsContext = createContext<TweetsContextType>([]);
 
 export const useTweets = () => {
     return useContext(TweetsContext);
@@ -28,10 +28,10 @@ export const useTweets = () => {
 
 export const TweetsProvider: FC<ITweetsProviderProps> = ({ children }) => {
 
-    const [tweets, setTweets] = useState<TweetsContext>([]);
+    const [tweets, setTweets] = useState<TweetsContextType>([]);
 
     const getTweets = async () => {
-        const tweets: TweetsContext = [];
+        const tweets: TweetsContextType = [];
         const tweetsRef = collection(db, "Tweets");
         const tweetsQueue = query(tweetsRef, orderBy("createdAt", "desc"));
         const tweetsSnaps = await getDocs(tweetsQueue);

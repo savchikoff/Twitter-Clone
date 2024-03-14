@@ -1,6 +1,7 @@
-import closeIcon from '@/assets/close.svg';
 import React, { memo, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+
+import closeIcon from '@/assets/close.svg';
 
 import { IModalProps } from './interfaces';
 import {

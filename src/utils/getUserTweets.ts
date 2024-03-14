@@ -1,10 +1,9 @@
 import { useTweets } from "@/providers/TweetsProvider";
 import { useCurrentUser } from "@/providers/UserProvider";
 
-export const getUserTweets = () => {
-    if (!useTweets) return [];
-
+export const useUserTweets = () => {
     const tweets = useTweets();
     const { uid } = useCurrentUser();
+    if (!tweets) return [];
     return tweets.filter((tweet) => tweet.id === uid);
 };

@@ -13,7 +13,7 @@ const Feed: FC = () => {
 
     useEffect(() => {
         if (!user) return navigate("/onboarding");
-    }, [user]);
+    }, [user, navigate]);
 
     return (
         <Container>

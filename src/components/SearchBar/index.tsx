@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from "react";
 
+import useDebounce from "@/hooks/useDebounce";
 import Search from "@/ui/Search";
 
 import Links from "./Links";
-import UserRecommendations from "./UserRecommendations";
-import { SearchBarContainer } from "./styled";
-import useDebounce from "@/hooks/useDebounce";
 import SearchBurger from "./SearchBurger";
+import { SearchBarContainer } from "./styled";
+import UserRecommendations from "./UserRecommendations";
 
 const SearchBar: FC = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -38,15 +38,13 @@ const SearchBar: FC = () => {
     }
 
     return (
-        <>
-            <SearchBurger>
+        <SearchBurger>
                 <SearchBarContainer>
                     <Search searchValue={searchQuery} setSearchValue={setSearchQuery} />
                     <UserRecommendations searchValue={debouncedSearchValue} />
                     <Links />
                 </SearchBarContainer>
             </SearchBurger>
-        </>
     )
 }
 

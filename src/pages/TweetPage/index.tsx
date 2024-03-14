@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
+import backArrow from "@/assets/back-arrow.svg"
+import SectionWrapper from "@/components/SectionWrapper";
 import Tweet from "@/components/Tweet";
 import { ITweetProps } from "@/components/Tweet/interfaces";
 import { useTweets } from "@/providers/TweetsProvider";
-import SectionWrapper from "@/components/SectionWrapper";
-import { BackLinkIcon, BackLinkText, BackLinkContainer, BackLinkWrapper } from "./styled";
-import backArrow from "@/assets/back-arrow.svg"
+
+import { BackLinkContainer, BackLinkIcon, BackLinkText, BackLinkWrapper } from "./styled";
 
 const TweetPage = () => {
     const { id } = useParams();

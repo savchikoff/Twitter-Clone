@@ -1,4 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
+import { ComponentType } from "react";
+
 import Bookmarks from "@/assets/bookmarks.svg?react";
 import Explore from "@/assets/explore.svg?react";
 import Home from "@/assets/home.svg?react";
@@ -7,7 +9,6 @@ import Messages from "@/assets/messages.svg?react";
 import More from "@/assets/more.svg?react";
 import Notifications from "@/assets/notification.svg?react";
 import Profile from "@/assets/profile.svg?react";
-import { ComponentType } from "react";
 
 interface INavLink {
     name: string;

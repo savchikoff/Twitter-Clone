@@ -1,6 +1,7 @@
 import { ComponentType, ReactNode } from "react";
+
 import { ROUTES } from "./routes";
-import { OnBoardingPage, SignUpPage, SignInPage, TweetPage } from "./routesComponents";
+import { OnBoardingPage, SignInPage, SignUpPage, TweetPage } from "./routesComponents";
 
 type Route = {
     path: string;

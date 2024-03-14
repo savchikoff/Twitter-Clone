@@ -1,10 +1,11 @@
-import heatImage from "@/assets/profile-header.jpg";
-import profileImg from "@/assets/profile-image.png";
 import { FC, useEffect, useState } from "react";
 
+import heatImage from "@/assets/profile-header.jpg";
+import profileImg from "@/assets/profile-image.png";
 import LinkWrapper from "@/ui/LinkWrapper";
-import { getUserTweets } from "@/utils/getUserTweets";
+import { useUserTweets } from "@/utils/getUserTweets";
 
+import { IProfileHeadProps } from "./interfaces";
 import {
     EditButton,
     FollowersInfo,
@@ -24,7 +25,6 @@ import {
     UserName,
     UserNickname
 } from "./styled";
-import { IProfileHeadProps } from "./interfaces";
 
 const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName, isGoogle, handleModalOpen }) => {
 
@@ -32,7 +32,7 @@ const ProfileHead: FC<IProfileHeadProps> = ({ displayName, userName, isGoogle, h
         <>
             <ProfileHeader>
                 <ProfileHeaderName>{displayName}</ProfileHeaderName>
-                <ProfileHeaderTweets>{getUserTweets().length} Tweets</ProfileHeaderTweets>
+                <ProfileHeaderTweets>{useUserTweets().length} Tweets</ProfileHeaderTweets>
             </ProfileHeader>
             <ProfileHeat>
                 <ProfileHeatImage src={heatImage} />

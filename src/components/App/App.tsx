@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { TweetsProvider } from "@/providers/TweetsProvider";
-import { CurrentUserProvider } from "@/providers/UserProvider";
-import Router from "../Router";
+import { useEffect, useState } from "react";
 
 import { auth } from "@/firebase";
+import { TweetsProvider } from "@/providers/TweetsProvider";
+import { CurrentUserProvider } from "@/providers/UserProvider";
 import Loader from "@/ui/Loader";
+
+import Router from "../Router";
 
 
 function App() {

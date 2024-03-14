@@ -1,13 +1,15 @@
-import { useForm } from "react-hook-form";
-import { NewDataForm, Input, SubmitButton } from "./styled";
-import Notification from "@/ui/Notification";
-import { useCurrentUser } from "@/providers/UserProvider";
-import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { auth, db, logOut } from "@/firebase";
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updatePassword, verifyBeforeUpdateEmail } from "firebase/auth";
+import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+
+import { auth, db, logOut } from "@/firebase";
+import { useCurrentUser } from "@/providers/UserProvider";
 import ErrorLabel from "@/ui/ErrorLabel";
+import Notification from "@/ui/Notification";
+
 import { ChangeFormInputs } from "./interfaces";
+import { Input, NewDataForm, SubmitButton } from "./styled";
 
 
 const NewUserData: FC = () => {
@@ -49,7 +51,7 @@ const NewUserData: FC = () => {
             const updatedDataForTweets: Partial<ChangeFormInputs> = {}
 
             fieldsToUpdateAtUsers.forEach((field) => {
-                if (data[field] && field !== "password" && field != "newPassword") {
+                if (data[field] && field !== "password" && field !== "newPassword") {
                     updatedDataForUsers[field] = data[field]
                 }
             });
