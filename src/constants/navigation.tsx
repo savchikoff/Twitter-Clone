@@ -1,6 +1,6 @@
 import { ComponentType, ReactNode } from "react";
 
-import { ROUTES } from "./routes";
+import { ROUTES, PRIVATE_ROUTES } from "./routes";
 import { OnBoardingPage, SignInPage, SignUpPage, TweetPage } from "./routesComponents";
 
 type Route = {
@@ -24,7 +24,7 @@ const NAVIGATION: NavigationType = {
         element: <SignInPage />
     },
     TweetPage: {
-        path: ROUTES.tweet,
+        path: PRIVATE_ROUTES.tweet,
         element: <TweetPage />
     }
 };
