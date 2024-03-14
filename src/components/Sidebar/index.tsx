@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 
 import avatar from "@/assets/avatar.svg"
 import twitter from "@/assets/twitter-logo.svg";
-import { NAV_LINKS } from "@/constants/NavLinks";
+import { NAV_LINKS } from "@/constants/navLinks";
 import { logOut } from "@/firebase";
 import { useCurrentUser } from "@/providers/UserProvider";
 

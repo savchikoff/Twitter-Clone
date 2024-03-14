@@ -13,7 +13,7 @@ import Notification from "@/ui/Notification";
 import { generateYears } from "@/utils/generateYears";
 import { getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
 
-import { Month } from "../../constants/Month";
+import { Month } from "@/constants/month";
 import Select from "../../ui/Select";
 import { ISignUpFormInput } from "./interfaces";
 import {
