@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import path from 'path';
 import { defineConfig } from 'vite';
 import svgr from "vite-plugin-svgr";
@@ -11,6 +12,6 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		},
 	},
-	plugins: [react(), svgr({ include: "**/*.svg?react" }), typescript()],
+	plugins: [react(), nodeResolve(), svgr({ include: "**/*.svg?react" }), typescript()],
 	build: { chunkSizeWarningLimit: 1600 }
 });
