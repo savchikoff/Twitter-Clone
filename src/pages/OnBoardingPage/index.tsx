@@ -1,9 +1,8 @@
-import { FC } from "react";
-import OnBoarding from "@/components/OnBoarding";
-
+import { FC } from 'react';
+import OnBoarding from '@/components/OnBoarding';
 
 const OnBoardingPage: FC = () => {
-    return <OnBoarding />
-}
+	return <OnBoarding />;
+};
 
 export default OnBoardingPage;

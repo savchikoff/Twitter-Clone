@@ -1,3 +1,3 @@
 export interface IErrorLabelProps {
-    label?: string;
+	label?: string;
 }

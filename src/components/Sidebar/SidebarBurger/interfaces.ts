@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface ISidebarBurgerProps {
-    children: ReactNode;
-    dataCy: string;
+	children: ReactNode;
+	dataCy: string;
 }

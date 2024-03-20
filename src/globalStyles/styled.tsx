@@ -4,7 +4,8 @@ import { DefaultTheme } from 'styled-components/dist/types';
 const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
 const themeBgColor = ({ theme }: DefaultTheme) => theme.themeType.bgColor;
 const themeTextColor = ({ theme }: DefaultTheme) => theme.themeType.textColor;
-const regular = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.regular;
+const regular = ({ theme }: DefaultTheme) =>
+	theme.themeType.fontWeights.regular;
 
 const GlobalStyle = createGlobalStyle`
   body {

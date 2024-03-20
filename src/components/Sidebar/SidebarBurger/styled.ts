@@ -24,43 +24,40 @@ const slideOut = keyframes`
 `;
 
 export const Container = styled.div`
-  padding: ${s30} ${s0};
-  height: 100vh;
+	padding: ${s30} ${s0};
+	height: 100vh;
 `;
 
 export const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: none;
-  border: none;
-  cursor: pointer;
-  height: ${s20};
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: none;
+	border: none;
+	cursor: pointer;
+	height: ${s20};
 `;
 
 export const Menu = styled.div<{ $isOpen: boolean }>`
-  position: fixed;
-  top: ${s0};
-  left: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
-  height: 100vh;
-  width: 200px;
-  background-color: ${bgColor};
-  padding: ${s20};
-  transition: left 0.3s ease-in-out;
-  animation: ${({ $isOpen }) => ($isOpen ? slideIn : slideOut)} 0.3s ease-in-out;
-  z-index: 1;
+	position: fixed;
+	top: ${s0};
+	left: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
+	height: 100vh;
+	width: 200px;
+	background-color: ${bgColor};
+	padding: ${s20};
+	transition: left 0.3s ease-in-out;
+	animation: ${({ $isOpen }) => ($isOpen ? slideIn : slideOut)} 0.3s ease-in-out;
+	z-index: 1;
 `;
 
 export const HeaderRow = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
-
-export const CloseIcon = styled.img`
-  cursor: pointer;
+	display: flex;
+	justify-content: flex-end;
 `;
 
+export const CloseIcon = styled.img`
+	cursor: pointer;
+`;
 
-export const ContentContainer = styled.div`
-
-`
+export const ContentContainer = styled.div``;

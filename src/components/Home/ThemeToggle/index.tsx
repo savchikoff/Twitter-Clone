@@ -8,22 +8,27 @@ import { writeToCache } from '@/utils/cache';
 import { Input, Label, Switch } from './styled';
 
 const ThemeToggle: FC = () => {
-    const { themeType, setThemeType } = useContext(ThemeContext) as DefaultTheme;
+	const { themeType, setThemeType } = useContext(ThemeContext) as DefaultTheme;
 
-    const toggleTheme = () => {
-        const newTheme = themeType.name === 'dark' ? light : dark;
-        setThemeType(newTheme);
-        writeToCache('theme', newTheme.name);
-    };
+	const toggleTheme = () => {
+		const newTheme = themeType.name === 'dark' ? light : dark;
+		setThemeType(newTheme);
+		writeToCache('theme', newTheme.name);
+	};
 
-    const isLightTheme = themeType.name === 'light';
+	const isLightTheme = themeType.name === 'light';
 
-    return (
-        <Label>
-            <Input data-cy="theme-toggle" checked={isLightTheme} type="checkbox" onChange={toggleTheme} />
-            <Switch />
-        </Label>
-    );
+	return (
+		<Label>
+			<Input
+				data-cy="theme-toggle"
+				checked={isLightTheme}
+				type="checkbox"
+				onChange={toggleTheme}
+			/>
+			<Switch />
+		</Label>
+	);
 };
 
 export default ThemeToggle;

@@ -1,9 +1,20 @@
-import { FC } from "react";
-import Feed from "@/components/Feed";
+import { FC, useEffect } from 'react';
+import Feed from '@/components/Feed';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
+import { auth } from '@/config/firebase';
+import { ROUTES } from '@/constants/routes';
 
 const FeedPage: FC = () => {
-    return <Feed />
-}
+	const [user] = useAuthState(auth);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!user) return navigate(ROUTES.onboarding);
+	}, [user, navigate]);
+
+	return <Feed />;
+};
 
 export default FeedPage;

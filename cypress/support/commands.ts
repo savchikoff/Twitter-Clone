@@ -38,11 +38,11 @@
 const faker = require('faker');
 
 declare namespace Cypress {
-    interface Chainable<Subject> {
-        generateRandomEmail(): Chainable<Subject>;
-    }
+	interface Chainable<Subject> {
+		generateRandomEmail(): Chainable<Subject>;
+	}
 }
 
 Cypress.Commands.add('generateRandomEmail', () => {
-    return faker.internet.email();
+	return faker.internet.email();
 });

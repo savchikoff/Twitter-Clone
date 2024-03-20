@@ -1,19 +1,22 @@
-import { FC, memo } from "react";
+import { FC } from 'react';
 
-import { IButtonProps } from "./interfaces";
-import { ButtonComponent, ButtonIcon, ButtonLabel, ButtonWrapper } from "./styled";
+import { IButtonProps } from './interfaces';
+import {
+	ButtonComponent,
+	ButtonIcon,
+	ButtonLabel,
+	ButtonWrapper,
+} from './styled';
 
 const Button: FC<IButtonProps> = ({ iconSrc, children, onClick, type }) => {
-    return (
-        <ButtonComponent onClick={onClick} type={type}>
-            <ButtonWrapper>
-                {iconSrc && <ButtonIcon src={iconSrc} />}
-                <ButtonLabel>
-                    {children}
-                </ButtonLabel>
-            </ButtonWrapper>
-        </ButtonComponent>
-    )
-}
+	return (
+		<ButtonComponent onClick={onClick} type={type}>
+			<ButtonWrapper>
+				{iconSrc && <ButtonIcon src={iconSrc} />}
+				<ButtonLabel>{children}</ButtonLabel>
+			</ButtonWrapper>
+		</ButtonComponent>
+	);
+};
 
-export default memo(Button);
+export default Button;

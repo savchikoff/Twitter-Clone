@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle,DefaultTheme } from 'styled-components';
+import styled, { createGlobalStyle, DefaultTheme } from 'styled-components';
 
 const s0 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s0;
 const s2 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s2;
@@ -23,7 +23,7 @@ export const Background = styled.div`
 
 export const CloseIcon = styled.img`
 	height: ${s24};
-`
+`;
 
 export const Wrapper = styled.div`
 	background-color: ${white};

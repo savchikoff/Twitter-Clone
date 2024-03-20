@@ -3,7 +3,6 @@ import styled, { DefaultTheme } from 'styled-components';
 const s8 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s8;
 const lightBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.lightBlue;
 
-
 export const LoaderContainer = styled.div`
 	display: flex;
 	align-items: center;

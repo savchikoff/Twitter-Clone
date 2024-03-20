@@ -1,7 +1,7 @@
 export interface ChangeFormInputs {
-    name: string;
-    phone: string;
-    email: string;
-    password: string;
-    newPassword: string;
+	name: string;
+	phone: string;
+	email: string;
+	password: string;
+	newPassword: string;
 }

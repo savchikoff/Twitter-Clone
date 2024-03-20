@@ -1,1 +1,2 @@
-export const isLikedByMe = (likedUsers: string[], uid: string) => likedUsers.includes(uid);
+export const isLikedByMe = (likedUsers: string[], uid: string) =>
+	likedUsers.includes(uid);

@@ -1,4 +1,4 @@
 export interface IUserProps {
-    userName: string;
-    nickName: string;
+	userName: string;
+	nickName: string;
 }
