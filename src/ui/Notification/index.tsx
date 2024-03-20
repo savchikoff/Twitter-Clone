@@ -1,59 +1,35 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo } from 'react';
 
 import {
 	NotificationContent,
 	NotificationTitle,
 	NotificationWrapper,
 } from './styled';
+import { useTimeout } from '@/hooks/useTimeout';
 
 interface INotificationProps {
-	label?: string;
-	message?: string;
+	message: string;
+	close: () => void;
 	isError: boolean;
-	active: boolean;
-	handleNotificationActive: () => void;
 }
 
 const Notification: FC<INotificationProps> = ({
-	isError,
-	active,
-	handleNotificationActive,
-	label,
 	message,
+	close,
+	isError
 }) => {
-	const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-
-	useEffect(() => {
-		if (active) {
-			const newTimer = setTimeout(() => {
-				handleNotificationActive();
-			}, 5000);
-
-			setTimer((prevTimer) => {
-				if (prevTimer) {
-					clearTimeout(prevTimer);
-				}
-				return newTimer;
-			});
-		}
-
-		return () => {
-			if (timer) {
-				clearTimeout(timer);
-			}
-		};
-	}, [active, handleNotificationActive, timer]);
+	useTimeout(() => {
+		close();
+	});
 
 	return (
 		<>
-			{active && (
-				<NotificationWrapper $isError={isError}>
-					<NotificationTitle $isError={isError}>{label}</NotificationTitle>
-					<NotificationContent $isError={isError}>
-						{message}
-					</NotificationContent>
-				</NotificationWrapper>
-			)}
+			<NotificationWrapper $isError={isError}>
+				<NotificationTitle $isError={isError}>{isError ? "Error" : "Success"}</NotificationTitle>
+				<NotificationContent $isError={isError}>
+					{message}
+				</NotificationContent>
+			</NotificationWrapper>
 		</>
 	);
 };

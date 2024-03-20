@@ -22,11 +22,18 @@ const flashWhite = ({ theme }: DefaultTheme) =>
 const semiBold = ({ theme }: DefaultTheme) =>
 	theme.themeType.fontWeights.semiBold;
 
+
 export const ProfileHeader = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: ${s0} ${s24} ${s24} ${s24};
+`;
+
+export const ProfileHeaderWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: ${s4};
-	padding: ${s0} ${s24} ${s24} ${s24};
 `;
 
 export const ProfileHeaderName = styled.h6`

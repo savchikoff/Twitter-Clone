@@ -4,6 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/config/firebase';
 import { TweetsProvider } from '@/providers/TweetsProvider';
 import { CurrentUserProvider } from '@/providers/UserProvider';
+import { NotificationProvider } from '@/providers/NotificationsProvider';
 import Loader from '@/ui/Loader';
 
 import Router from '../Router';
@@ -28,7 +29,9 @@ function App() {
 	return (
 		<CurrentUserProvider>
 			<TweetsProvider>
-				<Router />
+				<NotificationProvider>
+					<Router />
+				</NotificationProvider>
 			</TweetsProvider>
 		</CurrentUserProvider>
 	);

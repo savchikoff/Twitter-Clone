@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
 	EmailAuthProvider,
 	reauthenticateWithCredential,
@@ -19,17 +19,16 @@ import { auth, db } from '@/config/firebase';
 import { logOut } from '@/utils/logOut';
 import { useCurrentUser } from '@/providers/UserProvider';
 import ErrorLabel from '@/ui/ErrorLabel';
-import Notification from '@/ui/Notification';
+import { useNotification } from '@/providers/NotificationsProvider';
 
 import { ChangeFormInputs } from './interfaces';
 import { Input, NewDataForm, SubmitButton } from './styled';
 
 const NewUserData: FC = () => {
 	const { uid, email } = useCurrentUser();
-	const [isNotificationActive, setNotificationActive] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [error, setError] = useState<string | undefined>('');
-	const [label, setLabel] = useState('');
+	const notification = useNotification();
 
 	const {
 		register,
@@ -125,18 +124,12 @@ const NewUserData: FC = () => {
 			}
 
 			if (!fieldsToUpdateAtUsers || (data.password && data.newPassword)) {
-				setIsError(false);
-				setLabel('Successfully!');
-				setError('User data has changed!');
-				setNotificationActive(true);
+				notification?.open("User data has changed", false);
 			}
 		} catch (error) {
 			if (error instanceof Error) {
 				console.error(error.message);
-				setIsError(true);
-				setError(error.message);
-				setLabel('Error while changing data');
-				setNotificationActive(true);
+				notification?.open("Error while updating user data", true);
 			}
 		} finally {
 			reset();
@@ -154,10 +147,10 @@ const NewUserData: FC = () => {
 			setIsError(true);
 			setError(
 				errors?.name?.message ||
-					errors?.phone?.message ||
-					errors?.email?.message ||
-					errors?.password?.message ||
-					errors?.newPassword?.message
+				errors?.phone?.message ||
+				errors?.email?.message ||
+				errors?.password?.message ||
+				errors?.newPassword?.message
 			);
 		} else {
 			setIsError(false);
@@ -170,12 +163,6 @@ const NewUserData: FC = () => {
 		errors.password,
 		errors.newPassword,
 	]);
-
-	const handleNotificationActive = useCallback(() => {
-		setNotificationActive(false);
-		setIsError(false);
-		setError('');
-	}, []);
 
 	return (
 		<NewDataForm onSubmit={handleSubmit(handleChangeData)}>
@@ -240,17 +227,8 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
-			{isError && !isNotificationActive && <ErrorLabel label={error} />}
+			{isError && <ErrorLabel label={error} />}
 			<SubmitButton type="submit">Change</SubmitButton>
-			{isNotificationActive && (
-				<Notification
-					isError={isError}
-					active={isNotificationActive}
-					handleNotificationActive={handleNotificationActive}
-					label={label}
-					message={error}
-				/>
-			)}
 		</NewDataForm>
 	);
 };

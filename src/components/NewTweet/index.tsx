@@ -19,10 +19,11 @@ import {
 	TweetWrapper,
 	UserAvatar,
 } from './styled';
+import { useNotification } from '@/providers/NotificationsProvider';
 
 const NewTweet: FC = () => {
 	const { displayName, userName, email, uid } = useCurrentUser();
-	const [isNotificationActive, setNotificationActive] = useState(false);
+	const notification = useNotification();
 
 	const [tweetText, setTweetText] = useState('');
 	const [imageFile, setImageFile] = useState<FileType>(null);
@@ -34,9 +35,12 @@ const NewTweet: FC = () => {
 
 	const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
-		if (file) {
+		const maxFileSize = 700 * 1024;
+		if (file && file.size < maxFileSize) {
 			setImageFile(file);
 			setImageName(file.name);
+		} else if (file && file.size > maxFileSize) {
+			notification?.open("Max image size is 700 Kb", true);
 		}
 	};
 
@@ -44,18 +48,15 @@ const NewTweet: FC = () => {
 		try {
 			await addTweet(tweetText, displayName, userName, email, imageFile, uid);
 			setTweetText('');
-			setNotificationActive(true);
-		} catch (e) {
+			notification?.open("New tweet was added", false);
+		} catch (e: any) {
 			setTweetText('');
 			console.error(e);
+			notification?.open(e.message, true);
 		} finally {
 			setImageName('');
 			setImageFile(null);
 		}
-	};
-
-	const handleNotificationActive = () => {
-		setNotificationActive(false);
 	};
 
 	return (
@@ -87,15 +88,6 @@ const NewTweet: FC = () => {
 					</TweetActionsWrapper>
 				</TweetContentWrapper>
 			</TweetWrapper>
-			{isNotificationActive && (
-				<Notification
-					isError={false}
-					active={isNotificationActive}
-					handleNotificationActive={handleNotificationActive}
-					label="Successfully!"
-					message="New tweet has been added"
-				/>
-			)}
 		</TweetContainer>
 	);
 };

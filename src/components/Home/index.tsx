@@ -7,7 +7,7 @@ import { TweetsWrapper } from '../Profile/styled';
 import SectionWrapper from '../SectionWrapper';
 import Tweet from '../Tweet';
 import { HomeHeader, HomeHeaderWrapper } from './styled';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from '@/ui/ThemeToggle';
 
 const Home: FC = () => {
 	const allTweets = useTweets();

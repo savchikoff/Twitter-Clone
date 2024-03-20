@@ -3,6 +3,7 @@ import { FC } from 'react';
 import heatImage from '@/assets/images/profile-header.jpg';
 import profileImg from '@/assets/images/profile-image.png';
 import LinkWrapper from '@/ui/LinkWrapper';
+import ThemeToggle from '@/ui/ThemeToggle';
 import { useUserTweets } from '@/utils/getUserTweets';
 
 import { IProfileHeadProps } from './interfaces';
@@ -14,6 +15,7 @@ import {
 	ProfileHeader,
 	ProfileHeaderName,
 	ProfileHeaderTweets,
+	ProfileHeaderWrapper,
 	ProfileHeat,
 	ProfileHeatImage,
 	ProfileImage,
@@ -35,10 +37,13 @@ const ProfileHead: FC<IProfileHeadProps> = ({
 	return (
 		<>
 			<ProfileHeader>
-				<ProfileHeaderName>{displayName}</ProfileHeaderName>
-				<ProfileHeaderTweets>
-					{useUserTweets().length} Tweets
-				</ProfileHeaderTweets>
+				<ProfileHeaderWrapper>
+					<ProfileHeaderName>{displayName}</ProfileHeaderName>
+					<ProfileHeaderTweets>
+						{useUserTweets().length} Tweets
+					</ProfileHeaderTweets>
+				</ProfileHeaderWrapper>
+				<ThemeToggle />
 			</ProfileHeader>
 			<ProfileHeat>
 				<ProfileHeatImage src={heatImage} />

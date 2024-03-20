@@ -7,7 +7,7 @@ import twitterLogo from '@/assets/logos/twitter-logo.svg';
 import { auth } from '@/config/firebase';
 import ErrorLabel from '@/ui/ErrorLabel';
 import LinkWrapper from '@/ui/LinkWrapper';
-import Notification from '@/ui/Notification';
+import { useNotification } from '@/providers/NotificationsProvider';
 
 import { IFormInput } from './interfaces';
 import {
@@ -27,18 +27,15 @@ const LogIn: FC = () => {
 		formState: { errors, isValid },
 	} = useForm<IFormInput>({ mode: 'onBlur' });
 
-	const [isNotificationActive, setNotificationActive] = useState(false);
-	const [isError, setIsError] = useState(false);
 	const [error, setError] = useState<string | undefined>('');
 
 	const navigate = useNavigate();
+	const notification = useNotification();
 
 	useEffect(() => {
 		if (errors?.email?.message || errors?.password?.message) {
-			setIsError(true);
 			setError(errors?.email?.message || errors?.password?.message);
 		} else {
-			setIsError(false);
 			setError('');
 		}
 	}, [errors.email, errors.password]);
@@ -46,20 +43,13 @@ const LogIn: FC = () => {
 	const handleLogin = ({ email, password }: IFormInput) => {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => {
+				notification?.open("You are now logged in!", false);
 				navigate('/');
 			})
 			.catch((e: Error) => {
-				setIsError(true);
-				setError(e.message);
-				setNotificationActive(true);
+				notification?.open(e.message, true);
 			});
 	};
-
-	const handleNotificationActive = useCallback(() => {
-		setNotificationActive(false);
-		setIsError(false);
-		setError('');
-	}, []);
 
 	return (
 		<Container>
@@ -98,7 +88,7 @@ const LogIn: FC = () => {
 						})}
 						placeholder="Password"
 					/>
-					{isError && !isNotificationActive && <ErrorLabel label={error} />}
+					{error && <ErrorLabel label={error} />}
 					<Button data-cy="login-btn" type="submit" disabled={!isValid}>
 						Log In
 					</Button>
@@ -106,15 +96,6 @@ const LogIn: FC = () => {
 				<LinkWrapper>
 					<Link to="/register">Sign up to Twitter</Link>
 				</LinkWrapper>
-				{isNotificationActive && (
-					<Notification
-						isError
-						active={isNotificationActive}
-						handleNotificationActive={handleNotificationActive}
-						label="Error while authenticating"
-						message={error}
-					/>
-				)}
 			</Wrapper>
 		</Container>
 	);

@@ -9,9 +9,9 @@ import { Month } from '@/constants/month';
 import { auth, db } from '@/config/firebase';
 import ErrorLabel from '@/ui/ErrorLabel';
 import LinkWrapper from '@/ui/LinkWrapper';
-import Notification from '@/ui/Notification';
 import { generateYears } from '@/utils/generateYears';
 import { getDaysInMonthArray } from '@/utils/getDaysInMonthArray';
+import { useNotification } from '@/providers/NotificationsProvider';
 
 import Select from '../../ui/Select';
 import { ISignUpFormInput } from './interfaces';
@@ -33,21 +33,19 @@ import {
 
 const SignUp: FC = () => {
 	const navigate = useNavigate();
+	const notification = useNotification();
+
+	const [error, setError] = useState<string | undefined>('');
+	const [selectedDay, setSelectedDay] = useState('');
+	const [selectedMonth, setSelectedMonth] = useState('');
+	const [selectedYear, setSelectedYear] = useState('');
+	const [dateOfBirth, setDateOfBirth] = useState('');
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<ISignUpFormInput>({ mode: 'onBlur' });
-
-	const [isNotificationActive, setNotificationActive] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const [error, setError] = useState<string | undefined>('');
-
-	const [selectedDay, setSelectedDay] = useState('');
-	const [selectedMonth, setSelectedMonth] = useState('');
-	const [selectedYear, setSelectedYear] = useState('');
-	const [dateOfBirth, setDateOfBirth] = useState('');
 
 	useEffect(() => {
 		setDateOfBirth(`${selectedDay} ${selectedMonth} ${selectedYear}`);
@@ -60,7 +58,6 @@ const SignUp: FC = () => {
 			errors?.email?.message ||
 			errors?.password?.message
 		) {
-			setIsError(true);
 			setError(
 				errors?.name?.message ||
 				errors?.phone?.message ||
@@ -68,7 +65,6 @@ const SignUp: FC = () => {
 				errors?.password?.message
 			);
 		} else {
-			setIsError(false);
 			setError('');
 		}
 	}, [errors.email, errors.password, errors.name, errors.phone]);
@@ -94,18 +90,11 @@ const SignUp: FC = () => {
 				password,
 				dateOfBirth,
 			});
+			notification?.open("You are registered", false);
 			navigate('/');
 		} catch (e: any) {
-			setIsError(true);
-			setError(e.message);
-			setNotificationActive(true);
+			notification?.open(e.message, true);
 		}
-	};
-
-	const handleNotificationActive = () => {
-		setNotificationActive(false);
-		setIsError(false);
-		setError('');
 	};
 
 	const daysInMonth = useMemo(
@@ -179,7 +168,7 @@ const SignUp: FC = () => {
 								})}
 								placeholder="Password"
 							/>
-							{isError && !isNotificationActive && <ErrorLabel label={error} />}
+							{error && <ErrorLabel label={error} />}
 							<LinkWrapper>
 								<Link to="/">Use email</Link>
 							</LinkWrapper>
@@ -223,15 +212,6 @@ const SignUp: FC = () => {
 						Sign Up
 					</Button>
 				</SignUpForm>
-				{isNotificationActive && (
-					<Notification
-						isError
-						active={isNotificationActive}
-						handleNotificationActive={handleNotificationActive}
-						label="Error while authenticating"
-						message={error}
-					/>
-				)}
 			</Wrapper>
 		</Container>
 	);
