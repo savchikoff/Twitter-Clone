@@ -1,5 +1,5 @@
-import { FC, useCallback, useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import { db } from '@/config/firebase';
 import { useCurrentUser } from '@/providers/UserProvider';

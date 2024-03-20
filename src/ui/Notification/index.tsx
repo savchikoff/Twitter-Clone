@@ -1,11 +1,12 @@
 import { FC, memo } from 'react';
 
+import { useTimeout } from '@/hooks/useTimeout';
+
 import {
 	NotificationContent,
 	NotificationTitle,
 	NotificationWrapper,
 } from './styled';
-import { useTimeout } from '@/hooks/useTimeout';
 
 interface INotificationProps {
 	message: string;

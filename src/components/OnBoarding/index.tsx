@@ -1,15 +1,15 @@
-import { FC, useCallback } from 'react';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { FC, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import google from '@/assets/logos/google.png';
 import twitterBg from '@/assets/images/twitter-background.jpg';
+import google from '@/assets/logos/google.png';
 import twitterLogo from '@/assets/logos/twitter-logo.svg';
-import { FooterLinks } from '@/constants/footerLinks';
 import { auth, db } from '@/config/firebase';
-import LinkWrapper from '@/ui/LinkWrapper';
+import { FooterLinks } from '@/constants/footerLinks';
 import { useNotification } from '@/providers/NotificationsProvider';
+import LinkWrapper from '@/ui/LinkWrapper';
 
 import Button from '../Button';
 import {

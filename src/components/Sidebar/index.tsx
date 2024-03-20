@@ -3,8 +3,8 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import avatar from '@/assets/icons/avatar.svg';
 import twitter from '@/assets/logos/twitter-logo.svg';
 import { NAV_LINKS } from '@/constants/navLinks';
-import { logOut } from '@/utils/logOut';
 import { useCurrentUser } from '@/providers/UserProvider';
+import { logOut } from '@/utils/logOut';
 
 import Modal from '../Modal';
 import NewTweet from '../NewTweet';

@@ -1,9 +1,11 @@
 import { FC } from "react";
-import ErrorLabel from "@/ui/ErrorLabel";
-import { Button, Input, LogInFormWrapper } from "./styled";
-import { ILogInFormProps } from "./interfaces";
 import { useForm } from "react-hook-form";
+
+import ErrorLabel from "@/ui/ErrorLabel";
+
 import { IFormInput } from "../interfaces";
+import { ILogInFormProps } from "./interfaces";
+import { Button, Input, LogInFormWrapper } from "./styled";
 
 const LogInForm: FC<ILogInFormProps> = ({ handleLogin }) => {
     const {

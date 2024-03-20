@@ -1,20 +1,20 @@
-import { FC } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FC } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import twitterLogo from '@/assets/logos/twitter-logo.svg';
 import { auth } from '@/config/firebase';
-import LinkWrapper from '@/ui/LinkWrapper';
 import { useNotification } from '@/providers/NotificationsProvider';
+import LinkWrapper from '@/ui/LinkWrapper';
 
 import { IFormInput } from './interfaces';
+import LogInForm from './LogInForm';
 import {
 	Container,
 	LogInHeader,
 	TwitterLogo,
 	Wrapper,
 } from './styled';
-import LogInForm from './LogInForm';
 
 const LogIn: FC = () => {
 

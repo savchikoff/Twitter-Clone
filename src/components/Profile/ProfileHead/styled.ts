@@ -16,11 +16,11 @@ const s56 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s56;
 const graniteGray = ({ theme }: DefaultTheme) =>
 	theme.themeType.colors.graniteGray;
 const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
-const black = ({ theme }: DefaultTheme) => theme.themeType.colors.black;
-const flashWhite = ({ theme }: DefaultTheme) =>
-	theme.themeType.colors.flashWhite;
+const blue = ({ theme }: DefaultTheme) => theme.themeType.colors.blue;
 const semiBold = ({ theme }: DefaultTheme) =>
 	theme.themeType.fontWeights.semiBold;
+const textColor = ({ theme }: DefaultTheme) =>
+	theme.themeType.textColor;
 
 
 export const ProfileHeader = styled.div`
@@ -84,13 +84,15 @@ export const EditButton = styled.button<{ $isGoogle: boolean }>`
 	border: none;
 	outline: none;
 	background-color: transparent;
-	border: ${s1} solid ${black};
+	color: ${textColor};
+	border: ${s1} solid ${textColor};
 	border-radius: 50px;
 	transition: all 0.3s ease;
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${flashWhite};
+		color: ${blue};
+		border:  ${s1} solid ${blue};
 	}
 `;
 

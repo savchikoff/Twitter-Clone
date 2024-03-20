@@ -2,6 +2,7 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import avatar from '@/assets/icons/avatar.svg';
 import image from '@/assets/icons/img-icon.svg';
+import { useNotification } from '@/providers/NotificationsProvider';
 import { useCurrentUser } from '@/providers/UserProvider';
 import Notification from '@/ui/Notification';
 import { addTweet, FileType } from '@/utils/addTweet';
@@ -19,7 +20,6 @@ import {
 	TweetWrapper,
 	UserAvatar,
 } from './styled';
-import { useNotification } from '@/providers/NotificationsProvider';
 
 const NewTweet: FC = () => {
 	const { displayName, userName, email, uid } = useCurrentUser();

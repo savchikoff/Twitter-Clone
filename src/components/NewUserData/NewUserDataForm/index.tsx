@@ -1,9 +1,11 @@
 import { FC } from "react"
-import { Input, NewDataForm, SubmitButton } from "./styled"
-import { INewUserDataFormProps } from "./interfaces"
-import ErrorLabel from "@/ui/ErrorLabel"
 import { useForm } from "react-hook-form"
+
+import ErrorLabel from "@/ui/ErrorLabel"
+
 import { ChangeFormInputs } from "../interfaces"
+import { INewUserDataFormProps } from "./interfaces"
+import { Input, NewDataForm, SubmitButton } from "./styled"
 
 const NewUserDataForm: FC<INewUserDataFormProps> = ({ handleChangeData }) => {
 

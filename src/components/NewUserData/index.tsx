@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import {
 	EmailAuthProvider,
 	reauthenticateWithCredential,
@@ -13,11 +12,12 @@ import {
 	updateDoc,
 	where,
 } from 'firebase/firestore';
+import { FC } from 'react';
 
 import { auth, db } from '@/config/firebase';
-import { logOut } from '@/utils/logOut';
-import { useCurrentUser } from '@/providers/UserProvider';
 import { useNotification } from '@/providers/NotificationsProvider';
+import { useCurrentUser } from '@/providers/UserProvider';
+import { logOut } from '@/utils/logOut';
 
 import { ChangeFormInputs } from './interfaces';
 import NewUserDataForm from './NewUserDataForm';

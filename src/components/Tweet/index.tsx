@@ -1,6 +1,6 @@
-import { FC, useEffect, useRef, useState } from 'react';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref } from 'firebase/storage';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import user from '@/assets/icons/avatar.svg';

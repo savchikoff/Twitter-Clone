@@ -1,5 +1,6 @@
-import { FC, PropsWithChildren, createContext, useContext, useMemo, useState } from "react";
+import { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from "react";
 import styled from "styled-components";
+
 import Notification from "@/ui/Notification";
 
 const NotificationsWrapper = styled.div`
@@ -34,8 +35,8 @@ export const NotificationProvider: FC<PropsWithChildren> = ({ children }) => {
     const openNotification = (message: string, isError: boolean) => {
         const newNotification = {
             id: Date.now(),
-            message: message,
-            isError: isError
+            message,
+            isError
         };
 
         setNotifications(prevNotifications => [...prevNotifications, newNotification]);

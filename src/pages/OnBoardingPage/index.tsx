@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import OnBoarding from '@/components/OnBoarding';
 
 const OnBoardingPage: FC = () => {

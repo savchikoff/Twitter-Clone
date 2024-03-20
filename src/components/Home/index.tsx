@@ -1,13 +1,13 @@
 import { FC } from 'react';
 
 import { useTweets } from '@/providers/TweetsProvider';
+import ThemeToggle from '@/ui/ThemeToggle';
 
 import NewTweet from '../NewTweet';
 import { TweetsWrapper } from '../Profile/styled';
 import SectionWrapper from '../SectionWrapper';
 import Tweet from '../Tweet';
 import { HomeHeader, HomeHeaderWrapper } from './styled';
-import ThemeToggle from '@/ui/ThemeToggle';
 
 const Home: FC = () => {
 	const allTweets = useTweets();

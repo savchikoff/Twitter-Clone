@@ -1,11 +1,11 @@
 import { FC, lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 
+import { auth } from '@/config/firebase';
 import NAVIGATION from '@/constants/navigation';
 import { PRIVATE_ROUTES, ROUTES } from '@/constants/routes';
 import Loader from '@/ui/Loader';
-import { auth } from '@/config/firebase';
 
 const ErrorPage = lazy(() => import('../../pages/ErrorPage'));
 const FeedPage = lazy(() => import('../../pages/FeedPage'));

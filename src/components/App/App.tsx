@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { auth } from '@/config/firebase';
+import { NotificationProvider } from '@/providers/NotificationsProvider';
 import { TweetsProvider } from '@/providers/TweetsProvider';
 import { CurrentUserProvider } from '@/providers/UserProvider';
-import { NotificationProvider } from '@/providers/NotificationsProvider';
 import Loader from '@/ui/Loader';
 
 import Router from '../Router';

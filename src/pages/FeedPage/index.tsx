@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
-import Feed from '@/components/Feed';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 
+import Feed from '@/components/Feed';
 import { auth } from '@/config/firebase';
 import { ROUTES } from '@/constants/routes';
 
