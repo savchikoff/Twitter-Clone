@@ -26,8 +26,6 @@ import { Input, NewDataForm, SubmitButton } from './styled';
 
 const NewUserData: FC = () => {
 	const { uid, email } = useCurrentUser();
-	const [isError, setIsError] = useState(false);
-	const [error, setError] = useState<string | undefined>('');
 	const notification = useNotification();
 
 	const {
@@ -61,8 +59,6 @@ const NewUserData: FC = () => {
 				'password',
 				'newPassword',
 			];
-
-			console.log(data.newPassword);
 
 			const fieldsToUpdateAtTweets: (keyof ChangeFormInputs)[] = [
 				'email',
@@ -136,34 +132,6 @@ const NewUserData: FC = () => {
 		}
 	};
 
-	useEffect(() => {
-		if (
-			errors?.name?.message ||
-			errors?.phone?.message ||
-			errors?.email?.message ||
-			errors?.password?.message ||
-			errors?.newPassword?.message
-		) {
-			setIsError(true);
-			setError(
-				errors?.name?.message ||
-				errors?.phone?.message ||
-				errors?.email?.message ||
-				errors?.password?.message ||
-				errors?.newPassword?.message
-			);
-		} else {
-			setIsError(false);
-			setError('');
-		}
-	}, [
-		errors.name,
-		errors.phone,
-		errors.email,
-		errors.password,
-		errors.newPassword,
-	]);
-
 	return (
 		<NewDataForm onSubmit={handleSubmit(handleChangeData)}>
 			<Input
@@ -175,6 +143,7 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
+			{errors.name && <ErrorLabel label={errors.name.message} />}
 			<Input
 				placeholder="New phone"
 				{...register('phone', {
@@ -184,6 +153,7 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
+			{errors.phone && <ErrorLabel label={errors.phone.message} />}
 			<Input
 				placeholder="New email (needs current password)"
 				{...register('email', {
@@ -193,6 +163,7 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
+			{errors.email && <ErrorLabel label={errors.email.message} />}
 			<Input
 				type="password"
 				placeholder="Current password"
@@ -207,6 +178,7 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
+			{errors.password && <ErrorLabel label={errors.password.message} />}
 			<Input
 				type="password"
 				placeholder="New password (needs current password)"
@@ -215,7 +187,7 @@ const NewUserData: FC = () => {
 						value:
 							/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/,
 						message:
-							'Password should contain at least one number and one special character',
+							'New password should contain at least one number, one special character and one upper letter',
 					},
 					minLength: {
 						value: 8,
@@ -227,7 +199,7 @@ const NewUserData: FC = () => {
 					},
 				})}
 			/>
-			{isError && <ErrorLabel label={error} />}
+			{errors.newPassword && <ErrorLabel label={errors.newPassword.message} />}
 			<SubmitButton type="submit">Change</SubmitButton>
 		</NewDataForm>
 	);

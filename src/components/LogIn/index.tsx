@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -32,14 +32,6 @@ const LogIn: FC = () => {
 	const navigate = useNavigate();
 	const notification = useNotification();
 
-	useEffect(() => {
-		if (errors?.email?.message || errors?.password?.message) {
-			setError(errors?.email?.message || errors?.password?.message);
-		} else {
-			setError('');
-		}
-	}, [errors.email, errors.password]);
-
 	const handleLogin = ({ email, password }: IFormInput) => {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(() => {
@@ -72,6 +64,7 @@ const LogIn: FC = () => {
 						})}
 						placeholder="Email address"
 					/>
+					{errors.email && <ErrorLabel label={errors.email.message} />}
 					<Input
 						data-cy="login-password"
 						type="password"
@@ -88,7 +81,7 @@ const LogIn: FC = () => {
 						})}
 						placeholder="Password"
 					/>
-					{error && <ErrorLabel label={error} />}
+					{errors.password && <ErrorLabel label={errors.password.message} />}
 					<Button data-cy="login-btn" type="submit" disabled={!isValid}>
 						Log In
 					</Button>

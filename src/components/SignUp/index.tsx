@@ -5,11 +5,10 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 import twitterLogo from '@/assets/logos/twitter-logo.svg';
-import { Month } from '@/constants/month';
+import { Month } from '@/constants/Month';
 import { auth, db } from '@/config/firebase';
 import ErrorLabel from '@/ui/ErrorLabel';
 import LinkWrapper from '@/ui/LinkWrapper';
-import { generateYears } from '@/utils/generateYears';
 import { getDaysInMonthArray } from '@/utils/getDaysInMonthArray';
 import { useNotification } from '@/providers/NotificationsProvider';
 
@@ -30,12 +29,11 @@ import {
 	TwitterLogoWrapper,
 	Wrapper,
 } from './styled';
+import { generateYears } from '@/utils/generateYears';
 
 const SignUp: FC = () => {
 	const navigate = useNavigate();
 	const notification = useNotification();
-
-	const [error, setError] = useState<string | undefined>('');
 	const [selectedDay, setSelectedDay] = useState('');
 	const [selectedMonth, setSelectedMonth] = useState('');
 	const [selectedYear, setSelectedYear] = useState('');
@@ -50,24 +48,6 @@ const SignUp: FC = () => {
 	useEffect(() => {
 		setDateOfBirth(`${selectedDay} ${selectedMonth} ${selectedYear}`);
 	}, [selectedMonth, selectedYear, selectedDay]);
-
-	useEffect(() => {
-		if (
-			errors?.name?.message ||
-			errors?.phone?.message ||
-			errors?.email?.message ||
-			errors?.password?.message
-		) {
-			setError(
-				errors?.name?.message ||
-				errors?.phone?.message ||
-				errors?.email?.message ||
-				errors?.password?.message
-			);
-		} else {
-			setError('');
-		}
-	}, [errors.email, errors.password, errors.name, errors.phone]);
 
 	const handleSignUp = async ({
 		name,
@@ -134,6 +114,7 @@ const SignUp: FC = () => {
 								})}
 								placeholder="Phone number"
 							/>
+							{errors.phone && <ErrorLabel label={errors.phone.message} />}
 							<Input
 								data-cy="signup-email"
 								{...register('email', {
@@ -146,6 +127,7 @@ const SignUp: FC = () => {
 								type="email"
 								placeholder="Email"
 							/>
+							{errors.email && <ErrorLabel label={errors.email.message} />}
 							<Input
 								data-cy="signup-password"
 								type="password"
@@ -155,7 +137,7 @@ const SignUp: FC = () => {
 										value:
 											/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/,
 										message:
-											'Password should contain at least one number and one    special character',
+											'Password should contain at least one number, one special character and upper letter',
 									},
 									minLength: {
 										value: 8,
@@ -168,7 +150,7 @@ const SignUp: FC = () => {
 								})}
 								placeholder="Password"
 							/>
-							{error && <ErrorLabel label={error} />}
+							{errors.password && <ErrorLabel label={errors.password.message} />}
 							<LinkWrapper>
 								<Link to="/">Use email</Link>
 							</LinkWrapper>
