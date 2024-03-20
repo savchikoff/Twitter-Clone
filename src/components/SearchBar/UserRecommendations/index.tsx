@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
 
-import { db } from "@/firebase";
+import { db } from "@/config/firebase";
 import { useTweets } from "@/providers/TweetsProvider";
 
 import RecommendedTweet from "../RecommendedTweet";

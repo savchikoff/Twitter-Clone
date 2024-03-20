@@ -1,6 +1,6 @@
+import { FC, useCallback, useEffect } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { FC, useCallback, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import google from "@/assets/google.png";
 import twitterBg from "@/assets/twitter-background.jpg";
 import twitterLogo from "@/assets/twitter-logo.svg";
 import { FooterLinks } from "@/constants/footerLinks";
-import { auth, db } from "@/firebase";
+import { auth, db } from "@/config/firebase";
 import LinkWrapper from "@/ui/LinkWrapper";
 
 import Button from "../Button";

@@ -1,19 +1,19 @@
+import { FC, useEffect, useMemo, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { FC, useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 import twitterLogo from "@/assets/twitter-logo.svg";
-import { auth, db } from "@/firebase";
+import { Month } from "@/constants/month";
+import { auth, db } from "@/config/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
 import LinkWrapper from "@/ui/LinkWrapper";
 import Notification from "@/ui/Notification";
 import { generateYears } from "@/utils/generateYears";
 import { getDaysInMonthArray } from "@/utils/getDaysInMonthArray";
 
-import { Month } from "@/constants/month";
 import Select from "../../ui/Select";
 import { ISignUpFormInput } from "./interfaces";
 import {

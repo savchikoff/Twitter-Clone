@@ -10,6 +10,7 @@ const graniteGray = ({ theme }: DefaultTheme) => theme.themeType.colors.graniteG
 const black = ({ theme }: DefaultTheme) => theme.themeType.colors.black;
 const blue = ({ theme }: DefaultTheme) => theme.themeType.colors.blue;
 const screen768 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen768;
+const textColor = ({ theme }: DefaultTheme) => theme.themeType.textColor;
 
 export const TweetContainer = styled.div`
     padding: ${s16};
@@ -51,7 +52,7 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.div`
-    color: ${black};
+    color: ${textColor};
 `;
 
 export const UserNickName = styled.div`

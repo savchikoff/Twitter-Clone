@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 
-import { db, storage } from "@/firebase";
+import { db, storage } from "@/config/firebase";
 
 export type FileType = Blob | Uint8Array | ArrayBuffer | null;
 

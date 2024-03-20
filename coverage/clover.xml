@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1710442596367" clover="3.2.0">
+  <project timestamp="1710442596367" name="All files">
+    <metrics statements="20" coveredstatements="19" conditionals="9" coveredconditionals="6" methods="6" coveredmethods="6" elements="35" coveredelements="31" complexity="0" loc="20" ncloc="20" packages="1" files="3" classes="3"/>
+    <file name="generateYears.ts" path="D:\FrontEnd\Modsen\Internship\Test Tasks\Twitter Clone\src\utils\generateYears.ts">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="125" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+    </file>
+    <file name="getDaysInMonthArray.ts" path="D:\FrontEnd\Modsen\Internship\Test Tasks\Twitter Clone\src\utils\getDaysInMonthArray.ts">
+      <metrics statements="14" coveredstatements="13" conditionals="9" coveredconditionals="6" methods="3" coveredmethods="3"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="3" type="cond" truecount="5" falsecount="0"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="28" type="stmt"/>
+      <line num="15" count="28" type="cond" truecount="1" falsecount="3"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="18" count="28" type="stmt"/>
+      <line num="21" count="28" type="stmt"/>
+    </file>
+    <file name="isLikedByMe.ts" path="D:\FrontEnd\Modsen\Internship\Test Tasks\Twitter Clone\src\utils\isLikedByMe.ts">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="3" type="stmt"/>
+    </file>
+  </project>
+</coverage>

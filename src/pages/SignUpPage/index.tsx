@@ -1,6 +1,8 @@
+import { FC } from "react";
 import SignUp from "@/components/SignUp";
 
-const SignUpPage = () => {
+
+const SignUpPage: FC = () => {
     return <SignUp />
 }
 

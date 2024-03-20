@@ -1,6 +1,6 @@
 import { ComponentType, ReactNode } from "react";
 
-import { ROUTES, PRIVATE_ROUTES } from "./routes";
+import { PRIVATE_ROUTES,ROUTES } from "./routes";
 import { OnBoardingPage, SignInPage, SignUpPage, TweetPage } from "./routesComponents";
 
 type Route = {

@@ -1,7 +1,8 @@
+import { createContext, FC, useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { PropsWithChildren } from "react";
 
-import { auth, db } from "@/firebase";
+import { auth, db } from "@/config/firebase";
 
 interface ICurrentUserContext {
     uid: string;
@@ -10,9 +11,6 @@ interface ICurrentUserContext {
     userName: string;
 };
 
-interface ICurrentUserProviderProps {
-    children: ReactNode;
-}
 
 const CurrentUserContext = createContext<ICurrentUserContext>({
     uid: "",
@@ -25,7 +23,7 @@ export const useCurrentUser = () => {
     return useContext(CurrentUserContext);
 }
 
-export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children }) => {
+export const CurrentUserProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const [user, setUser] = useState<ICurrentUserContext>({
         uid: "",
@@ -37,7 +35,7 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user) {
-                const { uid, displayName, email } = user as { uid: string; displayName: string; email: string | undefined };
+                const { uid, displayName, email } = user;
 
                 if (!displayName) {
                     const userRef = collection(db, "Users");
@@ -65,7 +63,5 @@ export const CurrentUserProvider: FC<ICurrentUserProviderProps> = ({ children })
         return () => unsubscribe();
     }, []);
 
-    const memoizedUser = useMemo(() => user, [user.uid]);
-
-    return <CurrentUserContext.Provider value={memoizedUser}>{children}</CurrentUserContext.Provider>
+    return <CurrentUserContext.Provider value={user}>{children}</CurrentUserContext.Provider>
 }

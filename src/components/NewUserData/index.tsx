@@ -1,9 +1,10 @@
+import { FC, useCallback, useEffect, useState } from "react";
 import { EmailAuthProvider, reauthenticateWithCredential, updateEmail, updatePassword, verifyBeforeUpdateEmail } from "firebase/auth";
 import { collection, getDocs, query, updateDoc, where } from "firebase/firestore";
-import { FC, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { auth, db, logOut } from "@/firebase";
+import { auth, db } from "@/config/firebase";
+import { logOut } from "@/utils/logOut";
 import { useCurrentUser } from "@/providers/UserProvider";
 import ErrorLabel from "@/ui/ErrorLabel";
 import Notification from "@/ui/Notification";

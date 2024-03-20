@@ -1,11 +1,11 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { FC, useCallback, useEffect, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 import twitterLogo from "@/assets/twitter-logo.svg"
-import { auth } from "@/firebase";
+import { auth } from "@/config/firebase";
 import ErrorLabel from "@/ui/ErrorLabel";
 import LinkWrapper from "@/ui/LinkWrapper";
 import Notification from "@/ui/Notification";
@@ -27,9 +27,6 @@ const LogIn: FC = () => {
     const [user, loading] = useAuthState(auth);
 
     useEffect(() => {
-        if (loading) {
-            return;
-        }
         if (user) navigate("/");
     }, [user, loading, navigate]);
 

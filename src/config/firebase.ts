@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {
-    getAuth,
-    signOut,
+    getAuth
 } from "firebase/auth";
 import {
     getFirestore,
@@ -23,13 +22,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app, "gs://twitter-clone-9ae15.appspot.com");
 
-const logOut = () => {
-    signOut(auth);
-};
-
 export {
     auth,
     db,
-    logOut,
     storage
 }

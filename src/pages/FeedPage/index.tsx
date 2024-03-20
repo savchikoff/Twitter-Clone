@@ -1,6 +1,8 @@
+import { FC } from "react";
 import Feed from "@/components/Feed";
 
-const FeedPage = () => {
+
+const FeedPage: FC = () => {
     return <Feed />
 }
 

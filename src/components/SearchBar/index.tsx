@@ -39,12 +39,12 @@ const SearchBar: FC = () => {
 
     return (
         <SearchBurger>
-                <SearchBarContainer>
-                    <Search searchValue={searchQuery} setSearchValue={setSearchQuery} />
-                    <UserRecommendations searchValue={debouncedSearchValue} />
-                    <Links />
-                </SearchBarContainer>
-            </SearchBurger>
+            <SearchBarContainer>
+                <Search searchValue={searchQuery} setSearchValue={setSearchQuery} />
+                <UserRecommendations searchValue={debouncedSearchValue} />
+                <Links />
+            </SearchBarContainer>
+        </SearchBurger>
     )
 }
 

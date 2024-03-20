@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import heatImage from "@/assets/profile-header.jpg";
 import profileImg from "@/assets/profile-image.png";

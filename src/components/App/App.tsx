@@ -1,7 +1,8 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 
-import { auth } from "@/firebase";
+
+import { auth } from "@/config/firebase";
 import { TweetsProvider } from "@/providers/TweetsProvider";
 import { CurrentUserProvider } from "@/providers/UserProvider";
 import Loader from "@/ui/Loader";
@@ -16,8 +17,8 @@ function App() {
 	useEffect(
 		() =>
 			onAuthStateChanged(auth, (user) => {
-				setIsAuthenticated(!!user);
-				setIsLoading(false)
+				setIsAuthenticated(Boolean(user));
+				setIsLoading(false);
 			}),
 		[],
 	);

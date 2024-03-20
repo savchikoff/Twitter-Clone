@@ -28,9 +28,13 @@
 	},
 	"include": [
 		"src",
-		"types",
+		"@types",
 		"vite.config.ts",
 		"cypress.config.ts"
+	],
+	"exclude": [
+		"**/*.spec.ts",
+		"./cypress.config.ts"
 	],
 	"references": [
 		{

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate,useParams } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import backArrow from "@/assets/back-arrow.svg"
+import Back from "@/assets/back-arrow.svg?react";
 import SectionWrapper from "@/components/SectionWrapper";
 import Tweet from "@/components/Tweet";
 import { ITweetProps } from "@/components/Tweet/interfaces";
 import { useTweets } from "@/providers/TweetsProvider";
 
-import { BackLinkContainer, BackLinkIcon, BackLinkText, BackLinkWrapper } from "./styled";
+import { BackLinkContainer, BackLinkText, BackLinkWrapper } from "./styled";
 
-const TweetPage = () => {
+const TweetPage: FC = () => {
     const { id } = useParams();
     const [tweet, setTweet] = useState<ITweetProps | null>();
     const tweets = useTweets();
@@ -40,7 +40,7 @@ const TweetPage = () => {
             <SectionWrapper>
                 <BackLinkContainer onClick={handleBackHome}>
                     <BackLinkWrapper>
-                        <BackLinkIcon src={backArrow} />
+                        <Back />
                         <BackLinkText>Back</BackLinkText>
                     </BackLinkWrapper>
                 </BackLinkContainer>

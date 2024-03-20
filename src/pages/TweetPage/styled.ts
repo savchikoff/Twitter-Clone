@@ -8,6 +8,7 @@ const s24 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s24;
 const s30 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s30;
 const bold = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.bold;
 const screen425 = ({ theme }: DefaultTheme) => theme.themeType.breakPoints.screen425;
+const textColor = ({ theme }: DefaultTheme) => theme.themeType.textColor;
 
 export const BackLinkContainer = styled.div`
     display: inline-block;
@@ -25,6 +26,10 @@ export const BackLinkWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: ${s8};
+
+    & svg > g > path {
+        fill: ${textColor};
+    }
 `;
 
 export const BackLinkIcon = styled.img``;
