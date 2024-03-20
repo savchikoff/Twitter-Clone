@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 import twitterLogo from '@/assets/logos/twitter-logo.svg';
-import { Month } from '@/constants/Month';
+import { Month } from '@/constants/month';
 import { auth, db } from '@/config/firebase';
 import ErrorLabel from '@/ui/ErrorLabel';
 import LinkWrapper from '@/ui/LinkWrapper';
