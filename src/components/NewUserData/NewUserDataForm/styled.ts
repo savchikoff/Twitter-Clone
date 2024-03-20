@@ -1,16 +1,16 @@
-import styled, { DefaultTheme } from 'styled-components';
+import styled, { DefaultTheme } from "styled-components";
 
-const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
 const s16 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s16;
+const s1 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s1;
 const s18 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s18;
 const s32 = ({ theme }: DefaultTheme) => theme.themeType.sizes.s32;
-const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
-const graniteGray = ({ theme }: DefaultTheme) =>
-	theme.themeType.colors.graniteGray;
 const oceanBlue = ({ theme }: DefaultTheme) => theme.themeType.colors.oceanBlue;
 const white = ({ theme }: DefaultTheme) => theme.themeType.colors.white;
 const blue = ({ theme }: DefaultTheme) => theme.themeType.colors.blue;
 const bold = ({ theme }: DefaultTheme) => theme.themeType.fontWeights.bold;
+const silver = ({ theme }: DefaultTheme) => theme.themeType.colors.silver;
+const graniteGray = ({ theme }: DefaultTheme) =>
+    theme.themeType.colors.graniteGray;
 
 export const NewDataForm = styled.form`
 	display: flex;
