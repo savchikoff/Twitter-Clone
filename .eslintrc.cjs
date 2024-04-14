@@ -39,6 +39,7 @@ module.exports = {
 		'no-useless-escape': 'off',
 		'react/prop-types': 'off',
 		'react-hooks/exhaustive-deps': 'off',
+		'import/no-extraneous-dependencies': 'off'
 	},
 	parserOptions: {
 		parser: '@typescript-eslint/parser',

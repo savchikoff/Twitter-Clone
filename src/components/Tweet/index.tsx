@@ -8,6 +8,7 @@ import likeActive from '@/assets/icons/like-active.svg';
 import likeUnactive from '@/assets/icons/like-unactive.svg';
 import Options from '@/assets/icons/options.svg?react';
 import { db, storage } from '@/config/firebase';
+import { useNotification } from '@/providers/NotificationsProvider';
 import { useCurrentUser } from '@/providers/UserProvider';
 import { isLikedByMe } from '@/utils/isLikedByMe';
 
@@ -52,6 +53,7 @@ const Tweet: FC<ITweetProps> = ({
 	const [showDeleteButton, setShowDeleteButton] = useState(false);
 	const deleteButtonRef = useRef<HTMLButtonElement | null>(null);
 	const navigate = useNavigate();
+	const notification = useNotification();
 
 	const handleLike = async () => {
 		setIsLiking(true);
@@ -90,11 +92,12 @@ const Tweet: FC<ITweetProps> = ({
 		const tweetRef = doc(db, 'Tweets', tweetId);
 		try {
 			await deleteDoc(tweetRef);
+			notification?.open("Tweet was deleted", false);
 		} catch (e) {
 			console.error(e);
+			notification?.open("Error occurred while deleting tweet", true);
 		}
 		setShowDeleteButton(false);
-		location.reload();
 	};
 
 	const handleTweetClick = (tweetId: string) => () => {

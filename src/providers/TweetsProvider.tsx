@@ -1,6 +1,6 @@
 import {
 	collection,
-	getDocs,
+	onSnapshot,
 	orderBy,
 	query,
 	Timestamp,
@@ -14,6 +14,7 @@ import {
 	useMemo,
 	useState,
 } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 import { db } from '@/config/firebase';
 
@@ -42,47 +43,51 @@ export const useTweets = () => {
 
 export const TweetsProvider: FC<ITweetsProviderProps> = ({ children }) => {
 	const [tweets, setTweets] = useState<TweetsContextType>([]);
+	const [value] = useCollection(
+		collection(db, "Tweets")
+	);
 
-	const getTweets = async () => {
+	useEffect(() => {
 		const tweets: TweetsContextType = [];
 		const tweetsRef = collection(db, 'Tweets');
 		const tweetsQueue = query(tweetsRef, orderBy('createdAt', 'desc'));
-		const tweetsSnaps = await getDocs(tweetsQueue);
 
-		tweetsSnaps.forEach((tweetSnap) => {
-			if (tweetSnap.exists()) {
-				const {
-					text,
-					name,
-					userName,
-					email,
-					image,
-					id,
-					createdAt,
-					likes,
-					likedUsers,
-				} = tweetSnap.data();
-				tweets.push({
-					tweetId: tweetSnap.id,
-					text,
-					name,
-					userName,
-					email,
-					image,
-					id,
-					createdAt,
-					likes,
-					likedUsers,
-				});
-			}
+		const unsubscribe = onSnapshot(tweetsQueue, (tweetsSnaps) => {
+			tweetsSnaps.forEach((tweetSnap) => {
+				if (tweetSnap.exists()) {
+					const {
+						text,
+						name,
+						userName,
+						email,
+						image,
+						id,
+						createdAt,
+						likes,
+						likedUsers,
+					} = tweetSnap.data();
+					tweets.push({
+						tweetId: tweetSnap.id,
+						text,
+						name,
+						userName,
+						email,
+						image,
+						id,
+						createdAt,
+						likes,
+						likedUsers,
+					});
+				}
+			});
+
+			setTweets(tweets);
 		});
 
-		setTweets(tweets);
-	};
-
-	useEffect(() => {
-		getTweets();
-	}, []);
+		return () => {
+			unsubscribe();
+		}
+	}, [value]);
 
 	const memoizedTweets = useMemo(() => tweets, [tweets]);
 

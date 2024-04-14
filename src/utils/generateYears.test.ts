@@ -1,4 +1,5 @@
 import { expect } from '@jest/globals';
+
 import { generateYears } from './generateYears';
 
 describe('generateYears', () => {

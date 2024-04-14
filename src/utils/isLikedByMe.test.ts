@@ -1,4 +1,5 @@
 import { expect } from '@jest/globals';
+
 import { isLikedByMe } from './isLikedByMe';
 
 describe('isLikedByMe', () => {

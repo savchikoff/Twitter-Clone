@@ -43,7 +43,6 @@ export const addTweet = async (
 
 	try {
 		await addDoc(collection(db, 'Tweets'), tweetContent);
-		location.reload();
 	} catch (e) {
 		console.error(e);
 	}
